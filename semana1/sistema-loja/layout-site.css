@@ -1,0 +1,62 @@
+body {
+    height: 100vh;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.logo{
+    display: inline;
+    height: 10vh;
+}
+
+.refrao {
+    display: inline-block;
+    margin: 0 400px;
+    height: 10vh;
+    font-size: 48px;
+}
+
+.links {
+    color: black;
+    background-color: yellow;
+    float: right;
+    text-decoration: none;
+    margin: 0 8px;
+    border: 1px solid black;
+}
+
+.corpo {
+    height: 50vh;
+    text-align: center;
+    font-size: 36px;
+    padding-top: 120px;
+}
+
+.rodape {
+    height: 20vh;
+    text-align: center;
+}
+
+.fotos {
+    height: 5vh;
+}
+
+.formulario {
+    height: 50vh;
+    margin-top: 200px;
+    text-align: center;
+}
+
+.lista {
+    list-style-position:inside;
+}
+
+.tabela,th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.tabela {
+    height: 50vh;
+    margin-right: auto;
+    margin-left: auto;
+}

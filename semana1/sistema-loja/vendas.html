@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="layout-site.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="refrao">Geromin</h1>
+        <div class="indices">
+            <a href="index.html" class="links">Página Inicial</a>
+            <a href="ctrl-estoque.html" class="links">Controle de Estoque</a>
+            <a href="add-produto.html" class="links">Adicionar Produto</a>
+            <a href="funcionarios.html" class="links">Funcionários</a>
+            <a href="#" class="links">Vendas</a>
+            <a href="hist-vendas.html" class="links">Histórico de Vendas</a>
+        </div>
+    </div>
+
+    <div class="corpo">
+        <h2 class="descricao">Vendas</h2>
+
+        <div>
+            <form action="#" class="form">
+                <div>
+                    <label for="vendas-produtos">Selecione os produtos: </label>
+                    <select name="venda-produtos" class="seletor">
+                        <option value="apagador">Apagador Faber-Castell</option>
+                        <option value="caneta">Caneta esferográfica azul BIC</option>
+                        <option value="estojo">Estojo cor azul marinho</option>
+                        <option value="lapiseira">Lapiseira 0.7mm Tilibra</option>
+                        <option value="marcador">Marcador de texto cor salmão Stabilo Boss</option>
+                    </select>
+                </div>
+
+                <div>
+                    <p class="pag-form">Forma de pagamento:</p>
+                    <label for="pagamento">Cartão
+                        <input type="radio" name="pagamento">
+                    </label>
+                    <label for="pagamento">Dinheiro
+                        <input type="radio" name="pagamento">
+                    </label>
+                </div>
+
+                <div>
+                    <button type="submit" class="botao-envio">Finalizar Compra</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Siga-nos nas redes sociais!</p>
+
+        <div>
+            <img src="https://image.flaticon.com/icons/png/512/25/25305.png" class="fotos" alt="ícone do facebook" />
+            <img src="https://image.flaticon.com/icons/png/512/25/25425.png" class="fotos" alt="ícone do instagram" />
+            <img src="https://image.flaticon.com/icons/png/512/8/8800.png" class="fotos" alt="ícone do twitter" />
+        </div>
+    </div>
+
+</body>
+
+</html>

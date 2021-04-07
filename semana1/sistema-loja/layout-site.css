@@ -1,0 +1,89 @@
+body {
+    height: 100vh;
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.cabecalho {
+    background-color:cadetblue;
+    height: 20vh;
+    margin-top: -24px;
+}
+
+.logo {
+    margin-top: 24px;
+}
+
+.refrao {
+    text-align: center;
+    font-size: 32px;
+}
+
+.bloco-links {
+    color: black;
+    float: right;
+    
+}
+
+.links {
+    text-decoration: none;
+    background-color: yellow;
+    margin-right: 16px;
+    border: 1px solid black;
+}
+
+.links-funcionarios {
+    background-color: red;
+}
+.corpo {
+    height: 60vh;
+    text-align: center;
+    font-size: 36px;
+    margin-top: -48px;
+    background-color:darkkhaki;
+}
+
+.texto-corpo {
+    padding-top: 160px;
+}
+
+#topico-estoque {
+    padding-top: 20px;
+}
+
+.rodape {
+    height: 20vh;
+    text-align: center;
+    background-color:darkmagenta;
+    margin-top: -20px;
+    padding-top: 64px;
+}
+
+.fotos {
+    height: 5vh;
+}
+
+.formulario {
+    padding-top: 80px;
+}
+
+.lista {
+    list-style-position:inside;
+}
+
+.lista-corpo {
+    padding-top: 64px;
+}
+
+.tabela,th,td {
+    background-color:deepskyblue;
+    border: 1px solid rgb(194, 84, 84);
+    border-collapse: collapse;
+}
+
+.tabela {
+    height: 40vh;
+    margin-right: auto;
+    margin-left: auto;
+    color:indigo;
+}

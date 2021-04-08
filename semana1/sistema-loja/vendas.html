@@ -25,35 +25,61 @@
 
     <div class="corpo">
         <h2 class="descricao">Vendas</h2>
+        <form action="#" class="form2">
+            <div>
+                <label for="funcionarios">Nome do funcionário: </label>
+                <select>
+                    <option value="funcionario1">Amanda Lara</option>
+                    <option value="funcionario2">Carlos Amaro</option>
+                    <option value="funcionario3">Daniela Beatriz</option>
+                    <option value="funcionario4">Tiago Verdana</option>
+                    <option value="funcionario5">Walter Saramargo</option>
+                </select>
+            </div>
 
-        <div>
-            <form action="#" class="form">
-                <div>
-                    <label for="vendas-produtos">Selecione os produtos: </label>
-                    <select name="venda-produtos" class="seletor">
-                        <option value="apagador">Apagador Faber-Castell</option>
-                        <option value="caneta">Caneta esferográfica azul BIC</option>
-                        <option value="estojo">Estojo cor azul marinho</option>
-                        <option value="lapiseira">Lapiseira 0.7mm Tilibra</option>
-                        <option value="marcador">Marcador de texto cor salmão Stabilo Boss</option>
-                    </select>
-                </div>
+            <div>
+                <label for="quantidade1">Apagador: </label>
+                <input type="number" id="quantidade1" name="quantidade1">
+            </div>
 
-                <div>
-                    <p class="pag-form">Forma de pagamento:</p>
-                    <label for="pagamento">Cartão
-                        <input type="radio" name="pagamento">
-                    </label>
-                    <label for="pagamento">Dinheiro
-                        <input type="radio" name="pagamento">
-                    </label>
-                </div>
+            <div>
+                <label for="quantidade2">Caneta: </label>
+                <input type="number" id="quantidade2" name="quantidade2">
+            </div>
 
-                <div>
-                    <button type="submit" class="botao-envio">Finalizar Compra</button>
-                </div>
-            </form>
-        </div>
+            <div>
+                <label for="quantidade3">Estojo: </label>
+                <input type="number" id="quantidade3" name="quantidade3">
+            </div>
+
+            <div>
+                <label for="quantidade4">Lapiseira: </label>
+                <input type="number" id="quantidade4" name="quantidade4">
+            </div>
+
+            <div>
+                <label for="quantidade5">Marcador de texto: </label>
+                <input type="number" id="quantidade5" name="quantidade5">
+            </div>
+
+            <div>
+                <label for="valor-total">Valor total (em R$): </label>
+                <input type="number" id="valor-total" name="valor-total">
+            </div>
+
+            <div>
+                <label for="pagamento">Forma de pagamento: </label>
+                <select>
+                    <option value="cartao">Cartao</option>
+                    <option value="dinheiro">Dinheiro</option>
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="botao-envio">Finalizar compra</button>
+            </div>
+
+        </form>
     </div>
 
     <div class="footer">

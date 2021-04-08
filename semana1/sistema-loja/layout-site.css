@@ -1,89 +1,154 @@
-body {
-    height: 100vh;
-    font-family:Arial, Helvetica, sans-serif;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.cabecalho {
-    background-color:cadetblue;
+body {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.header {
     height: 20vh;
-    margin-top: -24px;
+    background-color: green;
+    color: white;
+    position: relative;
 }
 
 .logo {
-    margin-top: 24px;
+    height: 5vh;
 }
 
 .refrao {
+    display: block;
     text-align: center;
-    font-size: 32px;
+    height: 10vh;
+    font-size: 64px;
 }
 
-.bloco-links {
-    color: black;
-    float: right;
-    
+.indices {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .links {
+    margin-right: 8px;
+    border: 1px black solid;
+    border-radius: 1px;
+    padding: 8px;
     text-decoration: none;
-    background-color: yellow;
-    margin-right: 16px;
-    border: 1px solid black;
+    background-color: grey;
+    font-weight: bold;
+    font-style: oblique;
+    color: black;
 }
 
-.links-funcionarios {
-    background-color: red;
-}
 .corpo {
     height: 60vh;
-    text-align: center;
-    font-size: 36px;
-    margin-top: -48px;
-    background-color:darkkhaki;
+    font-size: 32px;
+    color: white;
+    position: relative;
+    background-color: black;
 }
 
 .texto-corpo {
-    padding-top: 160px;
+    position: absolute;
+    top: 160px;
+    left: 540px;
 }
 
-#topico-estoque {
-    padding-top: 20px;
-}
-
-.rodape {
-    height: 20vh;
+#botao-compra {
+    border-radius: 5%;
+    background-color:royalblue;
+    text-decoration: none;
     text-align: center;
-    background-color:darkmagenta;
-    margin-top: -20px;
+    font-weight: bold;
+    color:gold;
+    height: 80px;
+    width: 320px;
+    position: absolute;
+    bottom: 20px;
+    left: 800px;
+}
+
+.descricao {
+    text-align: center;
     padding-top: 64px;
+}
+
+.tabela {
+    position: absolute;
+    top: 160px;
+    left: 360px;
+    background-color:deepskyblue;
+    color:indigo;
+}
+
+.tabela,td,th {
+    text-align: center;
+    border: 3px black solid;
+    border-collapse:collapse;
+}
+
+.form {
+    display: block;
+    width: 80vh;
+    margin: auto;
+    padding-top: 80px;
+    color: black;
+    background-color:lightgrey;
+    text-align: center;
+}
+
+.form2 {
+    display: block;
+    width: 80vh;
+    margin: auto;
+    color: black;
+    background-color: lightgrey;
+    text-align: center;
+    font-size: 24px;
+}
+
+label {
+    display: inline-block;
+    width: 50vh;
+    text-align: left;
+}
+
+.seletor {
+    position: absolute;
+    right: 540px;
+    top: 200px;
+    height: 32px;
+    font-weight: bold;
+}
+
+.botao-envio {
+    background-color:palegoldenrod;
+    height: 64px;
+    width: 160px;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.lista {
+    width: 280px;
+    margin: auto;
+    padding-top: 64px;
+}
+
+
+.footer {
+    height: 20vh;
+    font-size: 32px;
+    text-align: center;
+    padding-top: 48px;
+    background-color:darkorchid;
 }
 
 .fotos {
     height: 5vh;
-}
-
-.formulario {
-    padding-top: 80px;
-}
-
-.lista {
-    list-style-position:inside;
-}
-
-.lista-corpo {
-    padding-top: 64px;
-}
-
-.tabela,th,td {
-    background-color:deepskyblue;
-    border: 1px solid rgb(194, 84, 84);
-    border-collapse: collapse;
-}
-
-.tabela {
-    height: 40vh;
-    margin-right: auto;
-    margin-left: auto;
-    color:indigo;
 }

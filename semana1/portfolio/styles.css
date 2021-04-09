@@ -1,0 +1,170 @@
+/* 
+*
+* APLICAÇÕES GERAIS
+*
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    height: 200vh;
+    background-color:white;
+}
+
+header {
+    height: 10vh;
+    background-color: whitesmoke;
+    position: relative;
+}
+
+.logo, h1 {
+    display: inline;
+    height: 6vh;
+    width: 12vh;
+}
+
+.menu {
+    position: absolute;
+    bottom: 8px;
+    right: 0;
+}
+
+.botao {
+    background-color: palegoldenrod;
+    text-decoration: none;
+    border-style: outset;
+    border-color: gold;
+    border-radius: 1px;
+    color: black;
+    margin-right: 1vh;
+}
+
+p {
+    font-size: 32px;
+    font-style:oblique;
+}
+
+footer {
+    height: 20vh;
+    margin-top: 10vh;
+    padding-top: 2vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.redes-sociais {
+    width: 10vh;
+    margin-right: 16px;
+}
+
+/* 
+*
+* APLICAÇÃO HOME
+*
+*/
+
+h2 {
+    padding-top: 16px;
+}
+
+#descricao {
+    display: block;
+    width: 80%;
+    margin: auto;
+    font-size: 16px;
+}
+
+section {
+    height: 30vh;
+    margin-top: 10vh;
+    width: 60%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border-style:outset;
+    border-radius: 2px;
+    background-color:cornflowerblue;
+    position: relative;
+    text-align: center;
+}
+
+#foto-perfil {
+    height: 10vh;
+    width: 10vh;
+}
+
+.bloco-projeto1, .bloco-projeto2, .bloco-projeto3 {
+    position: absolute;
+    bottom: 16px;
+    height: 160px;
+    width: 25%;
+    text-align: center;
+    padding-top: 64px;
+    text-decoration: none;
+    color: black;
+    background-color:lightsteelblue;
+    border: 2px powderblue ridge;
+}
+
+.bloco-projeto1 {
+    left: 5%;
+}
+
+.bloco-projeto2 {
+    left: 40%;
+}
+
+.bloco-projeto3 {
+    left: 70%;
+}
+
+.bloco-lateral1 {
+    position: absolute;
+    bottom:0;
+    left:0;
+    height: 20vh;
+    width: 50%;
+}
+
+.bloco-lateral2 {
+    position: absolute;
+    bottom:0;
+    right:0;
+    height: 20vh;
+    width: 50%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* 
+*
+* APLICAÇÃO CONTATO
+*
+*/
+
+#formulario {
+    height:60vh;
+    text-align: center;
+    padding-top: 16vh;
+}
+
+#name, #email, #comments{
+    width: 400px;
+}
+
+#comments {
+    height: 20vh;
+}
+
+#botao-enviar {
+    margin-top: 10vh;
+}

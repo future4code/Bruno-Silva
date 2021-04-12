@@ -1,0 +1,100 @@
+/* 
+*
+* APLICAÇÕES GERAIS
+*
+*/
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    color: white;
+}
+
+span {
+    align-self: center;
+}
+
+/* 
+*
+* APLICAÇÃO TOP-CONTAINER
+*
+ */
+
+#top-container {
+    display: grid;
+    grid-template-columns: 25vw 75vw;
+    grid-template-rows: 5vh;
+}
+
+.green-background {
+    display: grid;
+    justify-content: center;
+    background-color: green;
+}
+
+.yellow-background {
+    display: grid;
+    justify-content: center;
+    background-color: yellow;
+}
+
+.pink-background {
+    display: grid;
+    justify-content: center;
+    background-color: fuchsia;
+    height: 60vh;
+}
+
+/* 
+*
+* APLICAÇÃO MIDDLE-CONTAINER
+*
+*/
+
+#middle-container {
+    display: grid;
+    grid-template-columns: 50vw 25vw 25vw;
+    grid-template-rows: 30vh;
+}
+
+.blue-background {
+    display: grid;
+    justify-content: center;
+    background-color: blue;
+    height: 30vh;
+}
+
+.red-background {
+    display: grid;
+    justify-content: center;
+    background-color: red;
+    height: 15vh;
+}
+
+.lightgreen-background {
+    display: grid;
+    justify-content: center;
+    background-color: lightgreen;
+    height: 15vh;
+}
+
+/* 
+*
+* APLICAÇÃO FOOTER
+*
+*/
+
+#footer-container {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 5vh;
+    background-color: purple;
+    align-items: center;
+}
+
+.purple-background {
+    text-align: center;
+}

@@ -1,0 +1,192 @@
+/* 
+*
+*APLICAÇÃO GERAL
+*
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: black;
+    height: 100vh;
+}
+
+#main-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 80px 1fr 80px;
+}
+
+/* 
+*
+* APLICAÇÃO HEADER
+*
+*/
+
+header {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    background-color: teal;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+}
+
+#header-name {
+    display: flex;
+    justify-content: center;
+}
+
+.busca, h1, h2 {
+    display: flex;
+    margin-right: 16px;
+}
+
+h1, h2 {
+    font-size: 48px;
+}
+
+input {
+    height: 32px;
+    width: 160px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+input:hover {
+    width: 240px;
+    background-color:whitesmoke;
+}
+
+/* 
+*
+*APLICAÇÃO SECTION
+*
+*/
+
+section {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+button {
+    height: 40px;
+    width: 176px;
+    background-color: blue;
+    border-radius: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: mediumblue;
+    color: gold;
+}
+
+/* 
+*
+*APLICAÇÃO MAIN
+*
+*/
+
+main {
+    grid-column: 2 / -1;
+    grid-row: 2 / 3;
+}
+
+.lista-videos {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 24px;
+    column-gap: 8px;
+    margin: 8px;
+}
+
+.elementos-videos {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 8px 8px 5px darkgrey;
+    height: 80%;
+}
+
+.elementos-videos:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+    color: goldenrod;
+}
+img {
+    width: 100%;
+    height: 160px;
+}
+
+p {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+/* 
+*
+*APLICAÇÃO FOOTER
+*
+*/
+
+footer {
+    grid-column: 1 / -1;
+    grid-row: 3 / -1;
+    padding-top: 32px;
+    background-color: darkslateblue;
+    color: goldenrod;
+    text-transform: uppercase;
+    font-family:fantasy;
+}
+
+/* 
+*
+*APLICAÇÃO VÍDEOS
+*
+*/
+
+.main-videos {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+video {
+    height: 600px;
+    border-style:inset;
+    border: 8px solid rgba(218, 187, 13, 0.13);
+}
+
+#botao-voltar {
+    height: 32px;
+    width: 64px;
+    background-color:rgb(27, 109, 156);
+}
+
+#botao-voltar:hover {
+    cursor: pointer;
+    background-color: rgb(21, 139, 148);
+    color: gold;
+}

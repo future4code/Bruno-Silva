@@ -1,0 +1,72 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    border: 1px solid black;
+}
+
+#first-block {
+    height: 10vh;
+    background-color: red;
+}
+
+#main-container {
+    padding: 2vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: none;
+}
+
+div div {
+    width: 30vw;
+    height: 15vh;
+    margin-bottom: 2vh;
+}
+
+.blue-block {
+    background-color: blue;
+}
+
+.yellow-block {
+    background-color: yellow;
+}
+
+.green-block {
+    background-color: green;
+}
+
+.black-block {
+    width: 45vw;
+    height: 30vh;
+    background-color: black;
+    color: white;
+}
+
+.white-block {  
+    background-color: white;
+}
+
+@media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+    .blue-block, .yellow-block, .white-block {
+        width: 45vw;
+    }
+
+    .green-block, #bloco-mudança {
+        width: 100%;
+    }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    .blue-block, .yellow-block, .green-block, .black-block, .white-block {
+        width: 100%;
+    }
+
+    .black-block {
+        height: 15vh;
+    }
+}

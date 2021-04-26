@@ -171,3 +171,99 @@ function numerosPares(array) {
   
 console.log(numerosPares(array))*/
 
+// DESAFIOS
+
+// Questão 1)
+// 1.)
+
+/*const inserirParametro = (parametro) => {
+    console.log(parametro)
+}
+
+inserirParametro(1)*/
+
+// 2.)
+
+/*let somaDosParametros = 0
+
+const inserirDoisParametros = (a,b) => {
+    somaDosParametros += a + b
+}
+
+inserirDoisParametros(30,23)
+
+const inserirParametro = (parametro) => {
+    console.log(parametro)
+}
+
+inserirParametro(somaDosParametros)*/
+
+// Questão 2)
+// letra a)
+
+/*const arrayDeNumeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+let arrayNovo = []
+
+function numerosParesDobrados(arrayDeNumeros) {
+    for(let numeroNoArray of arrayDeNumeros) {
+        if ( numeroNoArray % 2 === 0 ) {
+            numeroNoArray = numeroNoArray * 2;
+            arrayNovo.push(numeroNoArray);
+        }
+    }
+    return arrayNovo        
+}
+
+console.log(numerosParesDobrados(arrayDeNumeros))*/
+
+// letra b)
+
+/*const arrayDeNumeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+let testeMaiorNumero = 0;
+
+const maiorNumero = function(arrayDeNumeros) {
+    for( let i = 0; i < arrayDeNumeros.length; i++) {
+        if ( testeMaiorNumero < arrayDeNumeros[i] ) {
+            testeMaiorNumero = arrayDeNumeros[i]
+        }
+    }
+    return testeMaiorNumero
+}
+
+console.log(`O maior número é ${maiorNumero(arrayDeNumeros)}`)*/
+
+// letra c)
+
+/*const arrayDeNumeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+let testeMaiorNumero = 0;
+let testeIndiceMaiorNumero = 0;
+
+const maiorNumero = function(arrayDeNumeros) {
+    for( let i = 0; i < arrayDeNumeros.length; i++) {
+        if ( testeMaiorNumero < arrayDeNumeros[i] ) {
+            testeMaiorNumero = arrayDeNumeros[i];
+            testeIndiceMaiorNumero = i;
+        }
+    }
+    return testeIndiceMaiorNumero
+}
+
+console.log(`O índice do maior número é ${maiorNumero(arrayDeNumeros)}`)*/
+
+// letra d)
+
+/*const arrayDeNumeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+let arrayInvertido = []
+
+const inverterArray = (arrayDeNumeros) => {
+    let indice = arrayDeNumeros.length - 1;
+
+    while ( indice >= 0 ) {
+        arrayInvertido.push(arrayDeNumeros[indice]);
+        indice -= 1;
+    }
+    
+    return arrayInvertido
+}
+
+console.log(inverterArray(arrayDeNumeros))*/

@@ -33,29 +33,35 @@ function inserirTarefas() {
     const diaDaTarefa = document.getElementById("dias-semana");
     let diaSelecionado = document.getElementById(diaDaTarefa.value);
 
-    switch (diaDaTarefa.value) {
-        case "domingo":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        case "segunda":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        case "terca":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        case "quarta":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        case "quinta":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        case "sexta":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        case "sabado":
-            diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
-            break;
-        } 
-
+    if (descricaoTarefa.value !== "") {
+        switch (diaDaTarefa.value) {
+            case "domingo":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            case "segunda":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            case "terca":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            case "quarta":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            case "quinta":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            case "sexta":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            case "sabado":
+                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                break;
+            default:
+                break;
+        }
+    } else {
+        alert("Favor inserir uma tarefa!");
+    }
+    
     descricaoTarefa.value = ""
 }

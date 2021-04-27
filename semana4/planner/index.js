@@ -62,6 +62,6 @@ function inserirTarefas() {
     } else {
         alert("Favor inserir uma tarefa!");
     }
-    
-    descricaoTarefa.value = ""
+
+    descricaoTarefa.value = "" 
 }

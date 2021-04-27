@@ -36,25 +36,25 @@ function inserirTarefas() {
     if (descricaoTarefa.value !== "") {
         switch (diaDaTarefa.value) {
             case "domingo":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             case "segunda":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             case "terca":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             case "quarta":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             case "quinta":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             case "sexta":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             case "sabado":
-                diaSelecionado.innerHTML += `<p>-${descricaoTarefa.value}</p>`
+                diaSelecionado.innerHTML += `<p onclick="tacharTexto(this)">-${descricaoTarefa.value}</p>`
                 break;
             default:
                 break;
@@ -64,4 +64,8 @@ function inserirTarefas() {
     }
 
     descricaoTarefa.value = "" 
+}
+
+function tacharTexto(parametro){
+    parametro.style = "text-decoration:line-through";
 }

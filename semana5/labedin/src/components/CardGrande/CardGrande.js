@@ -6,23 +6,23 @@ const BigCardContainer = styled.div`
     align-items: center;
     padding: 20px 10px;
     margin-bottom: 10px;
-    height: 200px;
+    height: 160px;
 
-    img {
-        width: 80px;
-        margin-right: 10px;
-        border-radius: 50%;
-    }
+img {
+    width: 80px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
 
-    h4 {
-        margin-bottom: 15px;
-    }
+h4 {
+    margin-bottom: 15px;
+}
 
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-items: flex-start;
-    }
+div {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+}
 `
 
 function CardGrande(props) {

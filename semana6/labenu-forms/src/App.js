@@ -5,12 +5,11 @@ import Etapa2 from './Components/Etapa2';
 import Etapa3 from './Components/Etapa3';
 import Final from './Components/Final';
 
-const MainContainerApp = styled.div`
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `
-
 
 class App extends React.Component {
   state = {
@@ -41,10 +40,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <MainContainerApp>
+      <MainContainer>
         <div>{this.renderizaEtapa()}</div>
         {this.state.etapa < 4? <button onClick={this.irParaProximaEtapa}>Próxima Etapa</button>: ""}
-      </MainContainerApp>
+      </MainContainer>
     );
   }
 }

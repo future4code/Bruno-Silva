@@ -10,7 +10,6 @@ const Container1 = styled.div`
   }
 `
 
-
 export default class Etapa1 extends React.Component {
   
   render() {

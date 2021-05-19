@@ -1,6 +1,7 @@
 import React from 'react';
 import TelaFormulario from './Components/TelaFormulario';
 import TelaListaDeUsuarios from './Components/TelaListaDeUsuarios';
+import TelaDetalhesDoUsuario from './Components/TelaDetalhesDoUsuario';
 import styled from 'styled-components';
 
 const MainContainer = styled.div`
@@ -16,15 +17,20 @@ const HeaderContainer = styled.div`
 
 class App extends React.Component {
   state = {
-    paginaAtual: "formulario"
-  }
-
-  irParaTelaFormulario = () => {
-    this.setState({ paginaAtual: "lista" });
+    paginaAtual: "formulario",
+    idUsuario: ""
   }
 
   irParaTelaListaDeUsuarios = () => {
+    this.setState({ paginaAtual: "lista" });
+  }
+
+  irParaTelaFormulario = () => {
     this.setState({ paginaAtual: "formulario" });
+  }
+
+  irParaTelaDetalhesDoUsuario = (id) => {
+    this.setState({ paginaAtual: "detalhes", idUsuario: id });
   }
 
   selecionaTela = () => {
@@ -32,13 +38,21 @@ class App extends React.Component {
       case "formulario":
         return (
           <TelaFormulario
-            botaoMudarPagina={this.irParaTelaFormulario}
+            botaoIrParaLista={this.irParaTelaListaDeUsuarios}
           />);
       case "lista":
         return (
           <TelaListaDeUsuarios
-            botaoMudarPagina={this.irParaTelaListaDeUsuarios}
-          />)
+            botaoIrParaFormulario={this.irParaTelaFormulario}
+            irParaDetalhes={this.irParaTelaDetalhesDoUsuario}
+          />);
+      case "detalhes":
+        return (
+          <TelaDetalhesDoUsuario 
+            botaoIrParaLista={this.irParaTelaListaDeUsuarios}
+            idUsuario={this.state.idUsuario}
+          />
+        );
       default:
         return alert("Ops! Página não encontrada :(")
     }

@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import EdicaoDoUsuario from './EdicaoDoUsuario';
 
-const ListContainer = styled.div`
+const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,7 +13,7 @@ const ListContainer = styled.div`
     }
 `
 
-const CardListContainer = styled.div`
+const CardInfoContainer = styled.div`
     border: 1px solid grey;
     border-radius: 8px;
     background-color: lightblue;
@@ -21,16 +22,9 @@ const CardListContainer = styled.div`
     flex-direction: column;
     align-items: center;
 `
-
-const UserContainer = styled.div`
-    border: 1px solid grey;
-    background-color: slateblue;
-    height: 64px;
-    width: 80%;
-    padding: 0 8px;
-    margin-bottom: 2vh;
+const DetailContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 `
 
@@ -45,12 +39,16 @@ const Botao = styled.button`
     }
 `
 
-class TelaListaDeUsuarios extends React.Component {
+class TelaDetalhesDoUsuario extends React.Component {
     state = {
         usuarios: []
     }
 
     componentDidMount() {
+        this.getAllUsers()
+    }
+
+    componentDidUpdate() {
         this.getAllUsers()
     }
 
@@ -85,42 +83,45 @@ class TelaListaDeUsuarios extends React.Component {
             };
 
             axios
-                .delete(urlAddress, header)
-                .then((response) => {
-                    this.getAllUsers()
-                    alert("Usuário(a) removido(a) com sucesso!")
-                })
-                .catch((error) => {
-                    alert("Ops, um erro ocorreu! Tente novamente :)")
-                })
+            .delete(urlAddress, header)
+            .then((response) => {
+                this.getAllUsers()
+                alert("Usuário(a) removido(a) com sucesso!")
+            })
+            .catch((error) => {
+                alert("Ops, um erro ocorreu! Tente novamente :)")
+            })
         } else {
             return;
         }
     }
 
     render() {
-        const listaUsuarios = this.state.usuarios.map((user) => {
-            return (
-                <UserContainer key={user.id}>
-                    <li>{user.name}</li>
-                    <div>
-                        <Botao onClick={() => this.props.irParaDetalhes(user.id)}>Detalhes</Botao>
-                        <Botao onClick={() => this.deleteUser(user.id)}>Remover</Botao>
-                    </div>
-                </UserContainer>
-            );
+        const detalhesUsuario = this.state.usuarios.map((user) => {
+            if (user.id === this.props.idUsuario) {
+                return (
+                    <DetailContainer>
+                        <p>Nome do usuário: {user.name}</p>
+                        <p>Id do usuário: {user.id}</p>
+                        <Botao onClick={() => this.deleteUser(user.id)}>Remover Usuário</Botao>
+                        <EdicaoDoUsuario 
+                            userId={user.id}
+                        />
+                    </DetailContainer>
+                )
+            }
         });
 
         return (
-            <ListContainer>
-                <Botao onClick={this.props.botaoIrParaFormulario}>Ir para Formulários</Botao>
-                <CardListContainer>
-                    <h2>Lista de Usuários</h2>
-                    {listaUsuarios}
-                </CardListContainer>
-            </ListContainer>
+            <InfoContainer>
+                <Botao onClick={this.props.botaoIrParaLista}>Voltar</Botao>
+                <CardInfoContainer>
+                    <h2>Informações Adicionais</h2>
+                    {detalhesUsuario}
+                </CardInfoContainer>
+            </InfoContainer>
         );
     };
 }
 
-export default TelaListaDeUsuarios;
+export default TelaDetalhesDoUsuario;

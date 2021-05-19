@@ -83,7 +83,7 @@ class TelaFormulario extends React.Component {
     render() {
         return (
             <FormContainer>
-                <Botao onClick={this.props.botaoMudarPagina}>Ir para Lista de Usuários</Botao>
+                <Botao onClick={this.props.botaoIrParaLista}>Ir para Lista de Usuários</Botao>
                 <CardFormContainer>
                     <h2>Cadastro</h2>
                     <div>

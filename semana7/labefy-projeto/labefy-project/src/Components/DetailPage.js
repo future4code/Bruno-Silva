@@ -7,6 +7,7 @@ const DetailContainer = styled.div`
     background: linear-gradient(to bottom, #b0e0e6 0%, #696969 100%);
     display: grid;
     grid-template-rows: 3fr 6fr 1fr;
+    height: 100vh;
 
     div h3 {
         display: flex;

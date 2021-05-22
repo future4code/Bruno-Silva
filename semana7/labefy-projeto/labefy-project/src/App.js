@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { createGlobalStyle } from 'styled-components';
-import SearchTable from './Components/SearchTable';
-import Playlists from './Components/Playlists';
-import HomePage from './Components/HomePage';
-import CreatePlaylistPage from './Components/CreatePlaylistPage';
-import DetailPage from './Components/DetailPage';
-import ConnectionBox from './Components/ConnectionBox';
+import StartPage from './Components/StartPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,82 +10,116 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
     background-color: black;
-    color: white;
+    color: yellowgreen;
+  }
+
+  h1 {
+    font-size: 48px;
   }
 `
 
-const AppContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+const MainContainer = styled.div`
   height: 100vh;
-`
-
-const SectionContainer = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 2fr;
-`
-
-const SearchContainer = styled.div`
   display: flex;
-  justify-content: center;  
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 `
 
-const Lists = styled.div`
-  display: flex; 
+const LoginContainer = styled.div`
+  background-color: #111111;
+  height: 400px;
+  width: 800px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+`
+
+const CardLoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;  
+  align-items: center;
+  width: 400px;
+  margin-bottom: 64px;
+
+  label {
+    margin-bottom: 16px;
+  }
+
+  input {
+    width: 240px;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  input:hover {
+    width: 300px;
+    cursor: pointer;
+    background-color: yellowgreen;
+  }
 `
 
 class App extends React.Component {
   state = {
-    estaNoLogin: true,
-    paginaExibicao: "inicio",
-    allTracks: [],
-    idPlaylist: ""
+    estaLogado: "deslogado",
+    inputUser: "",
+    inputPassword: "",
+    userName: ""
   }
 
-  irParaHomePage = () => {
-    this.setState({ paginaExibicao: "inicio" });
+  handleInputUser = (event) => {
+    this.setState({ inputUser: event.target.value, userName: event.target.value });
+  };
+
+  handleInputPassword = (event) => {
+    this.setState({ inputPassword: event.target.value });
   }
 
-  criaLista = () => {
-    this.setState({ paginaExibicao: "cria-lista" })
-  }
+  loginUser = () => {
+    if( (this.state.inputUser !== "") && (this.state.inputPassword !== "") ) {
+      this.setState({ estaLogado: "logado", inputUser: "", inputPassword: "" });
+    } else {
+      alert ("Favor, inserir nome de usuário");
+    } 
+  };
 
-  getPlaylistTracks = (id) => {
-    this.setState({ paginaExibicao: "detalhes", idPlaylist: id });
+  irParaLogin = () => {
+    this.setState({ estaLogado: "deslogado" });
+  };
 
-    const urlAddress = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
-
-    const header = {
-      headers: {
-        Authorization: "bruno-silva-paiva"
-      }
-    }
-
-    axios
-      .get(urlAddress, header)
-      .then((res) => {
-        this.setState({ allTracks: res.data.result.tracks })
-      })
-      .catch(() => {
-        alert("Ops, ocorreu um erro! Tente novamente! :(")
-      })
-  }
-
-  renderizaCentroPagina = () => {
-    switch (this.state.paginaExibicao) {
-      case "inicio":
-        return <HomePage />;
-      case "cria-lista":
-        return <CreatePlaylistPage />
-      case "detalhes":
+  renderizaLogin = () => {
+    switch (this.state.estaLogado) {
+      case "deslogado":
         return (
-          <DetailPage
-            idPlaylist={this.state.idPlaylist}
-            allTracks={this.state.allTracks}
-            teste={this.getPlaylistTracks}
+          <MainContainer>
+            <LoginContainer>
+              <h1>Labefy</h1>
+              <h3>Seja bem-vindo! :)</h3>
+              <CardLoginContainer>
+                <input 
+                  value={this.inputUser}
+                  onChange={this.handleInputUser}
+                  placeholder={"Usuário"}
+                />
+                <label>Nome do usuário</label>
+                <input
+                  value={this.inputPassword}
+                  onChange={this.handleInputPassword} 
+                  placeholder={"Senha"}
+                />
+                <label>Password</label>
+                <button onClick={this.loginUser}>Entrar</button>
+              </CardLoginContainer>
+            </LoginContainer>
+          </MainContainer>
+        );
+      case "logado":
+        return (
+          <StartPage 
+            user={this.state.userName}
+            logout={this.irParaLogin}
           />
         );
       default:
@@ -100,26 +128,11 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.allTracks)
     return (
-      <AppContainer>
+      <div>
         <GlobalStyle />
-        <SectionContainer>
-          <SearchContainer>
-            <SearchTable
-              criaLista={this.criaLista}
-              irParaHomePage={this.irParaHomePage}
-            />
-          </SearchContainer>
-          <Lists>
-            <Playlists
-              detailPage={this.getPlaylistTracks}
-            />
-          </Lists>
-        </SectionContainer>
-        {this.renderizaCentroPagina()}
-        <ConnectionBox />
-      </AppContainer>
+        {this.renderizaLogin()}
+      </div>
     );
   }
 }

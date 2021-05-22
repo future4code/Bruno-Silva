@@ -23,14 +23,29 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
+  height: 100vh;
 `
 
 const SectionContainer = styled.div`
-  background-color: red;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+`
+
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;  
+  align-items: center; 
+`
+
+const Lists = styled.div`
+  display: flex; 
+  justify-content: center;
+  align-items: flex-start;  
 `
 
 class App extends React.Component {
   state = {
+    estaNoLogin: true,
     paginaExibicao: "inicio",
     allTracks: [],
     idPlaylist: ""
@@ -76,6 +91,7 @@ class App extends React.Component {
           <DetailPage
             idPlaylist={this.state.idPlaylist}
             allTracks={this.state.allTracks}
+            teste={this.getPlaylistTracks}
           />
         );
       default:
@@ -84,18 +100,22 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.allTracks)
     return (
       <AppContainer>
         <GlobalStyle />
         <SectionContainer>
-          <SearchTable
-            criaLista={this.criaLista}
-            irParaHomePage={this.irParaHomePage}
-          />
-          <hr />
-          <Playlists
-            detailPage={this.getPlaylistTracks}
-          />
+          <SearchContainer>
+            <SearchTable
+              criaLista={this.criaLista}
+              irParaHomePage={this.irParaHomePage}
+            />
+          </SearchContainer>
+          <Lists>
+            <Playlists
+              detailPage={this.getPlaylistTracks}
+            />
+          </Lists>
         </SectionContainer>
         {this.renderizaCentroPagina()}
         <ConnectionBox />

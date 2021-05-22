@@ -1,6 +1,31 @@
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import axios from 'axios';
+
+const CreatePlaylistContainer = styled.div`
+    background: linear-gradient(to bottom, #7e48e5 0%, #696969 100%);
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+`
+const HeaderCreatePlaylistContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+const InfoCreateContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    label {
+        margin-bottom: 16px;
+    }
+
+    input {
+        margin-bottom: 16px;
+    }
+`
 
 class CreatePlaylistPage extends React.Component {
     state = {
@@ -35,23 +60,27 @@ class CreatePlaylistPage extends React.Component {
                 })
         } else {
             alert("Favor, preencher campo de nome de playlist!")
-        } 
+        }
 
         this.setState({ nomePlayList: "" })
     }
 
     render() {
         return (
-            <div>
-                <h2>Criação de Playlist</h2>
-                <label>Digite o nome da nova playlist</label>
-                <input
-                    value={this.state.name}
-                    onChange={this.handleCreatePlaylist}
-                    placeholder={"insira nome da playlist"}
-                />
-                <button onClick={this.createPlaylist}>Criar</button>
-            </div>
+            <CreatePlaylistContainer>
+                <HeaderCreatePlaylistContainer>
+                    <h2>Criação de Playlist</h2>
+                </HeaderCreatePlaylistContainer>
+                <InfoCreateContainer>
+                    <label>Digite o nome da nova playlist</label>
+                    <input
+                        value={this.state.name}
+                        onChange={this.handleCreatePlaylist}
+                        placeholder={"insira nome da playlist"}
+                    />
+                    <button onClick={this.createPlaylist}>Criar</button>
+                </InfoCreateContainer>
+            </CreatePlaylistContainer>
         );
     }
 }

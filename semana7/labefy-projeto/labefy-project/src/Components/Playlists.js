@@ -4,6 +4,13 @@ import axios from 'axios';
 
 const PlaylistBox = styled.div`
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  :hover {
+    cursor: pointer;
+    color: #7ca72a;
+  }
 `
 
 class Playlists extends React.Component {
@@ -73,7 +80,7 @@ class Playlists extends React.Component {
 
     return (
       <div>
-        <h2>Lista de playlists</h2>
+        <h2>Sua Biblioteca</h2>
         {playLists}
       </div>
     );

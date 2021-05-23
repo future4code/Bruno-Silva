@@ -8,6 +8,7 @@ import HomePage from './HomePage';
 import CreatePlaylistPage from './CreatePlaylistPage';
 import DetailPage from './DetailPage';
 import ConnectionBox from './ConnectionBox';
+import SearchPage from './SearchPage';
 
 const StartContainer = styled.div`
   display: grid;
@@ -39,7 +40,8 @@ class StartPage extends React.Component {
     state = {
         paginaExibicao: "inicio",
         allTracks: [],
-        idPlaylist: ""
+        idPlaylist: "",
+        resultadoPesquisa: []
     }
 
     componentDidMount() {
@@ -68,11 +70,29 @@ class StartPage extends React.Component {
         axios
             .get(urlAddress, header)
             .then((res) => {
-                console.log(res.data.result.tracks)
                 this.setState({ allTracks: res.data.result.tracks })
             })
-            .catch(() => {
+            .catch((err) => {
                 alert("Ops, ocorreu um erro! Tente novamente! :(")
+            })
+    }
+
+    buscaPlaylist = (busca) => {
+        const urlAddress = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=${busca}`
+
+        const header = {
+            headers: {
+                Authorization: "bruno-silva-paiva"
+            }
+        }
+
+        axios
+            .get(urlAddress, header)
+            .then((res) => {
+                this.setState({ paginaExibicao: "pesquisa", resultadoPesquisa: res.data.result.playlist });
+            })
+            .catch(() => {
+                alert("Ops, um erro ocorreu! Tente novamente :(")
             })
     }
 
@@ -95,12 +115,20 @@ class StartPage extends React.Component {
                         atualizarTrack={this.getPlaylistTracks}
                     />
                 );
+            case "pesquisa":
+                return (
+                    <SearchPage 
+                        resultadoPesquisa={this.state.resultadoPesquisa}
+                        detailPage={this.getPlaylistTracks}
+                    />
+                );
             default:
                 return;
         }
     }
 
     render() {
+        console.log(this.state.resultadoPesquisa)
         return (
             <StartContainer>
                 <SectionContainer>
@@ -110,6 +138,7 @@ class StartPage extends React.Component {
                             irParaHomePage={this.irParaHomePage}
                             user={this.props.user}
                             logout={this.props.logout}
+                            buscaPlaylist={this.buscaPlaylist}
                         />
                     </SearchContainer>
                     <Scrollbars style={{ width: "100%", height: "100%" }}>

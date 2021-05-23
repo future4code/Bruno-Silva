@@ -79,7 +79,7 @@ class HomePage extends React.Component {
   render() {
     const renderizaPlaylists = this.state.allPlaylists.map((info) => {
       return (
-        <EachCard onClick={() => this.props.detailPage(info.id)}>
+        <EachCard onClick={() => this.props.detailPage(info.id)} key={info.id}>
           <img src={"https://picsum.photos/200/300"} />
           <p>{info.name}</p>
         </EachCard>

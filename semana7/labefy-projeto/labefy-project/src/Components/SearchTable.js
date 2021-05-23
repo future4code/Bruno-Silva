@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import axios from 'axios';
+import axios from 'axios';
 import catAlice from '../img/cat-alice.jpg';
 import addIcon from '../img/add-icon.svg';
 
@@ -74,7 +74,55 @@ const CreateContainer = styled.div`
     }
 `
 
+const CampoPesquisa = styled.div`
+    input {
+        margin: 0 8px;
+        height: 24px;
+    }
+
+    input:hover {
+        cursor: default;
+    }
+`
+
 class SearchTable extends React.Component {
+    state = {
+        estaPesquisando: false,
+        inputPesquisaNome: "",
+    }
+
+    handlePesquisaNome = (event) => {
+        this.setState({ inputPesquisaNome: event.target.value });
+    };
+
+    mudaParaPesquisar = () => {
+        this.setState({ estaPesquisando: true });
+    };
+
+    mudaParaBuscar = () => {
+        this.setState({ estaPesquisando: false });
+    };
+
+    renderizaPesquisa = () => {
+        switch (this.state.estaPesquisando) {
+            case false:
+                return <p onClick={this.mudaParaPesquisar}>Buscar</p>;
+            case true:
+                return (
+                    <CampoPesquisa>
+                        <input
+                            value={this.inputPesquisaNome}
+                            onChange={this.handlePesquisaNome}
+                            placeholder={"pesquise por nome"}
+                        />
+                        <Botao onClick={() => [this.props.buscaPlaylist(this.state.inputPesquisaNome), this.mudaParaBuscar]}>Pesquisar</Botao>
+                    </CampoPesquisa>
+                );
+            default:
+                return alert("Ops, ocorreu um erro! Tente novamente :(")
+        }
+    }
+
     render() {
         return (
             <div>
@@ -89,8 +137,7 @@ class SearchTable extends React.Component {
                 </UserContainer>
                 <OptionsContainer>
                     <p onClick={this.props.irParaHomePage}>Início</p>
-                    <p>Buscar</p>
-                    <p>Sua biblioteca</p>
+                    {this.renderizaPesquisa()}
                 </OptionsContainer>
                 <hr />
                 <CreateContainer>

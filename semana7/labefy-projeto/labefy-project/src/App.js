@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: 48px;
   }
+
+  h2 {
+    font-size: 32px;
+  }
 `
 
 const MainContainer = styled.div`
@@ -28,7 +32,7 @@ const MainContainer = styled.div`
 const LoginContainer = styled.div`
   background-color: #111111;
   height: 400px;
-  width: 800px;
+  width: 480px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -49,15 +53,28 @@ const CardLoginContainer = styled.div`
   }
 
   input {
+    height: 32px;
     width: 240px;
-    border-radius: 16px;
     text-align: center;
   }
 
   input:hover {
     width: 300px;
+    cursor: default;
+    background-color: ghostwhite;
+  }
+`
+
+const Botao = styled.button`
+  border-radius: 16px;
+  height: 32px;
+  width: 80px;
+  background-color: #1DB954;
+
+  :hover {
     cursor: pointer;
-    background-color: yellowgreen;
+    width: 96px;
+    color: white;
   }
 `
 
@@ -81,12 +98,15 @@ class App extends React.Component {
     if( (this.state.inputUser !== "") && (this.state.inputPassword !== "") ) {
       this.setState({ estaLogado: "logado", inputUser: "", inputPassword: "" });
     } else {
-      alert ("Favor, inserir nome de usuário");
+      alert ("Favor, inserir nome e/ou senha de usuário");
     } 
   };
 
   irParaLogin = () => {
-    this.setState({ estaLogado: "deslogado" });
+    if (window.confirm("Tem certeza que deseja sair?")) {
+      this.setState({ estaLogado: "deslogado" });
+      alert("Até a próxima! :)");
+    }  
   };
 
   renderizaLogin = () => {
@@ -110,7 +130,7 @@ class App extends React.Component {
                   placeholder={"Senha"}
                 />
                 <label>Password</label>
-                <button onClick={this.loginUser}>Entrar</button>
+                <Botao onClick={this.loginUser}>Entrar</Botao>
               </CardLoginContainer>
             </LoginContainer>
           </MainContainer>

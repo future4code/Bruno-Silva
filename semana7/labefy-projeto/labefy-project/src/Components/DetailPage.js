@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
+import playIcon from '../img/play-icon.svg';
+import delIcon from '../img/del-icon.svg';
 
 const DetailContainer = styled.div`
     background: linear-gradient(to bottom, #b0e0e6 0%, #696969 100%);
@@ -9,7 +11,7 @@ const DetailContainer = styled.div`
     grid-template-rows: 3fr 6fr 1fr;
     height: 100vh;
 
-    div h3 {
+    div h2 {
         display: flex;
         justify-content: center;
     }
@@ -33,23 +35,91 @@ const AudioBox = styled.div`
 `
 
 const InsertSongContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    > div {
+        margin-bottom: 16px;
+    }
 
-    input {
+    div label {
+        font-size: 24px;
+    }
+
+    div input {
         margin: 0 16px;
+        height: 24px;
+        width: 160px;
+        text-align: center;
     }
-    
+
+    div input:hover {
+        cursor: default;
+        width: 200px;
+    }
+`
+
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+
     button {
-        margin: 16px 0;
+        margin: 0 8px;
     }
+`
+
+const Botao = styled.button`
+  border-radius: 16px;
+  height: 32px;
+  width: 80px;
+  background-color: #1DB954;
+
+  :hover {
+    cursor: pointer;
+    width: 96px;
+    color: white;
+  }
 `
 
 const MusicContainer = styled.div`
     margin: 16px 0;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
+
+    div {
+        border: 1px solid black;
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div img {
+        height: 16px;
+        padding-left: 4px;
+    }
+
+    div:hover {
+        cursor: pointer;
+        height: 36px;
+        width: 36px;
+    }
+
+    :hover {
+        cursor: default;
+        background-color: darkgrey;
+    }
+`
+
+const DeleteButton = styled.img`
+  height: 24px;
+  width: 24px;
+
+  :hover {
+    height: 40px;
+    width: 40px;
+  }
 `
 
 class DetailPage extends React.Component {
@@ -102,7 +172,6 @@ class DetailPage extends React.Component {
     }
 
     addTrackToPlaylist = (id) => {
-        console.log(id)
         const urlAddress = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
 
         const body = {
@@ -129,22 +198,24 @@ class DetailPage extends React.Component {
     }
 
     deleteTrackSong = (idPlaylist, idSong) => {
-        const urlAddress = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${idPlaylist}/tracks/${idSong}`
+        if (window.confirm("Tem certeza que deseja remover a música?")) {
+            const urlAddress = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${idPlaylist}/tracks/${idSong}`
 
-        const header = {
-            headers: {
-                Authorization: "bruno-silva-paiva"
+            const header = {
+                headers: {
+                    Authorization: "bruno-silva-paiva"
+                }
             }
-        }
 
-        axios
-            .delete(urlAddress, header)
-            .then((res) => {
-                console.log("entrei aqui")
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            axios
+                .delete(urlAddress, header)
+                .then((res) => {
+                    alert("Música deletada com sucesso!")
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
     }
 
     render() {
@@ -152,33 +223,34 @@ class DetailPage extends React.Component {
             if (info.id === this.props.idPlaylist) {
                 return (
                     <HeaderContainer>
-                        <h1>{info.name}</h1>
+                        <h1><em>{info.name}</em></h1>
                         <InsertSongContainer>
-                            <label>Nova música</label>
-                            <input
-                                value={this.state.inputNovaMusica}
-                                onChange={this.handleNewSong}
-                                placeholder={"digite o nome da música"}
-                            />
-                            <label>Novo artista</label>
-                            <input
-                                value={this.state.inputNovoArtista}
-                                onChange={this.handleNewArtist}
-                                placeholder={"digite o nome do(a) artista"}
-                            />
-                            <label>Novo endereço</label>
-                            <input
-                                value={this.state.inputNovoUrl}
-                                onChange={this.handleNewUrl}
-                                placeholder={"digite o endereço da música"}
-                            />
-                            <button
-                                onClick={() => {
-                                    this.addTrackToPlaylist(info.id);
-                                    this.props.teste(info.id)
-                                }}>
-                                Enviar
-                            </button>
+                            <div>
+                                <label>Nova música</label>
+                                <input
+                                    value={this.state.inputNovaMusica}
+                                    onChange={this.handleNewSong}
+                                    placeholder={"Nome da música"}
+                                />
+                                <label>Novo artista</label>
+                                <input
+                                    value={this.state.inputNovoArtista}
+                                    onChange={this.handleNewArtist}
+                                    placeholder={"Nome do(a) artista"}
+                                />
+                                <label>Novo endereço</label>
+                                <input
+                                    value={this.state.inputNovoUrl}
+                                    onChange={this.handleNewUrl}
+                                    placeholder={"URL da música"}
+                                />
+                            </div>
+                            <ButtonContainer>
+                                <Botao onClick={() => [this.addTrackToPlaylist(info.id), this.props.atualizarTrack(info.id)]}>
+                                    Enviar
+                                </Botao>
+                                <Botao onClick={() => this.props.atualizarTrack(info.id)}>Atualizar</Botao>
+                            </ButtonContainer>
                         </InsertSongContainer>
                     </HeaderContainer>
                 );
@@ -190,8 +262,13 @@ class DetailPage extends React.Component {
                 <MusicContainer>
                     <p>{info.name}</p>
                     <p>{info.artist}</p>
-                    <button onClick={() => this.playSong(info.url)}>play</button>
-                    <button onClick={() => this.deleteTrackSong(this.props.idPlaylist, info.id)}>x</button>
+                    <div onClick={() => this.playSong(info.url)}>
+                        <img src={playIcon}></img>
+                    </div>
+                    <DeleteButton
+                        src={delIcon}
+                        onClick={() => this.deleteTrackSong(this.props.idPlaylist, info.id)}>
+                    </DeleteButton>
                 </MusicContainer>
             );
         });
@@ -200,7 +277,7 @@ class DetailPage extends React.Component {
             <DetailContainer>
                 {headerDetail}
                 <div>
-                    <h3>Soundtrack</h3>
+                    <h2><em>Soundtrack</em></h2>
                     <Scrollbars style={{ width: "100%", height: "80%" }}>
                         {songBox}
                     </Scrollbars>

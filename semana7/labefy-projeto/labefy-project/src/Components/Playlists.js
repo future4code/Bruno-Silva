@@ -1,15 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import delIcon from '../img/del-icon.svg';
 
 const PlaylistBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  justify-content: space-evenly;
+  align-items: center;
+
+  p {
+    font-size: 24px;
+  }
 
   :hover {
     cursor: pointer;
-    color: #7ca72a;
+    background-color: #C0C0C0;
+    border-radius: 40px;
+  }
+`
+
+const DeleteButton = styled.img`
+  height: 24px;
+  width: 24px;
+
+  :hover {
+    height: 40px;
+    width: 40px;
   }
 `
 
@@ -73,14 +89,14 @@ class Playlists extends React.Component {
       return (
         <PlaylistBox key={info.id}>
           <p onClick={() => this.props.detailPage(info.id)}>{info.name}</p>
-          <button onClick={() => this.deletePlayList(info.id)}>x</button>
+          <DeleteButton src={delIcon} onClick={() => this.deletePlayList(info.id)}></DeleteButton>
         </PlaylistBox>
       )
     })
 
     return (
       <div>
-        <h2>Sua Biblioteca</h2>
+        <h2><em>Sua Biblioteca</em></h2>
         {playLists}
       </div>
     );

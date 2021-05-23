@@ -20,11 +20,34 @@ const InfoCreateContainer = styled.div`
 
     label {
         margin-bottom: 16px;
+        font-size: 36px;
     }
 
     input {
+        text-align: center;
         margin-bottom: 16px;
+        height: 32px;
+        width: 240px;
     }
+
+    input:hover {
+        width: 300px;
+        cursor: pointer;
+        background-color: ghostwhite;
+    }
+`
+
+const Botao = styled.button`
+  border-radius: 16px;
+  height: 32px;
+  width: 80px;
+  background-color: #1DB954;
+
+  :hover {
+    cursor: pointer;
+    width: 96px;
+    color: white;
+  }
 `
 
 class CreatePlaylistPage extends React.Component {
@@ -69,16 +92,16 @@ class CreatePlaylistPage extends React.Component {
         return (
             <CreatePlaylistContainer>
                 <HeaderCreatePlaylistContainer>
-                    <h2>Criação de Playlist</h2>
+                    <h2><em>Criação de Playlist</em></h2>
                 </HeaderCreatePlaylistContainer>
                 <InfoCreateContainer>
-                    <label>Digite o nome da nova playlist</label>
+                    <label>Nova Playlist</label>
                     <input
                         value={this.state.name}
                         onChange={this.handleCreatePlaylist}
                         placeholder={"insira nome da playlist"}
                     />
-                    <button onClick={this.createPlaylist}>Criar</button>
+                    <Botao onClick={this.createPlaylist}>Criar</Botao>
                 </InfoCreateContainer>
             </CreatePlaylistContainer>
         );

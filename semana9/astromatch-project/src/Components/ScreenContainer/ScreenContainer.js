@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MatchContainer, NavContainer } from './styles';
-import PersonProfile from '../PersonProfile/PersonProfile';
+import CrushesProfile from '../CrushesProfile/CrushesProfile';
 import MatchesChat from '../MatchesChat/MatchesChat';
 import UserProfile from '../UserProfile/UserProfile';
 
@@ -23,7 +23,7 @@ function ScreenContainer(props) {
         switch (changeSection) {
             case "crushes":
                 return (
-                <PersonProfile 
+                <CrushesProfile 
                     like={props.like}
                     dislike={props.dislike}
                 />);

@@ -53,19 +53,49 @@ function PersonProfile(props) {
             });
     }
 
+    const clearMatches = () => {
+        if (window.confirm("Tem certeza que deseja deletar seus crushes? :(")) {
+            const baseURL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno/clear"
+
+            axios
+                .put(baseURL)
+                .then(() => {
+                    console.log("entrei");
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
+
+    const renderCrushesProfile = () => {
+        if (crushesProfile !== null) {
+            return (
+                <CrushContainer>
+                    <img src={crushesProfile.photo} alt={"imagem do crush"}></img>
+                    <p>{crushesProfile.name}</p>
+                    <p>{crushesProfile.age}</p>
+                    <p>{crushesProfile.bio}</p>
+                    <MatchBox>
+                        <img src={props.dislike} alt={"ícone dislike"} onClick={captureCrush}></img>
+                        <img src={props.like} alt={"ícone like"} onClick={postAndCaptureCrush}></img>
+                    </MatchBox>
+                </CrushContainer>
+            )
+        } else {
+            return (
+                <div>
+                    <p>Não tem mais crushes :/</p>
+                    <button onClick={clearMatches}>Resetar</button>
+                </div>
+            )
+        }
+    }
+
     return (
         <PersonContainer>
             {/* <div style={`background-image: url(${crushesProfile.photo})`}> */}
-            <CrushContainer>
-                <img src={crushesProfile.photo} alt={"imagem do crush"}></img>
-                <p>{crushesProfile.name}</p>
-                <p>{crushesProfile.age}</p>
-                <p>{crushesProfile.bio}</p>
-            </CrushContainer>
-            <MatchBox>
-                <img src={props.dislike} alt={"ícone dislike"} onClick={captureCrush}></img>
-                <img src={props.like} alt={"ícone like"} onClick={postAndCaptureCrush}></img>
-            </MatchBox>
+            {renderCrushesProfile()}
         </PersonContainer>
     );
 };

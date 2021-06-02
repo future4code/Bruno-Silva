@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ImageRestart, CrushChatContainer } from './styles';
+import { CrushBox, CrushChatContainer, MatchesContainer, NavMatches, ImageRestart } from './MatchesChatStyles';
 
 function MatchesChat(props) {
     const [allMatches, setAllMatches] = useState([]);
@@ -38,18 +38,23 @@ function MatchesChat(props) {
 
     const showMatches = allMatches.map((info) => {
         return (
-            <CrushChatContainer key={info.id}>
-                <img src={info.photo} alt={"imagem do crush"}></img>
-                <p>{info.name}</p>
-            </CrushChatContainer>
+            <CrushBox>
+                <CrushChatContainer key={info.id}>
+                    <img src={info.photo} alt={"imagem do crush"}></img>
+                    <p>{info.name}</p>
+                </CrushChatContainer>
+            </CrushBox>
         )
     })
 
     return (
-        <div>
-            {showMatches}
-            <ImageRestart onClick={clearMatches} src={props.restartCrushes} alt={"ícone de limpar matches"}></ImageRestart>
-        </div>
+        <MatchesContainer>
+            <NavMatches>
+                <h3>Novos matches</h3>
+                <ImageRestart onClick={clearMatches} src={props.restartCrushes} alt={"ícone de limpar matches"}></ImageRestart>
+            </NavMatches> 
+            {showMatches}       
+        </MatchesContainer>
     );
 };
 

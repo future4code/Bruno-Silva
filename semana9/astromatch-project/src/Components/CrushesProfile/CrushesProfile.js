@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PersonContainer, CrushContainer, MatchBox } from './styles'
+import { PersonContainer, CrushContainer, PhotoProfile, InfoBox, MatchBox } from './CrushesProfileStyles'
 
 function PersonProfile(props) {
     const [crushesProfile, setCrushesProfile] = useState({});
@@ -34,7 +34,7 @@ function PersonProfile(props) {
             .post(baseURLPost, body)
             .then((res) => {
                 if (res.data.isMatch) {
-                    alert("Parabéns, você tem um novo match!")
+                    alert("Você tem um novo match!")
                 }
             })
             .catch((err) => {
@@ -71,15 +71,21 @@ function PersonProfile(props) {
     const renderCrushesProfile = () => {
         if (crushesProfile !== null) {
             return (
-                <CrushContainer>
-                    <img src={crushesProfile.photo} alt={"imagem do crush"}></img>
-                    <p>{crushesProfile.name}</p>
-                    <p>{crushesProfile.age}</p>
-                    <p>{crushesProfile.bio}</p>
-                    <MatchBox>
-                        <img src={props.dislike} alt={"ícone dislike"} onClick={captureCrush}></img>
-                        <img src={props.like} alt={"ícone like"} onClick={postAndCaptureCrush}></img>
-                    </MatchBox>
+                <CrushContainer >
+                    <PhotoProfile photoProfile={crushesProfile.photo} />
+                    <InfoBox>
+                        <div>
+                            <span>{crushesProfile.name}</span>
+                            <span>{crushesProfile.age}</span>
+                        </div>
+                        <div>
+                            <p>{crushesProfile.bio}</p>
+                        </div>
+                        <MatchBox>
+                            <img src={props.dislike} alt={"ícone dislike"} onClick={captureCrush}></img>
+                            <img src={props.like} alt={"ícone like"} onClick={postAndCaptureCrush}></img>
+                        </MatchBox>
+                    </InfoBox>
                 </CrushContainer>
             )
         } else {

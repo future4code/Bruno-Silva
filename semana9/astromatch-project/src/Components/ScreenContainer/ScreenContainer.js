@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { MatchContainer, NavContainer } from './styles';
+import { MatchContainer, NavContainer } from './ScreenContainerStyles';
 import CrushesProfile from '../CrushesProfile/CrushesProfile';
 import MatchesChat from '../MatchesChat/MatchesChat';
 import UserProfile from '../UserProfile/UserProfile';
+import HeaderContainer from '../HeaderContainer/HeaderContainer';
 
 function ScreenContainer(props) {
     const [changeSection, setChangeSection] = useState("crushes");
@@ -33,13 +34,20 @@ function ScreenContainer(props) {
                     restartCrushes={props.restartCrushes}
                 />);
             case "user-profile":
-                return (<UserProfile />);
+                return (
+                <UserProfile 
+                    settings={props.settings}
+                    editInfo={props.editInfo}
+                    addMidia={props.addMidia}
+                    cheshire={props.cheshire}
+                />);
             default:
                 return;
     }};
 
     return(
         <MatchContainer>
+            <HeaderContainer />
             {renderMainContainer()}
             <NavContainer>
                 <img src={props.imgContacts} alt={"ícone novos crushes"} onClick={changeToMatches}></img>

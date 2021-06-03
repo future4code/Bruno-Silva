@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PersonContainer, CrushContainer, PhotoProfile, InfoBox, MatchBox } from './CrushesProfileStyles'
+import { PersonContainer, CrushContainer, PhotoProfile, InfoBox, MatchBox, NoMatchesContainer } from './CrushesProfileStyles'
 
 function PersonProfile(props) {
-    const [crushesProfile, setCrushesProfile] = useState({});
+    const [ crushesProfile, setCrushesProfile ] = useState({});
+    const [ haveCrushes, setHaveCrushes ] = useState(false);
 
     useEffect(() => {
         captureCrush()
-    }, [])
+    }, [haveCrushes])
 
     const captureCrush = () => {
-        const baseURL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno/person"
+        const baseURL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno-silva-paiva/person"
 
         axios
             .get(baseURL)
             .then((res) => {
                 setCrushesProfile(res.data.profile)
             })
-            .catch((err) => {
-                console.log(err)
+            .catch(() => {
+                alert("Ops, algo errado ocorreu! Tente novamente! :)")
             });
     };
 
     const postAndCaptureCrush = () => {
-        const baseURLPost = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno/choose-person"
+        const baseURLPost = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno-silva-paiva/choose-person"
 
         const body = {
             id: `${crushesProfile.id}`,
@@ -34,42 +35,42 @@ function PersonProfile(props) {
             .post(baseURLPost, body)
             .then((res) => {
                 if (res.data.isMatch) {
-                    alert("Você tem um novo match!")
+                    alert("Você tem um novo match! :)")
                 }
             })
-            .catch((err) => {
-                console.log(err)
+            .catch(() => {
+                alert("Ops, algo errado ocorreu! Tente novamente! :)")
             })
 
-        const baseURLGet = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno/person"
+        const baseURLGet = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno-silva-paiva/person"
 
         axios
             .get(baseURLGet)
             .then((res) => {
                 setCrushesProfile(res.data.profile)
             })
-            .catch((err) => {
-                console.log(err)
+            .catch(() => {
+                alert("Ops, algo errado ocorreu! Tente novamente! :)")
             });
     }
 
     const clearMatches = () => {
-        if (window.confirm("Tem certeza que deseja deletar seus crushes? :(")) {
-            const baseURL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno/clear"
+        if (window.confirm("Tem certeza que deseja reiniciar crushes? :(")) {
+            const baseURL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/bruno-silva-paiva/clear"
 
             axios
                 .put(baseURL)
                 .then(() => {
-                    console.log("entrei");
+                    setHaveCrushes(!haveCrushes)
                 })
-                .catch((err) => {
-                    console.log(err)
+                .catch(() => {
+                    alert("Ops, algo errado ocorreu! Tente novamente! :)")
                 })
         }
     }
 
     const renderCrushesProfile = () => {
-        if (crushesProfile !== null) {
+        if (crushesProfile) {
             return (
                 <CrushContainer >
                     <PhotoProfile photoProfile={crushesProfile.photo} />
@@ -90,17 +91,16 @@ function PersonProfile(props) {
             )
         } else {
             return (
-                <div>
-                    <p>Não tem mais crushes :/</p>
-                    <button onClick={clearMatches}>Resetar</button>
-                </div>
+                <NoMatchesContainer>
+                    <p>Acabaram os crushes :/<br />Atualize no botão abaixo</p>
+                    <img src={props.refresh} alt={"ícone de refresh crushes"} onClick={clearMatches}></img>
+                </NoMatchesContainer>
             )
         }
     }
 
     return (
         <PersonContainer>
-            {/* <div style={`background-image: url(${crushesProfile.photo})`}> */}
             {renderCrushesProfile()}
         </PersonContainer>
     );

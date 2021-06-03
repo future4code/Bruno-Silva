@@ -17,6 +17,11 @@ export const NavMatches = styled.div`
     }
 `
 
+export const ShowMatches = styled.div`
+    height: 90%;
+    overflow: auto;
+`
+
 export const CrushBox = styled.div`
     :hover {
         background-color: yellowgreen;
@@ -28,6 +33,11 @@ export const CrushChatContainer = styled.div`
     display: flex;
     align-items: center;
     padding-left: 8px;
+    font-size: 8px;
+
+    p {
+        font-size: 16px;
+    }
 
     img {
         height: 32px;

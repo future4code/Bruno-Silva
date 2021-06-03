@@ -55,3 +55,21 @@ export const MatchBox = styled.div`
     }
 `
 
+export const NoMatchesContainer = styled.div`
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    img {
+        height: 32px;
+    }
+
+    img:hover {
+        cursor: pointer;
+        height: 36px;
+    }
+`
+

@@ -27,6 +27,7 @@ function ScreenContainer(props) {
                 <CrushesProfile 
                     like={props.like}
                     dislike={props.dislike}
+                    refresh={props.refresh}
                 />);
             case "chat":
                 return (

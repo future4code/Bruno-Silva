@@ -25,7 +25,9 @@ export const PhotoProfile = styled.div`
 export const InfoBox = styled.div`
     color: white;
     background-image: linear-gradient(#000000, #55efc4);
-    padding: 0 8px 8px 8px;
+    padding: 8px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
 
     span:first-child {
         font-weight: bold;
@@ -40,6 +42,7 @@ export const InfoBox = styled.div`
 `
 
 export const MatchBox = styled.div`
+    padding-top: 4px;
     display: flex;
     justify-content: space-evenly;
 

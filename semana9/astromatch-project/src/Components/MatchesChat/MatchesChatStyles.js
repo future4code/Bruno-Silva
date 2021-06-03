@@ -6,6 +6,7 @@ export const MatchesContainer = styled.div`
 `
 
 export const NavMatches = styled.div`
+    height: 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,6 +24,7 @@ export const ShowMatches = styled.div`
 `
 
 export const CrushBox = styled.div`
+    margin: 4px 0;
     :hover {
         background-color: yellowgreen;
         cursor: pointer;

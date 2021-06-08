@@ -1,12 +1,12 @@
 import React from 'react';
 
-function TripDetailsPage(props) {
+function TripDetailsPage() {
   return (
     <div>
       <div>
         <h2>Informações detalhadas da viagem</h2>
       </div>
-      <button onClick={props.goToAdminPage}>Voltar</button>
+      <button>Voltar</button>
       <div>
         <h3>Candidatos Pendentes</h3>
       </div>

@@ -1,9 +1,14 @@
 import React from 'react';
 
-function LoginPage() {
+function LoginPage(props) {
   return (
     <div>
-      Entrei na LoginPage
+      <input placeholder={"e-mail"} />
+      <input placeholder={"senha"} />
+      <div>
+        <button onClick={props.backToHomePage}>Voltar</button>
+        <button onClick={props.logging}>Entrar</button>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import RouteManager from './route/Route';
+import RouteManager from './routes/Route';
 
 function App() {
   return (

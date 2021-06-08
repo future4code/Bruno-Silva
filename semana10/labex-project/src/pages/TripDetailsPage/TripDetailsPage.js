@@ -1,12 +1,19 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 function TripDetailsPage() {
+  const history = useHistory();
+
+  const backToAdminHome = () => {
+    history.goBack();
+  };
+
   return (
     <div>
       <div>
         <h2>Informações detalhadas da viagem</h2>
       </div>
-      <button>Voltar</button>
+      <button onClick={backToAdminHome}>Voltar</button>
       <div>
         <h3>Candidatos Pendentes</h3>
       </div>

@@ -13,7 +13,7 @@ const useGetAllTrips = (url, initialState) => {
             .catch((err) => {
                 console.log(err)
             })
-    });
+    }, [url]);
 
     return allTrips
 };

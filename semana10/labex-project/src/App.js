@@ -1,10 +1,10 @@
 import React from 'react';
-import RouteManager from './routes/Route';
+import Router from './routes/Router';
 
 function App() {
   return (
     <div>
-      {RouteManager()}
+      {Router()}
     </div>
   );
 }

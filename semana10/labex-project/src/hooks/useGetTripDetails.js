@@ -3,18 +3,19 @@ import axios from 'axios';
 
 const useGetTripDetails = (url, initialState) => {
     const [tripDetails, setTripDetails] = useState(initialState);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        // const header = {
-        //     headers: {
-        //         auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkNmbjZPd0YyOVU5TDJSYzV0UWo1IiwiZW1haWwiOiJhc3Ryb2RldkBnbWFpbC5jb20uYnIiLCJpYXQiOjE1NzMxNDM4Njh9.mmOrfGKlXpE3pIDUZfS3xV5ZwttOI2Exmoci9Sdsxjs";
-        //     }
-        // }
+        const header = {
+            headers: {
+                auth: token
+            }
+        }
 
         axios
             .get(url, header)
             .then((res) => {
-                setAllTrips(res)
+                setTripDetails(res.data.trip)
             })
             .catch((err) => {
                 console.log(err)

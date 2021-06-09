@@ -8,8 +8,8 @@ function HomePage() {
     history.push("/trips/list")
   }
 
-  const goToLogin = () => {
-    history.push("/login")
+  const goToAdminHome = () => {
+    history.push("/admin/trips/list");
   }
 
   return (
@@ -17,7 +17,7 @@ function HomePage() {
       <h1>Bem-vindo à LabeX! :D</h1>
       <div>
         <button onClick={goToListTrips}>Ver viagens</button>
-        <button onClick={goToLogin}>Área de Admin</button>
+        <button onClick={goToAdminHome}>Área de Admin</button>
       </div>
     </div>
   );

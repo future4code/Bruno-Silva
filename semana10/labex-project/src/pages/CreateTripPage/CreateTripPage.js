@@ -1,7 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 function CreateTripPage() {
+  useProtectedPage();
+
   const history = useHistory()
 
   const backToAdminHome = () => {

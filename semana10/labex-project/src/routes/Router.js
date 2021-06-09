@@ -9,7 +9,7 @@ import ListTripsPage from '../pages/ListTripsPage/ListTripsPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import TripDetailsPage from '../pages/TripDetailsPage/TripDetailsPage';
 
-const RouteManager = () => {
+const Router = () => {
     return (
         <BrowserRouter>
             <Switch>
@@ -49,4 +49,4 @@ const RouteManager = () => {
     );
 };
 
-export default RouteManager;
+export default Router;

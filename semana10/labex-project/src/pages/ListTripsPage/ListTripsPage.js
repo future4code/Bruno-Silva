@@ -19,7 +19,7 @@ function ListTripsPage() {
   
   const renderAllTrips = getTrips && getTrips.map((info) => {
     return (
-      <CardTripContainer>
+      <CardTripContainer key={info.id}>
         <p>Nome: {info.name}</p>
         <p>Descrição: {info.description}</p>
         <p>Planeta: {info.planet}</p>

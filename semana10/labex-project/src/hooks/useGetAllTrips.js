@@ -15,7 +15,7 @@ const useGetAllTrips = (url, initialState) => {
             })
     }, [url]);
 
-    return allTrips
+    return allTrips;
 };
 
 export default useGetAllTrips;

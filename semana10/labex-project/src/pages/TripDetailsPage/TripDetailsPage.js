@@ -2,17 +2,46 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import useGetTripDetails from '../../hooks/useGetTripDetails';
+import axios from 'axios';
+import baseURL from '../../constants/baseURL';
 
 function TripDetailsPage() {
   useProtectedPage();
 
   const tripId = localStorage.getItem("tripId");
   const history = useHistory();
-  const tripDetails = useGetTripDetails(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/bruno-silva-paiva/trip/${tripId}`, []);
+  const tripDetails = useGetTripDetails(`${baseURL}/trip/${tripId}`, []);
 
   const backToAdminHome = () => {
     history.goBack();
     localStorage.removeItem("tripId");
+  };
+
+  const approvedOrNot = (candidateId, trueOrFalse) => {
+    const url = `${baseURL}/trips/${tripId}/candidates/${candidateId}/decide`;
+    
+    const body = {
+      approve: trueOrFalse
+    };
+
+    const header = {
+      headers: {
+        auth: localStorage.getItem("token")
+      }
+    };
+
+    axios
+    .put(url, body, header)
+    .then(() => {
+      if (body.approve) {
+        alert("Candidato aprovado com sucesso! :)");
+      } else {
+        alert ("Que pena! O candidato foi reprovado :(");
+      }; 
+    })
+    .catch(() => {
+      alert("Ops, ocorreu um erro! Tente novamente :)")
+    });
   };
 
   const renderCandidates = tripDetails.candidates && tripDetails.candidates.map((info) => {
@@ -23,9 +52,17 @@ function TripDetailsPage() {
         <p>Idade: {info.age}</p>
         <p>País: {info.country}</p>
         <p>Texto de candidatura: {info.applicationText}</p>
-        <button>Aprovar</button>
-        <button>Reprovar</button>
+        <button onClick={() => {approvedOrNot(info.id, true)}}>Aprovar</button>
+        <button onClick={() => {approvedOrNot(info.id, false)}}>Reprovar</button>
       </div>
+    );
+  });
+
+  const renderApproved = tripDetails.approved && tripDetails.approved.map((info) => {
+    return (
+      <ul key={info.id}>
+        <li>{info.name}</li>
+      </ul>
     );
   });
 
@@ -48,6 +85,7 @@ function TripDetailsPage() {
       </div>
       <div>
         <h3>Candidatos Aprovados</h3>
+        {renderApproved}
       </div>
     </div>
   );

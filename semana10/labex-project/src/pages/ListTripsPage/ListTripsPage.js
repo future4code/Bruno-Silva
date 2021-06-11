@@ -1,39 +1,49 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { previousPage, goToAppForm } from '../../routes/Coordinator';
+import { previousPage, goToAppForm, goToHome } from '../../routes/Coordinator';
 
 import useGetAllTrips from '../../hooks/useGetAllTrips';
 import baseURL from '../../constants/baseURL';
-import { CardTripContainer } from './ListTripsPageStyles';
+import { TripsContainer, HeaderContainer, LogoContainer, SectionTripsContainer, ListTripsContainer, CardTripContainer } from './ListTripsPageStyles';
+import { CoordinatorButton } from '../../GlobalStyles';
+import logo from '../../img/logo-labex.svg';
 
 function ListTripsPage() {
   const history = useHistory();
 
   const getTrips = useGetAllTrips(`${baseURL}/trips`, []);
-  
+
   const renderAllTrips = getTrips && getTrips.map((info) => {
     return (
       <CardTripContainer key={info.id}>
-        <p>Nome: {info.name}</p>
-        <p>Descrição: {info.description}</p>
-        <p>Planeta: {info.planet}</p>
-        <p>Duração: {info.durationInDays}</p>
-        <p>Data: {info.date}</p>
+        <p><b>Nome:</b> {info.name}</p>
+        <p><b>Descrição:</b> {info.description}</p>
+        <p><b>Planeta:</b> {info.planet}</p>
+        <p><b>Duração:</b> {info.durationInDays}</p>
+        <p><b>Data:</b> {info.date}</p>
       </CardTripContainer>
     );
   });
 
   return (
-    <div>
-      <div>
-        <button onClick={() => {previousPage(history)}}>Voltar</button>
-        <button onClick={() => {goToAppForm(history)}}>Inscrever-se</button>
-      </div>
-      <div>
-        <h2>ListTripsPage</h2>
-        {renderAllTrips}
-      </div>
-    </div>
+    <TripsContainer>
+      <HeaderContainer>
+        <LogoContainer onClick={() => { goToHome(history) }}>
+          <img src={logo} alt={"logo da LabeX"}></img>
+          <h1><b><em>LabeX</em></b></h1>
+        </LogoContainer>
+        <div>
+          <CoordinatorButton onClick={() => { previousPage(history) }}>Voltar</CoordinatorButton>
+          <CoordinatorButton onClick={() => { goToAppForm(history) }}>Inscrever-se</CoordinatorButton>
+        </div>
+      </HeaderContainer>
+      <SectionTripsContainer>
+        <h1>LISTA DE VIAGENS</h1>
+        <ListTripsContainer>
+          {renderAllTrips}
+        </ListTripsContainer>
+      </SectionTripsContainer>
+    </TripsContainer>
   );
 };
 

@@ -4,6 +4,8 @@ import useForm from '../../hooks/useForm';
 import axios from 'axios';
 import { goToHome } from '../../routes/Coordinator';
 import baseURL from '../../constants/baseURL';
+import { AccessContainer, CoordinatorButton, InputForm } from '../../GlobalStyles';
+import { AccessButton } from './LoginPageStyles';
 
 function LoginPage() {
   const history = useHistory();
@@ -18,47 +20,49 @@ function LoginPage() {
     const url = `${baseURL}/login`;
 
     const body = form;
-    
+
     axios
       .post(url, body)
       .then((res) => {
         localStorage.setItem("token", res.data.token)
         history.push("/admin/trips/list");
-        alert("Seja bem-vindo! :)")
+        alert("Seja bem-vindo! :)");
       })
       .catch((err) => {
         alert(`${err.response.data.message}! Tente novamente :)`)
-    });
+      });
 
     cleanFields();
   };
 
   return (
-    <div>
-      <h2>LoginPage</h2>
-      <form onSubmit={onClickLogin}>
-        <input
-          name={"email"}
-          value={form.email}
-          onChange={onChange}
-          placeholder={"e-mail"}
-          required
-          type={"email"}
-        />
-        <input 
-          name={"password"}
-          value={form.password} 
-          onChange={onChange} 
-          placeholder={"senha"}
-          required
-          type={"password"}  
-        />
-        <button>Entrar</button>
-      </form>
+    <AccessContainer>
+      <h1>LOGIN</h1>
       <div>
-        <button onClick={() => { goToHome(history) }}>Voltar</button>
+        <form onSubmit={onClickLogin}>
+          <InputForm
+            name={"email"}
+            value={form.email}
+            onChange={onChange}
+            placeholder={"E-mail"}
+            required
+            type={"email"}
+          />
+          <InputForm
+            name={"password"}
+            value={form.password}
+            onChange={onChange}
+            placeholder={"Senha"}
+            required
+            type={"password"}
+          />
+          <AccessButton>Entrar</AccessButton>
+        </form>
       </div>
-    </div>
+      <div>
+        <CoordinatorButton onClick={() => { goToHome(history) }}>Voltar</CoordinatorButton>
+      </div>
+    </AccessContainer>
   );
 }
 

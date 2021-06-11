@@ -6,6 +6,9 @@ import useForm from '../../hooks/useForm';
 import allCountries from '../../constants/listOfCountries';
 import { previousPage } from '../../routes/Coordinator';
 import baseURL from '../../constants/baseURL';
+import { FormContainer, CoordinatorButton, InputForm, SelectForm } from '../../GlobalStyles';
+import { AppFormContainer, AlienSmile, AppFormSendButton } from './ApplicationFormPageStyles';
+import alienSmile from '../../img/alien-smile.svg';
 
 function ApplicationFormPage() {
   const history = useHistory();
@@ -66,15 +69,15 @@ function ApplicationFormPage() {
   });
 
   return (
-    <div>
-      <div>
-        <h2>Inscreva-se para uma viagem</h2>
-        <select onChange={captureTripIdChoosen} >
+    <FormContainer>
+      <h1>INSCREVA-SE PARA UMA VIAGEM <AlienSmile src={alienSmile} alt={"imagem de alien sorrindo"}></AlienSmile></h1>
+      <AppFormContainer>
+        <SelectForm onChange={captureTripIdChoosen} >
           <option value="">Escolha uma viagem...</option>
           {renderTripsOptions}
-        </select>
+        </SelectForm>
         <form onSubmit={sendApplicationForm}>
-          <input
+          <InputForm
             name={"name"}
             value={form.name}
             onChange={onChange}
@@ -83,7 +86,7 @@ function ApplicationFormPage() {
             pattern={"^.{3,}"}
             title={"Nome deve ter no mínimo 3 letras"}
           />
-          <input
+          <InputForm
             name={"age"}
             value={form.age}
             onChange={onChange}
@@ -92,7 +95,7 @@ function ApplicationFormPage() {
             type={"number"}
             min={18}
           />
-          <input
+          <InputForm
             name={"applicationText"}
             value={form.applicationText}
             onChange={onChange}
@@ -100,7 +103,7 @@ function ApplicationFormPage() {
             required
             minLength={30}
           />
-          <input
+          <InputForm
             name={"profession"}
             value={form.profession}
             onChange={onChange}
@@ -108,21 +111,21 @@ function ApplicationFormPage() {
             required
             minLength={10}
           />
-          <select
+          <SelectForm
             name={"country"}
             value={form.country}
             onChange={onChange}
           >
             <option value="">País de origem</option>
             {renderCountriesOptions}
-          </select>
-          <button>Enviar</button>
+          </SelectForm>
+          <AppFormSendButton>Enviar</AppFormSendButton>
         </form>
-      </div>
+      </AppFormContainer>
       <div>
-        <button onClick={() => { previousPage(history)}}>Voltar</button>
+        <CoordinatorButton onClick={() => { previousPage(history) }}>Voltar</CoordinatorButton>
       </div>
-    </div>
+    </FormContainer>
   );
 }
 

@@ -2,8 +2,13 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import useGetTripDetails from '../../hooks/useGetTripDetails';
+import { goToHome } from '../../routes/Coordinator';
 import axios from 'axios';
 import baseURL from '../../constants/baseURL';
+
+import { TripDetailsContainer, HeaderDetailsContainer, LogoContainer, TripInfoBox, TripInfoContainer, CandidatesContainer, CandidatesBox, CardCandidateContainer, ApprovedContainer, ApprovedList } from './TripDetailsPageStyles';
+import { CoordinatorButton } from '../../GlobalStyles';
+import logo from '../../img/logo-labex.svg';
 
 function TripDetailsPage() {
   useProtectedPage();
@@ -19,7 +24,7 @@ function TripDetailsPage() {
 
   const approvedOrNot = (candidateId, trueOrFalse) => {
     const url = `${baseURL}/trips/${tripId}/candidates/${candidateId}/decide`;
-    
+
     const body = {
       approve: trueOrFalse
     };
@@ -31,44 +36,56 @@ function TripDetailsPage() {
     };
 
     axios
-    .put(url, body, header)
-    .then(() => {
-      if (body.approve) {
-        alert("Candidato aprovado com sucesso! :)");
-      } else {
-        alert ("Que pena! O candidato foi reprovado :(");
-      }; 
-    })
-    .catch(() => {
-      alert("Ops, ocorreu um erro! Tente novamente :)")
-    });
+      .put(url, body, header)
+      .then(() => {
+        if (body.approve) {
+          alert("Candidato aprovado com sucesso! :)");
+          window.location.reload();
+        } else {
+          alert("Que pena! O candidato foi reprovado :(");
+        };
+      })
+      .catch(() => {
+        alert("Ops, ocorreu um erro! Tente novamente :)")
+      });
   };
 
   const renderCandidates = tripDetails.candidates && tripDetails.candidates.map((info) => {
     return (
-      <div key={info.id}>
-        <p>Nome: {info.name}</p>
-        <p>Profissão: {info.profession}</p>
-        <p>Idade: {info.age}</p>
-        <p>País: {info.country}</p>
-        <p>Texto de candidatura: {info.applicationText}</p>
-        <button onClick={() => {approvedOrNot(info.id, true)}}>Aprovar</button>
-        <button onClick={() => {approvedOrNot(info.id, false)}}>Reprovar</button>
-      </div>
+      <CardCandidateContainer key={info.id}>
+        <div>
+          <p>Nome: {info.name}</p>
+          <p>Profissão: {info.profession}</p>
+          <p>Idade: {info.age}</p>
+          <p>País: {info.country}</p>
+          <p>Texto de candidatura: {info.applicationText}</p>
+        </div>
+        <div>
+          <button onClick={() => { approvedOrNot(info.id, true) }}>Aprovar</button>
+          <button onClick={() => { approvedOrNot(info.id, false) }}>Reprovar</button>
+        </div>
+      </CardCandidateContainer>
     );
   });
 
   const renderApproved = tripDetails.approved && tripDetails.approved.map((info) => {
     return (
-      <ul key={info.id}>
-        <li>{info.name}</li>
-      </ul>
-    );
-  });
 
-  return (
-    <div>
-      <div>
+      <li key={info.id}>{info.name}</li>
+    );
+});
+
+return (
+  <TripDetailsContainer>
+    <HeaderDetailsContainer>
+      <LogoContainer onClick={() => { goToHome(history) }}>
+        <img src={logo} alt={"logo da LabeX"}></img>
+        <h1><b><em>LabeX</em></b></h1>
+      </LogoContainer>
+      <CoordinatorButton onClick={backToAdminHome}>Voltar</CoordinatorButton>
+    </HeaderDetailsContainer>
+    <TripInfoContainer>
+      <TripInfoBox>
         <h2>{tripDetails.name}</h2>
         <div>
           <p>Nome: {tripDetails.name}</p>
@@ -77,18 +94,22 @@ function TripDetailsPage() {
           <p>Duração: {tripDetails.durationInDays}</p>
           <p>Data: {tripDetails.date}</p>
         </div>
-      </div>
-      <button onClick={backToAdminHome}>Voltar</button>
-      <div>
-        <h3>Candidatos Pendentes</h3>
+      </TripInfoBox>
+    </TripInfoContainer>
+    <CandidatesContainer>
+      <h3>CANDIDATOS PENDENTES</h3>
+      <CandidatesBox>
         {renderCandidates}
-      </div>
-      <div>
-        <h3>Candidatos Aprovados</h3>
+      </CandidatesBox>
+    </CandidatesContainer>
+    <ApprovedContainer>
+      <h3>CANDIDATOS APROVADOS</h3>
+      <ApprovedList>
         {renderApproved}
-      </div>
-    </div>
-  );
+      </ApprovedList>
+    </ApprovedContainer>
+  </TripDetailsContainer>
+);
 }
 
 export default TripDetailsPage;

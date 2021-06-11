@@ -6,6 +6,10 @@ import useGetAllTrips from '../../hooks/useGetAllTrips';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import { goToCreateTrip, goToHome } from '../../routes/Coordinator';
 import baseURL from '../../constants/baseURL';
+import { AdminContainer, HeaderAdminContainer, LogoContainer , SectionSimplifyTripsContainer, ListSimplifyTripsContainer, TripsDetailContainer } from './AdminHomePageStyles';
+import { CoordinatorButton } from '../../GlobalStyles';
+import logo from '../../img/logo-labex.svg';
+import deleteIcon from '../../img/delete-icon.svg';
 
 function AdminHomePage() {
   useProtectedPage();
@@ -14,7 +18,7 @@ function AdminHomePage() {
 
   const logoutAdmin = () => {
     alert("Até a próxima! :)");
-    history.goBack();
+    history.push("/");
     localStorage.removeItem("token");
   };
 
@@ -49,21 +53,34 @@ function AdminHomePage() {
 
   const renderAllSimplifyTrips = getTrips && getTrips.map((info) => {
     return (
-      <div key={info.id}>
+      <TripsDetailContainer key={info.id}>
         <p onClick={() => { goToTripDetails(info.id) }}>{info.name}</p>
-        <button onClick={() => { deleteTrip(info.id) }}>deletar</button>
-      </div>
+        <img src={deleteIcon} onClick={() => { deleteTrip(info.id) }}></img>
+      </TripsDetailContainer>
     );
   });
 
   return (
-    <div>
-      <button onClick={() => {goToHome(history)}}>Voltar</button>
-      <button onClick={() => {goToCreateTrip(history)}}>Criar Viagem</button>
-      <button onClick={logoutAdmin}>Logout</button>
-      <h2>AdminHomePage</h2>
-      {renderAllSimplifyTrips}
-    </div>
+    <AdminContainer>
+      <HeaderAdminContainer>
+        <LogoContainer onClick={() => { goToHome(history) }}>
+          <img src={logo} alt={"logo da LabeX"}></img>
+          <h1><b><em>LabeX</em></b></h1>
+        </LogoContainer>
+        <div>
+          <CoordinatorButton onClick={() => { goToHome(history) }}>Voltar</CoordinatorButton>
+          <CoordinatorButton onClick={() => { goToCreateTrip(history) }}>Criar Viagem</CoordinatorButton>
+          <CoordinatorButton onClick={() => { logoutAdmin(history) }}>Logout</CoordinatorButton>
+        </div>
+      </HeaderAdminContainer>
+      <SectionSimplifyTripsContainer>
+        <h1>ÁREA DE ACESSO - ADMINISTRADOR</h1>
+        <ListSimplifyTripsContainer>
+          {renderAllSimplifyTrips}
+        </ListSimplifyTripsContainer>
+      </SectionSimplifyTripsContainer>
+    </AdminContainer>
+
   );
 }
 

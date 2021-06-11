@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { fifthColor, secondColor, thirdColor, fourthColor } from '../../constants/colors';
 
-export const TripsContainer = styled.div`
+export const AdminContainer = styled.div`
     height: 100%;
     width: 100%;
     display: grid;
@@ -17,7 +17,7 @@ export const TripsContainer = styled.div`
     }
 `
 
-export const HeaderContainer = styled.div`
+export const HeaderAdminContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,7 +37,7 @@ export const LogoContainer = styled.div`
     }
 `
 
-export const SectionTripsContainer = styled.div`
+export const SectionSimplifyTripsContainer = styled.div`
     display: grid;
     grid-template-rows: 1fr 9fr;
 
@@ -48,14 +48,16 @@ export const SectionTripsContainer = styled.div`
     }
 `
 
-export const ListTripsContainer = styled.div`
+export const ListSimplifyTripsContainer = styled.div`
     height: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `
 
-export const CardTripContainer = styled.div`
-    height: 200px;
+export const TripsDetailContainer = styled.div`
+    height: 48px;
     width: 400px;
     margin: 16px;
     padding: 16px;
@@ -63,13 +65,28 @@ export const CardTripContainer = styled.div`
     background-color: ${fifthColor};
     border-radius: 16px;
     box-shadow: 1px 1px 1px darkgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     p {
         margin-bottom: 8px;
+        font-size: 24px;
     }
 
     :hover {
-        cursor: default;
-        opacity: 0.8;
+        cursor: pointer;
+        background-color: ${fourthColor};
+    }
+
+    img {
+        height: 32px;
+    }
+
+    img:hover {
+        height: 36px;
+        background-color: lightgoldenrodyellow;
+        opacity: 0.9;
+        border-radius: 50%;
     }
 `

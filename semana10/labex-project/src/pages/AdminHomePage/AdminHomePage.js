@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -18,6 +18,10 @@ function AdminHomePage() {
   useProtectedPage();
 
   const history = useHistory();
+
+  useEffect(() => {
+    document.title="Admin Home";
+  }, [])
 
   const logoutAdmin = () => {
     alert("Até a próxima! :)");

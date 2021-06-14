@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -16,6 +16,9 @@ function LoginPage() {
     password: ""
   });
 
+  useEffect(() => {
+    document.title="Login";
+  }, [])
 
   const onClickLogin = (event) => {
     event.preventDefault();

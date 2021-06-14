@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
@@ -26,6 +26,10 @@ function CreateTripPage() {
     durationInDays: ""
   });
   const actualDate = useActualDateToString();
+
+  useEffect(() => {
+    document.title="Create Trip";
+  }, [])
 
   const formToCreateTrip = (event) => {
     event.preventDefault();

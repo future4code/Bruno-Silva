@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -19,6 +19,10 @@ function TripDetailsPage() {
   const tripId = localStorage.getItem("tripId");
   const history = useHistory();
   const tripDetails = useGetTripDetails(`${baseURL}/trip/${tripId}`, []);
+
+  useEffect(() => {
+    document.title="Trip Details";
+  }, [])
 
   const backToAdminHome = () => {
     history.goBack();

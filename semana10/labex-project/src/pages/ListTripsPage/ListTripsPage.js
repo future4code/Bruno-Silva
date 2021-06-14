@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -13,6 +13,10 @@ import logo from '../../img/logo-labex.svg';
 
 function ListTripsPage() {
   const history = useHistory();
+
+  useEffect(() => {
+    document.title="Trip Lists";
+  }, [])
 
   const getTrips = useGetAllTrips(`${baseURL}/trips`, []);
 

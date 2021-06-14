@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -24,6 +24,10 @@ function ApplicationFormPage() {
     country: ""
   });
   const [tripIdChoosen, setTripIdChoosen] = useState("");
+
+  useEffect(() => {
+    document.title="Application Form";
+  }, [])
 
   const captureTripIdChoosen = (event) => {
     setTripIdChoosen(event.target.value)

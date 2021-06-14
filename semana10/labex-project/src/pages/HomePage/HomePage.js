@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { goToAdminHome, goToListTrips } from '../../routes/Coordinator';
@@ -10,6 +10,10 @@ import logo from '../../img/logo-labex.svg';
 
 function HomePage() {
   const history = useHistory();
+
+  useEffect(() => {
+    document.title="Home";
+  }, [])
 
   return (
     <AccessContainer>

@@ -12,7 +12,7 @@ export const AppFormContainer = styled.div`
     }
 `
 
-export const AlienSmile = styled.img`
+export const TravelIcon = styled.img`
     height: 64px;
 `
 

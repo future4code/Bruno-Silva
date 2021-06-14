@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+
+import { previousPage } from '../../routes/Coordinator';
 import useGetAllTrips from '../../hooks/useGetAllTrips';
 import useForm from '../../hooks/useForm';
 import allCountries from '../../constants/listOfCountries';
-import { previousPage } from '../../routes/Coordinator';
 import baseURL from '../../constants/baseURL';
+
 import { FormContainer, CoordinatorButton, InputForm, SelectForm } from '../../GlobalStyles';
 import { AppFormContainer, AlienSmile, AppFormSendButton } from './ApplicationFormPageStyles';
+
 import alienSmile from '../../img/alien-smile.svg';
 
 function ApplicationFormPage() {

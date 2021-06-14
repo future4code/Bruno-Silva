@@ -1,9 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
 import { goToAdminHome, goToListTrips } from '../../routes/Coordinator';
-import logo from '../../img/logo-labex.svg';
-import { LogoContainer, NavContainer } from './HomePageStyles';
+
 import { AccessContainer, CoordinatorButton } from '../../GlobalStyles';
+import { LogoContainer, NavContainer } from './HomePageStyles';
+
+import logo from '../../img/logo-labex.svg';
 
 function HomePage() {
   const history = useHistory();

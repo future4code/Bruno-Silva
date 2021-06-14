@@ -1,9 +1,11 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import useForm from '../../hooks/useForm';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 import { goToHome } from '../../routes/Coordinator';
+import useForm from '../../hooks/useForm';
 import baseURL from '../../constants/baseURL';
+
 import { AccessContainer, CoordinatorButton, InputForm } from '../../GlobalStyles';
 import { AccessButton } from './LoginPageStyles';
 

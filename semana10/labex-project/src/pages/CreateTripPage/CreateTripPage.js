@@ -1,15 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
-import useProtectedPage from '../../hooks/useProtectedPage';
+
 import { previousPage } from '../../routes/Coordinator';
-import allPlanets from '../../constants/planetsOfSolarSystem';
-import useForm from '../../hooks/useForm';
 import useActualDateToString from '../../hooks/useActualDateToString';
+import useForm from '../../hooks/useForm';
+import useProtectedPage from '../../hooks/useProtectedPage';
 import baseURL from '../../constants/baseURL';
+import allPlanets from '../../constants/planetsOfSolarSystem';
+
 import { FormContainer, CoordinatorButton, InputForm, SelectForm } from '../../GlobalStyles';
-import { AppFormContainer, AlienSmile, AppFormSendButton } from './CreateTripPageStyles';
-import alienSmile from '../../img/alien-smile.svg';
+import { AppFormContainer, TravelIcon, AppFormSendButton } from './CreateTripPageStyles';
+
+import travel from '../../img/travel-icon.svg';
 
 function CreateTripPage() {
   useProtectedPage();
@@ -50,11 +53,11 @@ function CreateTripPage() {
 
       axios
         .post(url, body, header)
-        .then((res) => {
-          console.log(res)
+        .then(() => {
+          alert("Viagem criada com sucesso! :)")
         })
-        .catch((err) => {
-          console.log(err.response.data)
+        .catch(() => {
+          alert("Ops, ocorreu um erro! Tente novamente :)")
         });
     };
 
@@ -71,7 +74,7 @@ function CreateTripPage() {
 
   return (
     <FormContainer>
-      <h1>CRIAR VIAGEM <AlienSmile src={alienSmile} alt={"imagem de alien sorrindo"}></AlienSmile></h1>
+      <h1>CRIAR VIAGEM <TravelIcon src={travel} alt={"imagem de alien sorrindo"}></TravelIcon></h1>
       <AppFormContainer>
         <form onSubmit={formToCreateTrip}>
           <InputForm

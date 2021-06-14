@@ -1,13 +1,16 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import useProtectedPage from '../../hooks/useProtectedPage';
-import useGetTripDetails from '../../hooks/useGetTripDetails';
-import { goToHome } from '../../routes/Coordinator';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { Scrollbars } from 'react-custom-scrollbars';
+
+import { goToHome } from '../../routes/Coordinator';
+import useGetTripDetails from '../../hooks/useGetTripDetails';
+import useProtectedPage from '../../hooks/useProtectedPage';
 import baseURL from '../../constants/baseURL';
 
-import { TripDetailsContainer, HeaderDetailsContainer, LogoContainer, TripInfoBox, TripInfoContainer, CandidatesContainer, CandidatesBox, CardCandidateContainer, ApprovedContainer, ApprovedList } from './TripDetailsPageStyles';
 import { CoordinatorButton } from '../../GlobalStyles';
+import { TripDetailsContainer, HeaderDetailsContainer, LogoContainer, TripInfoBox, TripInfoContainer, CandidatesContainer, CandidatesBox, CardCandidateContainer, ApprovedContainer, ApprovedList, ApprovedOrNoTButton } from './TripDetailsPageStyles';
+
 import logo from '../../img/logo-labex.svg';
 
 function TripDetailsPage() {
@@ -43,6 +46,7 @@ function TripDetailsPage() {
           window.location.reload();
         } else {
           alert("Que pena! O candidato foi reprovado :(");
+          window.location.reload();
         };
       })
       .catch(() => {
@@ -54,15 +58,15 @@ function TripDetailsPage() {
     return (
       <CardCandidateContainer key={info.id}>
         <div>
-          <p>Nome: {info.name}</p>
-          <p>Profissão: {info.profession}</p>
-          <p>Idade: {info.age}</p>
-          <p>País: {info.country}</p>
-          <p>Texto de candidatura: {info.applicationText}</p>
+          <p><b>Nome: </b>{info.name}</p>
+          <p><b>Profissão: </b> {info.profession}</p>
+          <p><b>Idade: </b> {info.age}</p>
+          <p><b>País: </b> {info.country}</p>
+          <p><b>Texto de candidatura: </b> {info.applicationText}</p>
         </div>
         <div>
-          <button onClick={() => { approvedOrNot(info.id, true) }}>Aprovar</button>
-          <button onClick={() => { approvedOrNot(info.id, false) }}>Reprovar</button>
+          <ApprovedOrNoTButton onClick={() => { approvedOrNot(info.id, true) }}>Aprovar</ApprovedOrNoTButton>
+          <ApprovedOrNoTButton onClick={() => { approvedOrNot(info.id, false) }}>Reprovar</ApprovedOrNoTButton>
         </div>
       </CardCandidateContainer>
     );
@@ -70,46 +74,50 @@ function TripDetailsPage() {
 
   const renderApproved = tripDetails.approved && tripDetails.approved.map((info) => {
     return (
-
-      <li key={info.id}>{info.name}</li>
-    );
-});
-
-return (
-  <TripDetailsContainer>
-    <HeaderDetailsContainer>
-      <LogoContainer onClick={() => { goToHome(history) }}>
-        <img src={logo} alt={"logo da LabeX"}></img>
-        <h1><b><em>LabeX</em></b></h1>
-      </LogoContainer>
-      <CoordinatorButton onClick={backToAdminHome}>Voltar</CoordinatorButton>
-    </HeaderDetailsContainer>
-    <TripInfoContainer>
-      <TripInfoBox>
-        <h2>{tripDetails.name}</h2>
-        <div>
-          <p>Nome: {tripDetails.name}</p>
-          <p>Descrição: {tripDetails.description}</p>
-          <p>Planeta: {tripDetails.planet}</p>
-          <p>Duração: {tripDetails.durationInDays}</p>
-          <p>Data: {tripDetails.date}</p>
-        </div>
-      </TripInfoBox>
-    </TripInfoContainer>
-    <CandidatesContainer>
-      <h3>CANDIDATOS PENDENTES</h3>
-      <CandidatesBox>
-        {renderCandidates}
-      </CandidatesBox>
-    </CandidatesContainer>
-    <ApprovedContainer>
-      <h3>CANDIDATOS APROVADOS</h3>
-      <ApprovedList>
-        {renderApproved}
+      <ApprovedList key={info.id}>
+        <Scrollbars>
+          <li>{info.name}</li>
+        </Scrollbars>
       </ApprovedList>
-    </ApprovedContainer>
-  </TripDetailsContainer>
-);
+
+    );
+  });
+
+  return (
+    <TripDetailsContainer>
+      <HeaderDetailsContainer>
+        <LogoContainer onClick={() => { goToHome(history) }}>
+          <img src={logo} alt={"logo da LabeX"}></img>
+          <h1><b><em>LabeX</em></b></h1>
+        </LogoContainer>
+        <CoordinatorButton onClick={backToAdminHome}>Voltar</CoordinatorButton>
+      </HeaderDetailsContainer>
+      <TripInfoContainer>
+        <TripInfoBox>
+          <h2>{tripDetails.name}</h2>
+          <div>
+            <p><b>Nome: </b>{tripDetails.name}</p>
+            <p><b>Descrição: </b>{tripDetails.description}</p>
+            <p><b>Planeta: </b>{tripDetails.planet}</p>
+            <p><b>Duração: </b>{tripDetails.durationInDays}</p>
+            <p><b>Data: </b>{tripDetails.date}</p>
+          </div>
+        </TripInfoBox>
+      </TripInfoContainer>
+      <CandidatesContainer>
+        <h3>CANDIDATOS PENDENTES</h3>
+        <Scrollbars>
+          <CandidatesBox>
+            {renderCandidates}
+          </CandidatesBox>
+        </Scrollbars>
+      </CandidatesContainer>
+      <ApprovedContainer>
+        <h3>CANDIDATOS APROVADOS</h3>
+        {renderApproved}
+      </ApprovedContainer>
+    </TripDetailsContainer>
+  );
 }
 
 export default TripDetailsPage;

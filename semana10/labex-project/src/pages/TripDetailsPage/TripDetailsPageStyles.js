@@ -48,9 +48,11 @@ export const TripInfoBox = styled.div`
     padding: 16px;
     color: ${thirdColor};
     background-color: ${fifthColor};
+    border-radius: 8px;
 `
 
 export const CandidatesContainer = styled.div`
+    height: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,10 +62,11 @@ export const CandidatesContainer = styled.div`
 export const CandidatesBox = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 `
 
 export const CardCandidateContainer = styled.div`
-    height: 200px;
+    height: 224px;
     width: 400px;
     margin: 16px;
     padding: 16px;
@@ -108,4 +111,19 @@ export const ApprovedList = styled.ul`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+`
+
+export const ApprovedOrNoTButton = styled.button`
+    height: 32px;
+    width: 80px;
+    border-radius: 24px;
+    margin: 16px 0;
+    color: darkblue;
+    background-color: yellowgreen;
+
+    :hover {
+        cursor: pointer;
+        opacity: 0.9;
+        color: white;
+    }
 `

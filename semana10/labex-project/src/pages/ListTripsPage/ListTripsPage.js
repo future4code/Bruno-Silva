@@ -1,11 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { previousPage, goToAppForm, goToHome } from '../../routes/Coordinator';
+import { Scrollbars } from 'react-custom-scrollbars';
 
+import { previousPage, goToAppForm, goToHome } from '../../routes/Coordinator';
 import useGetAllTrips from '../../hooks/useGetAllTrips';
 import baseURL from '../../constants/baseURL';
-import { TripsContainer, HeaderContainer, LogoContainer, SectionTripsContainer, ListTripsContainer, CardTripContainer } from './ListTripsPageStyles';
+
 import { CoordinatorButton } from '../../GlobalStyles';
+import { TripsContainer, HeaderContainer, LogoContainer, SectionTripsContainer, ListTripsContainer, CardTripContainer } from './ListTripsPageStyles';
+
 import logo from '../../img/logo-labex.svg';
 
 function ListTripsPage() {
@@ -39,9 +42,11 @@ function ListTripsPage() {
       </HeaderContainer>
       <SectionTripsContainer>
         <h1>LISTA DE VIAGENS</h1>
-        <ListTripsContainer>
-          {renderAllTrips}
-        </ListTripsContainer>
+        <Scrollbars>
+          <ListTripsContainer>
+            {renderAllTrips}
+          </ListTripsContainer>
+        </Scrollbars>
       </SectionTripsContainer>
     </TripsContainer>
   );

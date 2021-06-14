@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { Scrollbars } from 'react-custom-scrollbars';
 
+import { goToCreateTrip, goToHome } from '../../routes/Coordinator';
 import useGetAllTrips from '../../hooks/useGetAllTrips';
 import useProtectedPage from '../../hooks/useProtectedPage';
-import { goToCreateTrip, goToHome } from '../../routes/Coordinator';
 import baseURL from '../../constants/baseURL';
-import { AdminContainer, HeaderAdminContainer, LogoContainer , SectionSimplifyTripsContainer, ListSimplifyTripsContainer, TripsDetailContainer } from './AdminHomePageStyles';
+
 import { CoordinatorButton } from '../../GlobalStyles';
+import { AdminContainer, HeaderAdminContainer, LogoContainer, SectionSimplifyTripsContainer, ListSimplifyTripsContainer, TripsDetailContainer } from './AdminHomePageStyles';
+
 import logo from '../../img/logo-labex.svg';
 import deleteIcon from '../../img/delete-icon.svg';
 
@@ -75,9 +78,11 @@ function AdminHomePage() {
       </HeaderAdminContainer>
       <SectionSimplifyTripsContainer>
         <h1>ÁREA DE ACESSO - ADMINISTRADOR</h1>
-        <ListSimplifyTripsContainer>
-          {renderAllSimplifyTrips}
-        </ListSimplifyTripsContainer>
+        <Scrollbars>
+          <ListSimplifyTripsContainer>
+            {renderAllSimplifyTrips}
+          </ListSimplifyTripsContainer>
+        </Scrollbars>
       </SectionSimplifyTripsContainer>
     </AdminContainer>
 

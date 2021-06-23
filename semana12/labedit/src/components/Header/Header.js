@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import { StyledBar, TitleName } from './styled';
@@ -32,7 +32,7 @@ const Header = (props) => {
         <TitleName>
           <span>La</span><span>bEd</span><span>it</span>
         </TitleName>
-        <Button onClick={logoutButtonAction} color="inherit">{logoutButtonText}</Button>
+        <Button onClick={logoutButtonAction} color={"inherit"}>{logoutButtonText}</Button>
       </StyledBar>
     </AppBar>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Toolbar from '@material-ui/core/Toolbar';
-import { primaryColor, secondaryColor, thirdColor, fourthColor, neutralColor } from '../../constants/colors';
+import { thirdColor, fourthColor, neutralColor } from '../../constants/colors';
 
 export const StyledBar = styled(Toolbar)`
     display: flex;

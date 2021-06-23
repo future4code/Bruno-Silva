@@ -1,7 +1,8 @@
 import React from "react";
 import SignUpForm from './SignUpForm'
-import { SignUpContainer } from "./styled";
+import { LogoImage, SignUpContainer } from "./styled";
 import useProtectedPage from "../../hooks/useUnProtectedPage";
+import logo from '../../assets/logo.svg';
 
 const SignUpPage = (props) => {
   useProtectedPage();
@@ -11,7 +12,8 @@ const SignUpPage = (props) => {
   return (
     <>
       <SignUpContainer>
-        <SignUpForm setLogoutButtonText={setLogoutButtonText}/>
+        <LogoImage src={logo} alt={"logo da LabEdit"} />
+        <SignUpForm setLogoutButtonText={setLogoutButtonText} />
       </SignUpContainer>
     </>
   );

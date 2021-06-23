@@ -9,6 +9,11 @@ export const LoginContainer = styled.div`
     align-items: center;
 `;
 
+export const LogoImage = styled.img`
+    width: 160px;
+    max-width: 400px;
+`
+
 export const SignUpButtonContainer = styled.div`
     width: 25vw;
     border-radius: 16px;
@@ -17,7 +22,7 @@ export const SignUpButtonContainer = styled.div`
 
 export const LoginFormContainer = styled.div`
     width: 50vw;
-    margin: 24px 0;
+    margin: 16px 0;
 
     form {
         display: flex;

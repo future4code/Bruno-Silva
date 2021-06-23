@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import { StyledBar } from './styled';
+import { StyledBar, TitleName } from './styled';
 import { useHistory } from 'react-router-dom';
 import { goToLogin } from '../../routes/coordinator';
 
@@ -20,16 +20,18 @@ const Header = (props) => {
       setLogoutButtonText("");
       goToLogin(history);
       alert("Até a proxima! :)")
-    }
-    
-  }
+    } else {
+      goToLogin(history);
+    };
+  };
 
   return (
     <AppBar position="static">
       <StyledBar>
-        <Button color="inherit">
-          LabEdit
-        </Button>
+        <div></div>
+        <TitleName>
+          <span>La</span><span>bEd</span><span>it</span>
+        </TitleName>
         <Button onClick={logoutButtonAction} color="inherit">{logoutButtonText}</Button>
       </StyledBar>
     </AppBar>

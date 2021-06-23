@@ -8,6 +8,11 @@ export const SignUpContainer = styled.div`
     align-items: center;
 `;
 
+export const LogoImage = styled.img`
+    width: 160px;
+    max-width: 400px;
+`
+
 export const SignUpFormContainer = styled.div`
     width: 50vw;
 

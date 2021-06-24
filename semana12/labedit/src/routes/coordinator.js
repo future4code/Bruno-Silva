@@ -13,3 +13,7 @@ export const goToFeed = (history) => {
 export const goToPost = (history, id) => {
     history.push(`/post/${id}`);
 };
+
+export const previousPage = (history) => {
+    history.goBack();
+};

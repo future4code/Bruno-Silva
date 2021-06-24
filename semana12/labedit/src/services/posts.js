@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants/urls';
 
-export const createPost = (body, clear) => {
+export const createPost = (body, clear, getMethod) => {
     const url = `${BASE_URL}/posts`;
 
     const header = {
@@ -14,13 +14,14 @@ export const createPost = (body, clear) => {
     .then((res) => {
         clear()
         alert(res.data);
+        getMethod()
     })
     .catch((err) => {
         alert(err.response.data)
     });
 };
 
-export const createComment = (body, clear) => {
+export const createComment = (body, clear, getMethod) => {
     const url = `${BASE_URL}/posts/${localStorage.getItem("postId")}/comments`;
 
     const header = {
@@ -33,6 +34,7 @@ export const createComment = (body, clear) => {
     .then((res) => {
         clear()
         alert(res.data);
+        getMethod();
     })
     .catch(() => {
         alert("Ops, ocorreu um erro! Tente novamente :)")
@@ -40,73 +42,8 @@ export const createComment = (body, clear) => {
 };
 
 
-export const createPostVote = (isPositiveVoted, postInfo) => {
-    // const url = `${BASE_URL}/posts/${postInfo.id}/votes`;
-
-    // const header = {
-    //     headers: {
-    //         Authorization: localStorage.getItem("token")
-    //     }
-    // };
-
-    // let body = {}
-
-    // if (isPositiveVoted === true ) {
-    //     body = {
-    //         direction: 1
-    //     }
-    // } else if (isPositiveVoted === false) {
-    //     body = {
-    //         direction: -1
-    //     }
-    // }
-
-    // axios.post(url, body, header)
-    // .then((res) => {
-    //     console.log(res.data);
-    // })
-    // .catch(() => {
-    //     alert("Ops, ocorreu um erro! Tente novamente :)")
-    // });
-}
-
-export const changePostVote = (isPositiveVoted, isNegativeVoted) => {
-    console.log(isPositiveVoted, isNegativeVoted)
-
-    // const url = `${BASE_URL}/posts/"postId"/votes`;
-
-    // const header = {
-    //     headers: {
-    //         Authorization: localStorage.getItem("token")
-    //     }
-    // };
-
-    let body = {}
-
-    if (isPositiveVoted === true ) {
-        body = {
-            direction: 1
-        }
-    } else if (isPositiveVoted === false) {
-        body = {
-            direction: -1
-        }
-    }
-
-    console.log("changePostVote body", body)
-
-    // axios.post(url, body, header)
-    // .then((res) => {
-    //     clear()
-    //     alert(res.data);
-    // })
-    // .catch(() => {
-    //     alert("Ops, ocorreu um erro! Tente novamente :)")
-    // });
-}
-
-export const deletePostVote = () => {
-    const url = `${BASE_URL}/posts/"postId"/votes`;
+export const createPostOrCommentVote = (postId, valor, postOrComment, getMethod) => {
+    const url = `${BASE_URL}/${postOrComment}/${postId}/votes`;
 
     const header = {
         headers: {
@@ -114,15 +51,55 @@ export const deletePostVote = () => {
         }
     };
 
-    console.log("entrei no deletePostVote")
+    const body = {
+        direction: valor
+    }
 
+    axios.post(url, body, header)
+    .then(() => {
+        getMethod();
+    })
+    .catch(() => {
+        alert("Ops, ocorreu um erro! Tente novamente :)");
+    });
+}
 
-    // axios.post(url, body, header)
-    // .then((res) => {
-    //     clear()
-    //     alert(res.data);
-    // })
-    // .catch(() => {
-    //     alert("Ops, ocorreu um erro! Tente novamente :)")
-    // });
+export const changePostOrCommentVote = (postId, valor, postOrComment, getMethod) => {
+    const url = `${BASE_URL}/${postOrComment}/${postId}/votes`;
+
+    const header = {
+        headers: {
+            Authorization: localStorage.getItem("token")
+        }
+    };
+
+    const body = {
+        direction: valor
+    }
+
+    axios.post(url, body, header)
+    .then(() => {
+        getMethod();
+    })
+    .catch(() => {
+        alert("Ops, ocorreu um erro! Tente novamente :)")
+    });
+}
+
+export const deletePostOrCommentVote = (postId, postOrComment, getMethod) => {
+    const url = `${BASE_URL}/${postOrComment}/${postId}/votes`;
+
+    const header = {
+        headers: {
+            Authorization: localStorage.getItem("token")
+        }
+    };
+
+    axios.delete(url, header)
+    .then(() => {
+        getMethod();
+    })
+    .catch(() => {
+        alert("Ops, ocorreu um erro! Tente novamente :)")
+    });
 }

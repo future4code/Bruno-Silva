@@ -10,3 +10,7 @@ export const CardContainer = styled(Card)`
 export const CardContentContainer = styled(CardContent)`
     height: 160px;
 `
+
+export const ImageIcon = styled.img`
+    height: 24px;
+`

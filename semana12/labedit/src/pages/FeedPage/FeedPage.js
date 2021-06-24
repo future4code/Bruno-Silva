@@ -12,8 +12,8 @@ import { goToPost } from "../../routes/coordinator";
 const FeedPage = () => {
   useProtectedPage();
   const history = useHistory();
-  const allPosts = useRequestData([], `${BASE_URL}/posts`);
-
+  const {data: allPosts, getData: getPosts} = useRequestData([], `${BASE_URL}/posts`);
+  
   const onClickComments = (id) => {
     localStorage.setItem("postId", id)
     goToPost(history, id);
@@ -21,7 +21,7 @@ const FeedPage = () => {
 
   const renderPosts = allPosts[0] && allPosts.map((postInfo) => {
     return (
-      <PostContainer key={postInfo.id} postInfo={postInfo} onClickComments={onClickComments}/>
+      <PostContainer key={postInfo.id} postInfo={postInfo} onClickComments={onClickComments} getPosts={getPosts}/>
     )
   })
 
@@ -30,7 +30,7 @@ const FeedPage = () => {
       <Typography variant={"h3"} color={"inherit"} component={"h1"}>
         Feed de Notícias
       </Typography>
-      <CreatePostContainer />
+      <CreatePostContainer getPosts={getPosts}/>
       <PostListContainer>
         {renderPosts}
       </PostListContainer>

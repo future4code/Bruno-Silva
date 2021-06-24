@@ -7,12 +7,13 @@ import useForm from "../../hooks/useForm";
 import { createPost } from '../../services/posts';
 
 
-const CreatePostContainer = () => {
+const CreatePostContainer = (props) => {
     const [form, onChange, clear] = useForm({ title: "", body: "" });
+    const {getPosts} = props
 
     const onSubmitCreatePost = (event) => {
         event.preventDefault();
-        createPost(form, clear);
+        createPost(form, clear, getPosts);
     }
 
     return (

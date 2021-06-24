@@ -7,12 +7,13 @@ import useForm from "../../hooks/useForm";
 import { createComment } from '../../services/posts';
 
 
-const CreateCommentContainer = () => {
+const CreateCommentContainer = (props) => {
     const [form, onChange, clear] = useForm({ body: "" });
+    const { getComments } = props
 
     const onSubmitCreateComment = (event) => {
         event.preventDefault();
-        createComment(form, clear);
+        createComment(form, clear, getComments);
     }
 
     return (

@@ -3,11 +3,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import { StyledBar, TitleName } from './styled';
 import { useHistory } from 'react-router-dom';
-import { goToLogin } from '../../routes/coordinator';
+import { goToLogin, previousPage } from '../../routes/coordinator';
 
 const Header = (props) => {
   const history = useHistory();
-  const { token } = props
   const { logoutButtonText, setLogoutButtonText } = props
 
   const logout = () => {
@@ -15,7 +14,7 @@ const Header = (props) => {
   }
 
   const logoutButtonAction = () => {
-    if (token) {
+    if (localStorage.getItem("token")) {
       logout();
       setLogoutButtonText("");
       goToLogin(history);
@@ -29,7 +28,7 @@ const Header = (props) => {
     <AppBar position="static">
       <StyledBar>
         <div></div>
-        <TitleName>
+        <TitleName onClick={() => {previousPage(history)}}>
           <span>La</span><span>bEd</span><span>it</span>
         </TitleName>
         <Button onClick={logoutButtonAction} color={"inherit"}>{logoutButtonText}</Button>

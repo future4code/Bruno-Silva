@@ -11,10 +11,10 @@ import CommentContainer from '../../components/CommentContainer/CommentContainer
 const PostPage = () => {
   useProtectedPage();
   const params = useParams();
-  const comments = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`);
+  const { data: comments, getData: getComments } = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`);
 
   const renderComments = comments[0] && comments.map((commentInfo) => {
-    return <CommentContainer key={commentInfo.id} commentInfo={commentInfo}/>
+    return <CommentContainer key={commentInfo.id} commentInfo={commentInfo} getComments={getComments}/>
   })
 
   return (
@@ -22,7 +22,7 @@ const PostPage = () => {
       <Typography variant={"h3"} color={"inherit"} component={"h1"}>
         Comentários
       </Typography>
-      <CreateCommentContainer />
+      <CreateCommentContainer getComments={getComments}/>
       <CommentListContainer>
         {renderComments}
       </CommentListContainer>

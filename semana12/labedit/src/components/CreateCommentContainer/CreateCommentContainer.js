@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from "@material-ui/core/Typography";
 import { CreateCommentBox } from "./styled";
 import useForm from "../../hooks/useForm";
 import { createComment } from '../../services/posts';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const CreateCommentContainer = (props) => {
     const [form, onChange, clear] = useForm({ body: "" });
-    const { getComments } = props
+    const { getComments } = props;
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const onSubmitCreateComment = (event) => {
         event.preventDefault();
-        createComment(form, clear, getComments);
+        createComment(form, clear, getComments, setIsLoading);
     }
 
     return (
@@ -38,7 +40,7 @@ const CreateCommentContainer = (props) => {
                     color={"secondary"}
                     fullWidth
                 >
-                    Comentar
+                    {isLoading ? <CircularProgress color={"inherit"} size={24}/> : "Comentar"}
                 </Button>
             </form>
         </CreateCommentBox>

@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SignUpForm from './SignUpForm'
-import { LogoImage, SignUpContainer } from "./styled";
+import { SignUpContainer, SignUpBox, LogoImage, TitleName } from "./styled";
 import useProtectedPage from "../../hooks/useUnProtectedPage";
 import logo from '../../assets/logo.svg';
 
-const SignUpPage = (props) => {
+const SignUpPage = () => {
   useProtectedPage();
 
-  const { setLogoutButtonText } = props
+  useEffect(() => {
+    document.title = "Register";
+  }, [])
 
   return (
-    <>
-      <SignUpContainer>
-        <LogoImage src={logo} alt={"logo da LabEdit"} />
-        <SignUpForm setLogoutButtonText={setLogoutButtonText} />
-      </SignUpContainer>
-    </>
+    <SignUpContainer>
+      <SignUpBox>
+        <LogoImage src={logo} alt={"logo da LaBeDiT"} />
+        <TitleName>
+          <span><bold>La</bold></span><span><bold>BeD</bold></span><span><bold>iT</bold></span>
+        </TitleName>
+        <SignUpForm />
+      </SignUpBox>
+    </SignUpContainer>
   );
 }
 

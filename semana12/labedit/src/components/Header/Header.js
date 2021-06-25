@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import { StyledBar, TitleName } from './styled';
+import { StyledBar, LogoContainer } from './styled';
 import { useHistory } from 'react-router-dom';
-import { goToLogin, previousPage } from '../../routes/coordinator';
+import { goToLogin } from '../../routes/coordinator';
+import GlobalStateContext from '../../global/GlobalStateContext';
+import logo from '../../assets/logo.svg';
 
-const Header = (props) => {
+const Header = () => {
   const history = useHistory();
-  const { logoutButtonText, setLogoutButtonText } = props
+  const { logoutButtonText, setLogoutButtonText } = useContext(GlobalStateContext)
 
   const logout = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("postId")
   }
 
   const logoutButtonAction = () => {
@@ -27,10 +30,12 @@ const Header = (props) => {
   return (
     <AppBar position="static">
       <StyledBar>
-        <div></div>
-        <TitleName onClick={() => {previousPage(history)}}>
-          <span>La</span><span>bEd</span><span>it</span>
-        </TitleName>
+        <LogoContainer onClick={() => { goToLogin(history) }}>
+          <img src={logo} alt={"logo da LabeDit"} />
+          <div>
+            <span>La</span><span>BeD</span><span>iT</span>
+          </div>
+        </LogoContainer>
         <Button onClick={logoutButtonAction} color={"inherit"}>{logoutButtonText}</Button>
       </StyledBar>
     </AppBar>

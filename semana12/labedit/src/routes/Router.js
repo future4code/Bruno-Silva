@@ -6,16 +6,14 @@ import FeedPage from '../pages/FeedPage/FeedPage';
 import PostPage from '../pages/PostPage/PostPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
-const Router = (props) => {
-    const { setLogoutButtonText } = props
-
+const Router = () => {
     return (
         <Switch>
             <Route exact path={"/login"}>
-                <LoginPage setLogoutButtonText={setLogoutButtonText}/>
+                <LoginPage />
             </Route>
             <Route exact path={"/register"}>
-                <SignUpPage setLogoutButtonText={setLogoutButtonText}/>
+                <SignUpPage />
             </Route>
             <Route exact path={"/"}>
                 <FeedPage />

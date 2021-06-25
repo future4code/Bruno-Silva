@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
 
 export const CreatePostBox = styled(Card)`
-    width: 320px;
+    width: 800px;
     margin: 24px;
     padding: 16px 0;
     

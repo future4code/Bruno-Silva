@@ -7,19 +7,33 @@ export const StyledBar = styled(Toolbar)`
     justify-content: space-between;
 `
 
-export const TitleName = styled.h1`
-    font-size: 48px;
+export const LogoContainer = styled.div`
+    font-size: 24px;
     font-family: verdana, arial, helvetica, sans-serif;
+    display: flex;
 
-    span:nth-child(1) {
-        color: ${fourthColor}
+    :hover {
+        cursor: pointer;
     }
 
-    span:nth-child(2) {
+    img {
+        height: 64px;
+        margin: 16px 0;
+    }
+
+    div {
+        margin-top: 16px;
+    }
+
+    div span:nth-child(1) {
+        color: ${fourthColor};
+    }
+
+    div span:nth-child(2) {
         color: ${thirdColor}
     }
 
-    span:nth-child(3) {
+    div span:nth-child(3) {
         color: ${neutralColor}
     }
 `

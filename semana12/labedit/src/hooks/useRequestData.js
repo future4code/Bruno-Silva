@@ -11,7 +11,10 @@ const useRequestData = (initialData, url) => {
       }
     })
       .then((res) => {
-        setData(res.data)
+        const orderedByVoteSum = res.data.sort((a, b) => {
+          return  b.voteSum - a.voteSum;
+        });
+        setData(orderedByVoteSum)
       })
       .catch(() => {
         alert("Ops, ocorreu um erro! Tente novamente :)")

@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from "@material-ui/core/Typography";
 import { CreatePostBox } from "./styled";
 import useForm from "../../hooks/useForm";
 import { createPost } from '../../services/posts';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const CreatePostContainer = (props) => {
     const [form, onChange, clear] = useForm({ title: "", body: "" });
     const {getPosts} = props
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const onSubmitCreatePost = (event) => {
         event.preventDefault();
-        createPost(form, clear, getPosts);
+        createPost(form, clear, getPosts, setIsLoading);
     }
 
     return (
@@ -48,7 +50,7 @@ const CreatePostContainer = (props) => {
                     color={"secondary"}
                     fullWidth
                 >
-                    Postar
+                    {isLoading ? <CircularProgress color={"inherit"} size={24}/> : "Postar"}
                 </Button>
             </form>
         </CreatePostBox>

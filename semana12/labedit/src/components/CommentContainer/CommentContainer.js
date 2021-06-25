@@ -1,8 +1,7 @@
 import React from "react";
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import { CardContainer, CardContentContainer, ImageIcon } from "./styled";
+import { CardContainer, CardContentContainer, CardActionsContainer, ImageIcon } from "./styled";
 import uparrowDefault from '../../assets/uparrow-default.svg';
 import downarrowDefault from '../../assets/downarrow-default.svg';
 import uparrowVoted from '../../assets/uparrow-voted.svg';
@@ -35,11 +34,12 @@ const CommentContainer = (props) => {
                     </Typography>
                 </CardContentContainer>
             </CardActionArea>
-            <CardActions>
+            <hr />
+            <CardActionsContainer>
                 <ImageIcon onClick={() => actionVote(1)} src={ commentInfo.userVote === 1 ? uparrowVoted : uparrowDefault } alt={"ícone de voto +1"} />
-                <p>{commentInfo.voteSum}</p>
+                <p>{commentInfo.voteSum ? commentInfo.voteSum : 0}</p>
                 <ImageIcon onClick={() => actionVote(-1)} src={ commentInfo.userVote === -1 ? downarrowVoted : downarrowDefault } alt={"ícone de voto -1"} />
-            </CardActions>
+            </CardActionsContainer>
         </CardContainer>
     );
 }

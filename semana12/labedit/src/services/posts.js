@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants/urls';
 
-export const createPost = (body, clear, getMethod) => {
+export const createPost = (body, clear, getMethod, setIsLoading) => {
+    setIsLoading(true);
     const url = `${BASE_URL}/posts`;
 
     const header = {
@@ -13,15 +14,18 @@ export const createPost = (body, clear, getMethod) => {
     axios.post(url, body, header)
     .then((res) => {
         clear()
+        setIsLoading(false)
         alert(res.data);
         getMethod()
     })
     .catch((err) => {
+        setIsLoading(false)
         alert(err.response.data)
     });
 };
 
-export const createComment = (body, clear, getMethod) => {
+export const createComment = (body, clear, getMethod, setIsLoading) => {
+    setIsLoading(true);
     const url = `${BASE_URL}/posts/${localStorage.getItem("postId")}/comments`;
 
     const header = {
@@ -33,10 +37,12 @@ export const createComment = (body, clear, getMethod) => {
     axios.post(url, body, header)
     .then((res) => {
         clear()
+        setIsLoading(false);
         alert(res.data);
         getMethod();
     })
     .catch(() => {
+        setIsLoading(false);
         alert("Ops, ocorreu um erro! Tente novamente :)")
     });
 };

@@ -6,16 +6,13 @@ export const getCountryById = (
     req: Request,
     res: Response
 ):void => {
-    if(req.params.id) {
-        const countryInfos: country[] = countries.filter((country): boolean => {
-            return country.id === Number(req.params.id)
-        })
+    const result: country | undefined = countries.find((country) => {
+        return country.id === Number(req.params.id)
+    });
 
-        if (countryInfos[0]) {
-            res.status(200).send(countryInfos[0])
-        } else {
-            res.status(404).send("Not found")
-        }
-        
+    if (result) {
+        res.send(result)
+    } else {
+        res.status(404).end()
     }
 }

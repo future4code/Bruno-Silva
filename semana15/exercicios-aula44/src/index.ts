@@ -1,8 +1,8 @@
 import { app } from './app';
 import { getAllUsers } from './endpoints/getAllUsers';
-import { getUsersByType } from './endpoints/getUsersByType';
+import { getUsersBySearch } from './endpoints/getUsersBySearch';
+import { postNewUser } from './endpoints/postNewUser';
 
 app.get("/users", getAllUsers);
-app.get("/users", getUsersByType);
-// app.get("/users", getUsersBySearchName);
-// app.post("/users", addNewUsers);
+app.get("/users/search", getUsersBySearch);
+app.post("/users", postNewUser);

@@ -1,0 +1,30 @@
+Exercício 1)
+*a. Qual método HTTP você deve utilizar para isso?*
+    Resposta: método GET.
+
+*b. Como você indicaria a **entidade** que está sendo manipulada?*
+    Resposta: Indicaria por "users" ou "user".
+
+Exercício 2)
+*a. Como você passou os parâmetros de type para a requisição? Por quê?*
+    Resposta: Utilizei um path "./users/search?type=value", fazendo a requisição a partir de query params, pois
+    queries são mais indicados para procedimentos de busca.
+
+*b. Você consegue pensar em um jeito de garantir que apenas types válidos sejam utilizados?*
+    Resposta: Sim. Podemos verificar se o valor inserido no campo de busca existe e, se existir, se bate com os 
+    valores possíveis (guardados em um enum). Dessa forma, podemos enviar ao client possíveis erros de validação.
+
+Exercício 3)
+*a. Qual é o tipo de envio de parâmetro que costuma ser utilizado por aqui?*
+    Resposta: Por convenção, são utilizados query params.
+
+*b. Altere este endpoint para que ele devolva uma mensagem de erro caso nenhum usuário tenha sido encontrado.*
+    Resposta: Feito em código.
+
+Exercício 4)
+*a. Mude o método do endpoint para `PUT`. O que mudou?*
+    Resposta: Sob a ótica do código, não há mudança em termos de resposta e execução das requisições.
+
+*b. Você considera o método `PUT` apropriado para esta transação? Por quê?*
+    Resposta: Não. Pois, por convenção, separamos o método PUT para atualizar recursos que foram solicitados
+    de modificação. Para criação de novos recursos convenciona-se a utilização do método POST.

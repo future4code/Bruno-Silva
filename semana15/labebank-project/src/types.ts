@@ -12,10 +12,10 @@ export type transactions = {
     description: string
 }
 
-export type date = [
+export type date = {
     day: number,
     month: number,
     year: number
-]
+}
     
 

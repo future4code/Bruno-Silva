@@ -12,25 +12,38 @@ export const createUser = (
         const allUsers: accountUser[] = users;
         const { name, cpf, birthDay } = req.body;
 
-        const arrayBirthDay: string[] = birthDay.split("/");
-        const birthDayInNumbers = [
-            Number(arrayBirthDay[0]),
-            Number(arrayBirthDay[1]),
-            Number(arrayBirthDay[2])
-        ]
-
-        const actualDate: date = [
-            new Date().getDate(),
-            new Date().getMonth()+1,
-            new Date().getFullYear(),
-        ]
-
         if (!name || !cpf || !birthDay) {
             codeError = 422;
             throw new Error("One or more fields weren´t filled. Please, check inputs´ values");
         }
 
-        // if ()
+        const arrayBirthDay: string[] = birthDay.split("/");
+        const birthDayInNumbers: date = {
+            day: Number(arrayBirthDay[0]),
+            month: Number(arrayBirthDay[1]),
+            year: Number(arrayBirthDay[2])
+        }
+
+        const actualDate: date = {
+            day: new Date().getDate(),
+            month: new Date().getMonth() + 1,
+            year: new Date().getFullYear(),
+        };
+
+        if (actualDate.year - birthDayInNumbers.year < 18) {
+            codeError = 422;
+            throw new Error("User cannot be created! User`s age was expected at least 18 years old");
+        } else if (actualDate.year - birthDayInNumbers.year === 18) {
+            if (actualDate.month < birthDayInNumbers.month) {
+                codeError = 422;
+                throw new Error("User cannot be created! User`s age was expected at least 18 years old");
+            } else if (actualDate.month === birthDayInNumbers.month) {
+                if (actualDate.day < birthDayInNumbers.day) {
+                    codeError = 422;
+                    throw new Error("User cannot be created! User`s age was expected at least 18 years old");
+                };
+            };
+        };
 
         const newUser: accountUser = {
             name: name,

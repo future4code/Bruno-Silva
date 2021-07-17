@@ -12,11 +12,6 @@ export const createUser = (
         const allUsers: accountUser[] = users;
         const { name, cpf, birthDay } = req.body;
 
-        if (!name || !cpf || !birthDay) {
-            codeError = 422;
-            throw new Error("One or more fields weren´t filled. Please, check inputs´ values");
-        }
-
         const arrayBirthDay: string[] = birthDay.split("/");
         const birthDayInNumbers: date = {
             day: Number(arrayBirthDay[0]),
@@ -28,6 +23,13 @@ export const createUser = (
             day: new Date().getDate(),
             month: new Date().getMonth() + 1,
             year: new Date().getFullYear(),
+        };
+
+        const stringifyCpf: string = cpf.split(".").join("").split("-").join("");
+
+        if (!name || !cpf || !birthDay) {
+            codeError = 422;
+            throw new Error("One or more fields weren´t filled. Please, check inputs´ values");
         };
 
         if (actualDate.year - birthDayInNumbers.year < 18) {
@@ -43,6 +45,17 @@ export const createUser = (
                     throw new Error("User cannot be created! User`s age was expected at least 18 years old");
                 };
             };
+        };
+
+        if (stringifyCpf.length !== 11 && isNaN(Number(stringifyCpf))) {
+            codeError = 422;
+            throw new Error("Invalid type! Expected 11 numeric digits, such as: 111.111.111-11! Please, check the input´s value");
+        } else if (stringifyCpf.length === 11 && isNaN(Number(stringifyCpf))) {
+            codeError = 422;
+            throw new Error("Expected only numeric digits! Please, check the character´s used on input´s value");
+        } else if (stringifyCpf.length !== 11 && !isNaN(Number(stringifyCpf))) {
+            codeError = 422;
+            throw new Error("Expected 11 digits! Please, check the number of character´s filled");
         };
 
         const newUser: accountUser = {

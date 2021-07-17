@@ -3,7 +3,7 @@ import { accountUser } from './types';
 export const users: accountUser[] = [
     {
         name: "Tiago",
-        cpf: "03567815911",
+        cpf: "035.678.159-11",
         birthDay: "10/01/1985",
         balance: 350,
         clientTransactions: [
@@ -21,7 +21,7 @@ export const users: accountUser[] = [
     },
     {
         name: "Jesuina",
-        cpf: "13500275984",
+        cpf: "135.002.759-84",
         birthDay: "05/11/1973",
         balance: 275,
         clientTransactions: [
@@ -39,7 +39,7 @@ export const users: accountUser[] = [
     },
     {
         name: "Sandro",
-        cpf: "35678915369",
+        cpf: "356.789.153-69",
         birthDay: "23/03/1995",
         balance: 400,
         clientTransactions: []

@@ -31,7 +31,5 @@ export const getUserAccountBalance = (
         res.status(200).send(user.balance.toString());
     } catch (error) {
         res.status(codeError).send({ message: error.message });
-    }
-
-
-}
+    };
+};

@@ -44,4 +44,4 @@ export const users: accountUser[] = [
         balance: 400,
         clientTransactions: []
     }
-]
+];

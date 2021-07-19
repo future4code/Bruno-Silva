@@ -71,3 +71,111 @@ WHERE salary < 500000;
 e) O erro foi: Código de erro: 1054. Coluna desconhecida 'nome' na 'lista de campos'
 Este erro ocorrey, pois especificamos duas propriedades de busca (id e name) e somente fizemos a busca por uma delas (id).
 Para efetuar esta busca, precisamos também especificar o que procuramos da segunda propriedade.
+
+### Exercício 4
+a) A query criada verifica, dentro da lista Actor, aqueles cujo a propriedade name começem com A ou J, e que também tenham a
+propriedade salary com valor superior a 300000. Para esta busca, encontramos a linha:
+'4', 'Antônio Fagundes', '400000', '1949-04-18', 'male'
+
+b) A query criada foi:
+```
+SELECT *
+FROM Actor
+WHERE name NOT LIKE "a%" AND salary > 350000;
+```
+
+c)A query criada foi:
+```
+SELECT *
+FROM Actor
+WHERE name LIKE "%g%";
+```
+
+d)A query criada foi:
+```
+SELECT *
+FROM Actor
+WHERE (name LIKE "%a%" OR name LIKE "%g%") AND salary BETWEEN 350000 AND 900000;
+```
+
+### Exercício 5
+a) Tipo TEXT é bem parecido com o VARCHAR e CHAR, mas com a diferença de que ao invés de limitar a escrita de strings por
+número de caracteres, TEXT limita a escrita pelo tamanho do arquivo (2GB, no máx.).
+A query de criação da tabela foi:
+```
+CREATE TABLE Movies (
+	id VARCHAR(255) PRIMARY KEY,
+    title VARCHAR(255) NOT NULL UNIQUE,
+    synopses TEXT NOT NULL,
+    release_date DATE NOT NULL,
+    rating INT NOT NULL
+);
+```
+
+b, c, d, e) A query utilizada nestes itens foram:
+```
+INSERT INTO Movies
+VALUES
+	("1", "Se Eu Fosse Você", "Cláudio e Helena são casados há muitos anos e enfrentam a rotina do casamento. Um dia eles são atingidos por um fenômeno inexplicável e trocam de corpos", "2006-01-06", 7),
+    ("2", "Doce de mãe", "Dona Picucha, uma animada senhora de 85 anos, sempre causa grandes confusões. A vida dela e dos seus quatro filhos sofre uma reviravolta depois que Zaida, empregada e amiga de Dona Picucha, anuncia que vai se casar e não poderá mais morar com ela", "2012-12-27", 10),
+    ("3", "Dona Flor e Seus Dois Maridos", "Dona Flor é uma sedutora professora de culinária casada com Vadinho, que só quer saber de farras e jogatina nas boates. A vida de abusos acaba por acarretar sua morte precoce.", "2017-11-02", 8),
+    ("4", "O Auto da Compadecida", "O filme mostra as aventuras de João Grilo e Chicó, dois nordestinos pobres que vivem de golpes para sobreviver. Eles estão sempre enganando o povo de um pequeno vilarejo no sertão da Paraíba, inclusive o temido cangaceiro Severino de Aracaju, que os persegue pela região. Somente a aparição da Nossa Senhora poderá salvar esta dupla.", "2000-09-10", 10);
+```
+
+### Exercício 6
+a) A query criada foi:
+```
+SELECT id, title, rating
+FROM Movies
+WHERE id = "1";
+```
+onde, para selecionarmos as 3 informações desejadas de algum filme, basta que mudemos o valor de id em `WHERE id = desired_value`.
+
+b) A query criada foi:
+```
+SELECT *
+FROM Movies
+WHERE title = "o auto da compadecida";
+```
+onde, para selecionarmos todas as informações de um filme a partir do seu título, basta que mudemos o valor de title em `WHERE title= desired_title_name`.
+
+c) A query criada foi:
+```
+SELECT id, title, synopses
+FROM Movies
+WHERE rating >= 7;
+```
+
+### Exercício 7
+a) A query criada foi:
+```
+SELECT *
+FROM Movies
+WHERE title LIKE "%vida%";
+```
+
+b) A query criada foi:
+```
+SELECT *
+FROM Movies
+WHERE title LIKE "%AUTO%"
+OR synopses LIKE "%AUTO%";
+```
+
+c) A query criada foi:
+```
+SELECT *
+FROM Movies
+WHERE release_date <= "2021-07-19";
+```
+
+d) A query criada foi:
+```
+SELECT *
+FROM Movies
+WHERE release_date <= "2021-07-19"
+AND (title LIKE "%AUTO%" OR synopses LIKE "%AUTO%")
+AND rating >= 7;
+```
+
+

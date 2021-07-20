@@ -174,3 +174,75 @@ onde, tentamos alterar a coluna `synopses` da linha de id `001` deletada anterio
 
 Resultado: Embora o código seja executado, nenhuma alteração ocorre, pois o elemento de id `001`não existe e, portanto, não é 
 passível de modificações.
+
+### Exercício 7
+a) A query criada foi:
+```
+SELECT COUNT(*)
+FROM Movie
+WHERE rating > 7.5;
+```
+b) A query criada foi:
+```
+SELECT AVG(rating) AS "Média de avaliações"
+FROM Movie;
+```
+
+c) A query criada foi:
+```
+SELECT COUNT(*) AS "Número de filmes em cartaz"
+FROM Movie
+WHERE playing_limit_date >= CURDATE();
+```
+
+d) A query criada foi:
+```
+SELECT COUNT(*) AS "Filmes que ainda vão estreiar"
+FROM Movie
+WHERE release_date > CURDATE();
+```
+
+e) A query criada foi:
+```
+SELECT MAX(rating) AS "Maior avaliação dos filmes"
+FROM Movie;
+```
+
+f) A query criada foi:
+```
+SELECT MIN(rating) AS "Menor avaliação dos filmes"
+FROM Movie;
+```
+
+### Exercício 8
+a) A query criada foi:
+```
+SELECT *
+FROM Movie
+ORDER BY title ASC;
+```
+
+b) A query criada foi:
+```
+SELECT *
+FROM Movie
+ORDER BY title DESC
+LIMIT 5;
+```
+
+c) A query criada foi:
+```
+SELECT *
+FROM Movie
+WHERE release_date < CURDATE()
+ORDER BY release_date DESC
+LIMIT 3;
+```
+
+d) A query criada foi:
+```
+SELECT *
+FROM Movie
+ORDER BY rating DESC
+LIMIT 3;
+```

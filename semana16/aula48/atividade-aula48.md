@@ -1,5 +1,5 @@
 ### Exercício 1
-a) Chave estrangeira, ou `FOREING KEY`, é o nome dado a uma variável de uma tabela restrita pela sua
+a) Chave estrangeira, ou `FOREIGN KEY`, é o nome dado a uma variável de uma tabela restrita pela sua
 dependência a uma chave primária, ou `PRIMARY KEY`, existente em uma tabela matriz.
 
 b) As queries criadas para a resolução foram

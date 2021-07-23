@@ -1,6 +1,9 @@
 GET http://localhost:3003/user/001
 
 ###
+GET http://localhost:3003/task/001
+
+###
 POST http://localhost:3003/user
 Content-Type: application/json
 
@@ -16,8 +19,8 @@ Content-Type: application/json
 
 {
     "title": "teste2",
-    "description": 0,
-    "limitDate": "20/08/2021",
+    "description": "testando o seguno",
+    "limitDate": "15/08/2021",
     "creatorUserId": "001"
 }
 

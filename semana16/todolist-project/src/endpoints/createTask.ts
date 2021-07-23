@@ -26,7 +26,7 @@ const createTask = async (
                 ${Number(creatorUserId)});
         `);
 
-        res.status(200).send("Task created successfully!");
+        res.status(201).send("Task created successfully!");
     } catch(error) {
         res.status(errorCode).send({ message: error.sqlMessage || error.message });
     }

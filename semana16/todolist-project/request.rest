@@ -1,0 +1,31 @@
+GET http://localhost:3003/user/001
+
+###
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "nickname": "testando",
+    "email": "teste@testando.com"
+}
+
+###
+POST http://localhost:3003/task
+Content-Type: application/json
+
+{
+    "title": "teste2",
+    "description": 0,
+    "limitDate": "20/08/2021",
+    "creatorUserId": "001"
+}
+
+###
+PUT http://localhost:3003/user/edit/001
+Content-Type: application/json
+
+{
+    "name": "Astro Dev",
+    "nickname": "astrodev"
+}

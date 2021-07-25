@@ -1,16 +1,34 @@
+GET http://localhost:3003/user/all
+
+###
 GET http://localhost:3003/user/001
 
 ###
-GET http://localhost:3003/task/001
+GET http://localhost:3003/user?search=a
+
+###
+GET http://localhost:3003/task/search?status=done
+
+###
+GET http://localhost:3003/task/delayed
+
+###
+GET http://localhost:3003/task/002/responsible
+
+###
+GET http://localhost:3003/task/003
+
+###
+GET http://localhost:3003/task?creatorUserId=001
 
 ###
 POST http://localhost:3003/user
 Content-Type: application/json
 
 {
-    "name": "teste",
-    "nickname": "testando",
-    "email": "teste@testando.com"
+    "name": "Armando",
+    "nickname": "armandinho",
+    "email": "armando@mandinho.com"
 }
 
 ###
@@ -18,10 +36,19 @@ POST http://localhost:3003/task
 Content-Type: application/json
 
 {
-    "title": "teste2",
-    "description": "testando o seguno",
-    "limitDate": "15/08/2021",
+    "title": "Cozinhar 1.0",
+    "description": "Arroz e feijão",
+    "limitDate": "15/07/2020",
     "creatorUserId": "001"
+}
+
+###
+POST http://localhost:3003/task/responsible
+Content-Type: application/json
+
+{
+    "task_id": "001",
+    "responsible_user_id": "001"
 }
 
 ###
@@ -32,3 +59,14 @@ Content-Type: application/json
     "name": "Astro Dev",
     "nickname": "astrodev"
 }
+
+###
+PUT http://localhost:3003/task/status/003
+Content-Type: application/json
+
+{
+    "status": "done"
+}
+
+###
+DELETE http://localhost:3003/task/001/responsible/010

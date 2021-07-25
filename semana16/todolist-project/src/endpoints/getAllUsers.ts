@@ -1,25 +1,26 @@
 import { Request, Response } from 'express';
 import connection from '../connection';
 
-const getUser = async (
+const getAllUsers = async (
     req: Request,
     res: Response
 ) => {
-    let errorCode = 400;
+    let errorCode: number = 400;
 
     try {
-        const userId = Number(req.params.id as string);
-
         const result = await connection.raw(`
-            SELECT LPAD( id, 3, '0') AS "id", nickname
-            FROM Users
-            WHERE id = ${userId};
+            SELECT id, nickname
+            FROM Users;
         `);
 
-        res.status(200).send(result[0][0]);
+        const users = {
+            users: result[0]
+        }
+
+        res.status(200).send(users);
     } catch(error) {
         res.status(errorCode).send({ message: error.sqlMessage || error.message });
     };
 };
 
-export default getUser;
+export default getAllUsers;

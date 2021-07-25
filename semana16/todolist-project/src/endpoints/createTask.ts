@@ -5,7 +5,7 @@ const createTask = async (
     req: Request,
     res: Response
 ) => {
-    let errorCode = 400;
+    let errorCode: number = 400;
 
     try {
         const { title, description, limitDate, creatorUserId } = req.body;

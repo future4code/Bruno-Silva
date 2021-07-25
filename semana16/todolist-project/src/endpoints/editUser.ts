@@ -5,7 +5,7 @@ const editUser = async (
     req: Request,
     res: Response
 ) => {
-    let errorCode = 400;
+    let errorCode: number = 400;
 
     try {  
         const { name, nickname } = req.body;

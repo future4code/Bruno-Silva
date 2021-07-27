@@ -9,7 +9,7 @@ const createTables = () => connection
          id INT PRIMARY KEY,
          name VARCHAR(255) NOT NULL,
          email VARCHAR(255) UNIQUE NOT NULL,
-         type ENUM("Teacher", "Operations", "CX") NOT NULL DEFAULT "Teacher"
+         type VARCHAR(255) NOT NULL
       );
    `)
    .then(() => { console.log("Tabela criada!") })

@@ -1,10 +1,12 @@
 import connection from "./connection";
 
 export default async function selectAllUsers(
-    type: string
-): Promise<any> {
+    size: number,
+    offset: number
+):Promise<any> {
     const result = await connection('aula49_exercicio')
-        .where({ type: type });
+        .limit(size)
+        .offset(offset);
 
     return result;
 };

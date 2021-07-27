@@ -1,10 +1,11 @@
 import connection from "./connection";
 
 export default async function selectAllUsers(
-    type: string
-): Promise<any> {
+    sort: string,
+    order: string
+):Promise<any> {
     const result = await connection('aula49_exercicio')
-        .where({ type: type });
-
+        .orderBy(sort, order);
+ 
     return result;
 };

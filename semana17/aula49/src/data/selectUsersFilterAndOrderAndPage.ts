@@ -5,8 +5,8 @@ export default async function selectUsersFilterAndOrderAndPage(
     type: string,
     sort: string,
     order: string,
-    offset: number,
-    size: number
+    size: number,
+    offset: number 
 ): Promise<any> {
     const result = await connection('aula49_exercicio')
         .where("name", "LIKE", `%${name}%`)

@@ -16,17 +16,7 @@ export const getUsersFilterAndOrderAndPage = async (
 
         const offset: number = size * (page - 1);
 
-        // console.log("name", name)
-        // console.log("type", type)
-        // console.log("sort", sort)
-        // console.log("order", order)
-        // console.log("page", page)
-        // console.log("size", size)
-        // console.log("offset", offset)
-
         const users = await selectUsersFilterAndOrderAndPage(name, type, sort, order, size, offset);
-
-        // console.log(users);
 
         if (!users) {
             res.statusCode = 500;

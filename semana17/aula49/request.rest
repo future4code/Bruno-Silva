@@ -1,7 +1,7 @@
 GET http://localhost:3003/user?name=ru
 
 ###
-GET http://localhost:3003/user/fullsearch?name=a
+GET http://localhost:3003/user/fullsearch?name=a&type=op&sort=name&order=DESC&size=0&page=1
 
 ###
 GET http://localhost:3003/user/search?sort=type&order=

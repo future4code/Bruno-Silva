@@ -5,7 +5,7 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "zipcode": "21051-070",
-    "numberAdd": 525,
-    "complement": "bloco A1"
+    "zipcode": "20771-100",
+    "numberAdd": 35,
+    "complement": "10"
 }

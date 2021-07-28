@@ -1,0 +1,12 @@
+[
+   {
+      "id": 1,
+      "zipcode": "05424-150",
+      "street": "Rua Pais Leme",
+      "numberAdd": 25,
+      "complement": "lado ímpar",
+      "neighbourhood": "Pinheiros",
+      "city": "São Paulo",
+      "state": "SP"
+   }
+]

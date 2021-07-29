@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Joao",
+        "email": "joao@joao.com",
+        "birthDate": "1980-07-15"
+    },
+    {
+        "name": "Pedro",
+        "email": "pedro@pedro.com",
+        "birthDate": "1987-08-06"
+    }
+]

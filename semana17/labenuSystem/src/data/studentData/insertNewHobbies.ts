@@ -1,5 +1,5 @@
-import connection from "./connection";
-import { hobby } from "../types";
+import connection from "../connection";
+import { hobby } from "../../types";
 
 const insertNewHobbies = async(
     hobbies: hobby[]

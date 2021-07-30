@@ -1,11 +1,57 @@
+GET http://localhost:3003/student/age/2
+
+###
 POST http://localhost:3003/student
 Content-Type: application/json
 
 {
-    "name": "teste",
-    "email": "da123aa@teste.com",
-    "birthDate": "20/05/2000",
+    "name": "aluno",
+    "email": "aluno@aluno.com",
+    "birthDate": "20/05/2003",
     "hobbies": [{
         "description": "teste"
     }]
+}
+
+###
+POST http://localhost:3003/teacher
+Content-Type: application/json
+
+{
+    "name": "professor",
+    "email": "professor@professor.com",
+    "birthDate": "20/05/1995",
+    "specialties": [{
+        "description": "CSS"
+    }]
+}
+
+###
+POST http://localhost:3003/class
+Content-Type: application/json
+
+{
+    "name": "Turma2-na-night",
+    "startDate": "01/01/2021",
+    "endDate": "06/06/2021",
+    "module": 0,
+    "period": "noturno"
+}
+
+###
+POST http://localhost:3003/class/student
+Content-Type: application/json
+
+{   
+    "classId": 2,
+    "studentId": 1
+}
+
+###
+POST http://localhost:3003/class/teacher
+Content-Type: application/json
+
+{   
+    "classId": 2,
+    "teacherId": 5
 }

@@ -51,7 +51,7 @@ const createTables = () => connection
 
         CREATE TABLE IF NOT EXISTS Class (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            name VARCHAR(255) NOT NULL,
+            name VARCHAR(255) UNIQUE NOT NULL,
             startDate DATE NOT NULL,
             endDate DATE NOT NULL,
             module ENUM("0","1","2","3","4","5","6","7") NOT NULL,

@@ -1,11 +1,11 @@
-import connection from "./connection";
-import { hobby } from "../types";
+import connection from "../connection";
+import { studHobDependencies, hobby } from "../../types";
 
 const insertHobbiesStudentDependencies = async (
     hobbies: hobby[],
     studentId: number
 ): Promise<any> => {
-    let result: hobby[] | undefined;
+    let result: studHobDependencies[] | undefined;
 
     for (let hobby of hobbies){
         result = await connection("StudentHobbies_junction")

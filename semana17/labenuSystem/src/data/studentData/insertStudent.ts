@@ -1,5 +1,5 @@
-import connection from "./connection";
-import { student, hobby } from "../types";
+import connection from "../connection";
+import { student } from "../../types";
 
 const insertStudent = async (
     name: string,

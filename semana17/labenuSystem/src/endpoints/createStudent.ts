@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import moment from 'moment';
-import insertStudent from '../data/insertStudent';
-import insertNewHobbies from '../data/insertNewHobbies';
-import insertHobbiesStudentDependencies from '../data/insertHobbiesStudentDependencies';
-import selectHobbiesId from '../data/selectHobbiesId';
-import selectStudentId from '../data/selectStudentId';
-import { student, hobby, dependencies } from '../types';
+import insertStudent from '../data/studentData/insertStudent';
+import insertNewHobbies from '../data/studentData/insertNewHobbies';
+import insertHobbiesStudentDependencies from '../data/studentData/insertHobbiesStudentDependencies';
+import selectHobbiesId from '../data/studentData/selectHobbiesId';
+import selectStudentId from '../data/studentData/selectStudentId';
+import { student, hobby } from '../types';
 
 const createStudent = async (
     req: Request,

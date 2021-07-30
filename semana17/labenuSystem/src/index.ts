@@ -1,2 +1,4 @@
 import app from './app';
-// import connection from './data/connection';
+import createStudent from './endpoints/createStudent';
+
+app.post("/student", createStudent);

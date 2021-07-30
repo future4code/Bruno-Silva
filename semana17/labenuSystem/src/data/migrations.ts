@@ -18,7 +18,7 @@ const createTables = () => connection
 
         CREATE TABLE IF NOT EXISTS Hobbies (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            description VARCHAR(255) NOT NULL
+            description VARCHAR(255) UNIQUE NOT NULL
         );
 
         CREATE TABLE IF NOT EXISTS StudentHobbies_junction (
@@ -54,7 +54,8 @@ const createTables = () => connection
             name VARCHAR(255) NOT NULL,
             startDate DATE NOT NULL,
             endDate DATE NOT NULL,
-            module ENUM("0","1","2","3","4","5","6","7") NOT NULL
+            module ENUM("0","1","2","3","4","5","6","7") NOT NULL,
+            period ENUM("integral", "noturno") DEFAULT "integral"
         );
 
         CREATE TABLE IF NOT EXISTS ClassStudent_junction (
@@ -71,7 +72,7 @@ const createTables = () => connection
             FOREIGN KEY (teacher_id) REFERENCES Teacher(id)
         );
     `)
-    .then(() => { console.log("Tabelas criadas") })
+    .then(() => { console.log("Tabelas criadas!") })
     .catch(printError);
 
 const insertStudents = () => connection("Student")
@@ -81,22 +82,22 @@ const insertStudents = () => connection("Student")
 
 const insertHobbies = () => connection("Hobbies")
     .insert(hobbies)
-    .then(() => { console.log("Hobbies created") })
+    .then(() => { console.log("Hobbies created!") })
     .catch(printError);
 
 const insertTeachers = () => connection("Teacher")
     .insert(teachers)
-    .then(() => { console.log("Teachers created") })
+    .then(() => { console.log("Teachers created!") })
     .catch(printError);
 
 const insertSpecialties = () => connection("Specialties")
     .insert(specialties)
-    .then(() => { console.log("Specialties created") })
+    .then(() => { console.log("Specialties created!") })
     .catch(printError);
 
 const insertClasses = () => connection("Class")
     .insert(classes)
-    .then(() => { console.log("Teachers created") })
+    .then(() => { console.log("Teachers created!") })
     .catch(printError);
 
 const closeConnection = () => { connection.destroy() };

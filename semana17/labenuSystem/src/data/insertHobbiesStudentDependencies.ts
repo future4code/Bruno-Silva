@@ -8,7 +8,6 @@ const insertHobbiesStudentDependencies = async (
     let result: hobby[] | undefined;
 
     for (let hobby of hobbies){
-        console.log("hobby",hobby);
         result = await connection("StudentHobbies_junction")
             .insert({
                 student_id: studentId,

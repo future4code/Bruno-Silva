@@ -11,7 +11,7 @@ const createStudent = async (
     req: Request,
     res: Response
 ): Promise<void> => {
-    let errorCode = 400;
+    let errorCode: number = 400;
     const regExValidateEmail: RegExp = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
 
     try {
@@ -28,9 +28,18 @@ const createStudent = async (
             throw new Error("Insert a valid e-mail, such as: 'xxxx@yyyyy.zzz.www");
         };
 
+        if (hobbies) {
+            for (let hobby of hobbies) {
+                if (!hobby.description){
+                    errorCode = 422;
+                    throw new Error("Each 'hobby' must received only a 'description' property! Please, check input´s values");
+                };
+            };
+        };
+
         if (birthDate && typeof birthDate === "string") {
             modifyBirthDateFormat = moment(birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-        }
+        };
 
         const result: student | null = await insertStudent(name, email, modifyBirthDateFormat);
 
@@ -39,7 +48,7 @@ const createStudent = async (
             throw new Error("An error occurred! Please, try again!");
         };
 
-        if (hobbies[0]) {
+        if (hobbies !== undefined) {
             await insertNewHobbies(hobbies);
 
             const studentCreated: student[] | undefined = await selectStudentId(email);

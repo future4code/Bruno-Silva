@@ -3,14 +3,9 @@ Content-Type: application/json
 
 {
     "name": "teste",
-    "email": "teste@teste.com",
+    "email": "da123aa@teste.com",
     "birthDate": "20/05/2000",
-    "hobbies": [
-        {
-            "description":"pular corda"
-        },
-        {
-            "description": "cantar"
-        }
-    ]
+    "hobbies": [{
+        "description": "teste"
+    }]
 }

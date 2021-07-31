@@ -4,16 +4,18 @@ import { hobby } from "../../types";
 const insertNewHobbies = async(
     hobbies: hobby[]
 ): Promise<any> => {
-    const allHobbies: hobby[] =  await connection("Hobbies")
-        .select();
-
-    let result: hobby[] | undefined = hobbies;
+    let result: hobby[] = [];
+    
     for (let hobby of hobbies){
-        const index: number = allHobbies.findIndex((createdHobby: hobby) => createdHobby.description === hobby.description);
-
-        if (index === -1) {
-            result = await connection("Hobbies")
+        const hasHobby: hobby[] = await connection("Hobbies")
+            .select()
+            .where({ description: hobby.description });
+        
+        if (!hasHobby[0]) {
+            await connection("Hobbies")
                 .insert({description: hobby.description});
+
+            result.push(hasHobby[0]);
         };
     };
     

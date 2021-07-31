@@ -6,10 +6,13 @@ Content-Type: application/json
 
 {
     "name": "aluno",
-    "email": "aluno@aluno.com",
+    "email": "alunosaa1234a65@aluno.com",
     "birthDate": "20/05/2003",
     "hobbies": [{
-        "description": "teste"
+        "description": "judo"
+    },
+    {
+        "description": "natação"
     }]
 }
 

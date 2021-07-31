@@ -4,7 +4,7 @@ import insertStudent from '../data/studentData/insertStudent';
 import insertNewHobbies from '../data/studentData/insertNewHobbies';
 import insertHobbiesStudentDependencies from '../data/studentData/insertHobbiesStudentDependencies';
 import selectHobbiesId from '../data/studentData/selectHobbiesId';
-import selectStudentId from '../data/studentData/selectStudentId';
+import selectCreatedStudent from '../data/studentData/selectCreatedStudent';
 import { student, hobby } from '../types';
 
 const createStudent = async (
@@ -51,7 +51,7 @@ const createStudent = async (
         if (hobbies !== undefined) {
             await insertNewHobbies(hobbies);
 
-            const studentCreated: student[] | undefined = await selectStudentId(email);
+            const studentCreated: student[] | undefined = await selectCreatedStudent(email);
 
             if (studentCreated !== undefined) {
                 const studentId: number = studentCreated[0].id;

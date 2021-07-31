@@ -1,7 +1,7 @@
 import connection from "../connection";
 import { student } from "../../types";
 
-const selectStudentId = async (
+const selectCreatedStudent = async (
     email: string
 ): Promise<any> => {
     const result: student[] | undefined = await connection("Student")
@@ -11,4 +11,4 @@ const selectStudentId = async (
     return result;
 };
 
-export default selectStudentId;
+export default selectCreatedStudent;

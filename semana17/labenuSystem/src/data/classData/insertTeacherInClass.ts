@@ -5,20 +5,20 @@ const insertTeacherInClass = async (
     classId: number,
     teacherId: number
 ): Promise<any> => {
-    const allTeachers: teacher[] = await connection("Teacher")
-        .select();
+    const hasTeacher: teacher[] | undefined = await connection("Teacher")
+        .select()
+        .where({ id: teacherId });
 
-    const allClasses: classes[] = await connection("Class")
-        .select();
+    const hasClass: classes[] | undefined = await connection("Class")
+        .select()
+        .where({ id: classId });
 
     const alreadyTeacherInClass: classTeachDependencies[] | undefined = await connection("ClassTeacher_junction")
         .select()
         .where({teacher_id: teacherId});
 
-    const result: classTeachDependencies | false | undefined = allClasses.find((existedClass) => existedClass.id === classId) &&
-        allTeachers.find((existedTeacher) => existedTeacher.id === teacherId) &&
-        !alreadyTeacherInClass[0] &&
-        await connection("ClassTeacher_junction")
+    const result: classTeachDependencies | false = hasClass[0] && hasTeacher[0] && !alreadyTeacherInClass[0] 
+        && await connection("ClassTeacher_junction")
             .insert({
                 class_id: classId,
                 teacher_id: teacherId

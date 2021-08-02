@@ -31,7 +31,7 @@ const deleteStudentFromClass = async(
             throw new Error ("Student selected isn´t in class chosen! Please, check students from class first");
         }
 
-        res.status(201).send("Student has been removed from class successfully!");
+        res.status(201).send({ message: "Student has been removed from class successfully!" });
     } catch(error) {
         res.status(errorCode).send({ message: error.sqlMessage || error.message });
     };

@@ -39,7 +39,7 @@ const updateModuleFromClass = async(
             throw new Error("Module selected is already actual module! Please, check input value");
         };
 
-        res.status(200).send("Module from class updated successfully!");
+        res.status(200).send({ message: "Module from class updated successfully!" });
 
     } catch(error) {
         res.status(errorCode).send({ message: error.sqlMessage || error.message });

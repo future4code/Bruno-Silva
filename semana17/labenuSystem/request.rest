@@ -4,10 +4,10 @@ GET http://localhost:3003/class/1/student
 GET http://localhost:3003/class/1/teacher
 
 ###
-GET http://localhost:3003/student/age/2
+GET http://localhost:3003/student/age/1
 
 ###
-GET http://localhost:3003/student/hobby?description=natação
+GET http://localhost:3003/student/hobby?description=correr
 
 ###
 POST http://localhost:3003/student
@@ -43,7 +43,7 @@ POST http://localhost:3003/class
 Content-Type: application/json
 
 {
-    "name": "Turma3",
+    "name": "Nome_Turma",
     "startDate": "01/01/2021",
     "endDate": "06/06/2021",
     "module": 2,

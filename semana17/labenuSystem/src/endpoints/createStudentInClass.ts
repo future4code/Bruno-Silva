@@ -33,7 +33,7 @@ const createStudentInClass = async(
             }; 
         };
 
-        res.status(201).send("Student associated to class successfully!");
+        res.status(201).send({ message: "Student associated to class successfully!" });
     } catch(error) {
         res.status(errorCode).send({ message: error.sqlMessage || error.message });
     }

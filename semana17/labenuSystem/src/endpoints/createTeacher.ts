@@ -4,7 +4,7 @@ import selectTeacherId from '../data/teacherData/selectTeacherId';
 import selectSpecialtiesId from '../data/teacherData/selectSpecialtiesId';
 import insertTeacher from '../data/teacherData/insertTeacher';
 import insertSpecialtiesTeacherDependencies from '../data/teacherData/insertSpecialtiesTeacherDependencies';
-import { teacher, specialty } from '../types';
+import { teacher, specialty, date } from '../types';
 
 const createTeacher = async (
     req: Request,
@@ -17,6 +17,18 @@ const createTeacher = async (
         const { name, email, birthDate, specialties } = req.body;
         let modifyBirthDateFormat: string = "";
 
+        const birthDateSplit = birthDate.split("/");
+        const teacherAgeInNumbers: date = {
+            day: Number(birthDateSplit[0]),
+            month: Number(birthDateSplit[1]),
+            year: Number(birthDateSplit[2])
+        };
+        const actualDate: date = {
+            day: new Date().getDate(),
+            month: new Date().getMonth() + 1,
+            year: new Date().getFullYear(),
+        };
+
         if (!name || !email || !birthDate) {
             errorCode = 422;
             throw new Error("One or more fields are empty! Please, fill 'name', 'email' and 'birthDate' to proceed");
@@ -25,6 +37,37 @@ const createTeacher = async (
         if (!regExValidateEmail.test(email)) {
             errorCode = 422;
             throw new Error("Insert a valid e-mail, such as: 'xxxx@yyyyy.zzz.www");
+        };
+
+        if(teacherAgeInNumbers.year > actualDate.year){
+            errorCode = 422;
+            throw new Error("Teacher age insert is a future date! Please, check input´s value");
+        } else if(actualDate.year === teacherAgeInNumbers.year){
+            if(teacherAgeInNumbers.month > actualDate.month){
+                errorCode = 422;
+                throw new Error("Teacher age insert is a future date! Please, check input´s value");
+            } else if (teacherAgeInNumbers.month === actualDate.month){
+                if (teacherAgeInNumbers.day >= actualDate.day){
+                    errorCode = 422;
+                    throw new Error("Teacher age insert is a future date! Please, check input´s value");
+                };
+            };
+        };
+        
+
+        if (actualDate.year - teacherAgeInNumbers.year < 18) {
+            errorCode = 422;
+            throw new Error("Teacher should be at least 18 years old!");
+        } else if (actualDate.year - teacherAgeInNumbers.year === 18) {
+            if (teacherAgeInNumbers.month > actualDate.month) {
+                errorCode = 422;
+                throw new Error("Teacher should be at least 18 years old!");
+            } else if(teacherAgeInNumbers.month === actualDate.month) {
+                if (teacherAgeInNumbers.day > actualDate.day){
+                    errorCode = 422;
+                    throw new Error("Teacher should be at least 18 years old!");
+                };
+            };
         };
 
         if (specialties) {

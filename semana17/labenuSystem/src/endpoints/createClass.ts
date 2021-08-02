@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import moment from 'moment';
 import insertClass from '../data/classData/insertClass';
-import { classes } from '../types';
+import { classes, date } from '../types';
 
 const createClass = async(
     req: Request,
@@ -11,9 +11,9 @@ const createClass = async(
 
     try {
         const { name, startDate, endDate, module, period } = req.body;
+        const modifyStartDateFormat: string | undefined = moment(startDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        const modifyEndDateFormat: string | undefined = moment(endDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
         const stringModule: string = module.toString();
-        let modifyStartDateFormat: string = "";
-        let modifyEndDateFormat: string = "";
 
         if (!name || !startDate || !endDate || !stringModule) {
             errorCode = 422;
@@ -36,14 +36,6 @@ const createClass = async(
                 errorCode = 422;
                 throw new Error("'-na-night' words as last part of a class name are restricted to 'noturno' classes! Please, check 'name' input");
             };
-        };
-
-        if (startDate && typeof startDate === "string") {
-            modifyStartDateFormat = moment(startDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-        };
-        
-        if (endDate && typeof endDate === "string") {
-            modifyEndDateFormat = moment(endDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
         };
 
         const result: classes | null = await insertClass(name, modifyStartDateFormat, modifyEndDateFormat, stringModule, period)

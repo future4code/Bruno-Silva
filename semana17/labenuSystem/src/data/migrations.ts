@@ -4,6 +4,10 @@ import hobbies from './initialData/hobbies.json';
 import teachers from './initialData/teachers.json';
 import specialties from './initialData/specialties.json';
 import classes from './initialData/classes.json';
+import studentHobbies from './initialData/studenthobbies.json';
+import teacherSpecialties from './initialData/teacherSpecialties.json';
+import classStudent from './initialData/classStudent.json';
+import classTeacher from './initialData/classTeacher.json';
 
 const printError = (error: any) => { console.log(error.sqlMessage || error.message) }
 
@@ -72,32 +76,52 @@ const createTables = () => connection
             FOREIGN KEY (teacher_id) REFERENCES Teacher(id)
         );
     `)
-    .then(() => { console.log("Tabelas criadas!") })
+    .then(() => { console.log("Tables created!") })
     .catch(printError);
 
 const insertStudents = () => connection("Student")
     .insert(students)
-    .then(() => { console.log("Students created!") })
+    .then(() => { console.log("Students populated!") })
     .catch(printError);
 
 const insertHobbies = () => connection("Hobbies")
     .insert(hobbies)
-    .then(() => { console.log("Hobbies created!") })
+    .then(() => { console.log("Hobbies populated!") })
     .catch(printError);
 
 const insertTeachers = () => connection("Teacher")
     .insert(teachers)
-    .then(() => { console.log("Teachers created!") })
+    .then(() => { console.log("Teachers populated!") })
     .catch(printError);
 
 const insertSpecialties = () => connection("Specialties")
     .insert(specialties)
-    .then(() => { console.log("Specialties created!") })
+    .then(() => { console.log("Specialties populated!") })
     .catch(printError);
 
 const insertClasses = () => connection("Class")
     .insert(classes)
-    .then(() => { console.log("Teachers created!") })
+    .then(() => { console.log("Teachers populated!") })
+    .catch(printError);
+
+const insertStudentHobbies = () => connection("StudentHobbies_junction")
+    .insert(studentHobbies)
+    .then(() => { console.log("Junction Student-Hobbies populated!") })
+    .catch(printError);
+
+const insertTeacherSpecialties = () => connection("TeacherSpecialties_junction")
+    .insert(teacherSpecialties)
+    .then(() => { console.log("Junction Teacher-Specialties populated!") })
+    .catch(printError);
+
+const insertClassStudent = () => connection("ClassStudent_junction")
+    .insert(classStudent)
+    .then(() => { console.log("Junction Class-Student populated!") })
+    .catch(printError);
+
+const insertClassTeacher = () => connection("ClassTeacher_junction")
+    .insert(classTeacher)
+    .then(() => { console.log("Junction Class-Teacher populated!") })
     .catch(printError);
 
 const closeConnection = () => { connection.destroy() };
@@ -108,4 +132,8 @@ createTables()
     .then(insertTeachers)
     .then(insertSpecialties)
     .then(insertClasses)
+    .then(insertStudentHobbies)
+    .then(insertTeacherSpecialties)
+    .then(insertClassStudent)
+    .then(insertClassTeacher)
     .finally(closeConnection);

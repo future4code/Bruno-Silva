@@ -15,7 +15,7 @@ const getStudentAgeById = async(
 
         if (!numberStudentId || numberStudentId <= 0 || studentId.split(".").length > 1) {
             errorCode = 422;
-            throw new Error("'studentId' has expected as a string of valid integer positive and not null numbers! Please, try again");
+            throw new Error("'studentId' was expected as a string of valid integer positive and not null numbers! Please, try again");
         };
 
         const result: number | [] = await selectStudentAgeById(numberStudentId);

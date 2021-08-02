@@ -1,13 +1,22 @@
+GET http://localhost:3003/class/1/student
+
+###
+GET http://localhost:3003/class/1/teacher
+
+###
 GET http://localhost:3003/student/age/2
+
+###
+GET http://localhost:3003/student/hobby?description=natação
 
 ###
 POST http://localhost:3003/student
 Content-Type: application/json
 
 {
-    "name": "aluno",
-    "email": "alunosaa1234a65@aluno.com",
-    "birthDate": "20/05/2003",
+    "name": "aluno1",
+    "email": "aluno22@aluno.com",
+    "birthDate": "01/08/2002",
     "hobbies": [{
         "description": "judo"
     },
@@ -34,11 +43,11 @@ POST http://localhost:3003/class
 Content-Type: application/json
 
 {
-    "name": "Turma2-na-night",
+    "name": "Turma3",
     "startDate": "01/01/2021",
     "endDate": "06/06/2021",
-    "module": 0,
-    "period": "noturno"
+    "module": 2,
+    "period": "integral"
 }
 
 ###
@@ -47,7 +56,7 @@ Content-Type: application/json
 
 {   
     "classId": 2,
-    "studentId": 1
+    "studentId": 2
 }
 
 ###
@@ -56,5 +65,19 @@ Content-Type: application/json
 
 {   
     "classId": 2,
-    "teacherId": 5
+    "teacherId": 2
 }
+
+###
+PUT http://localhost:3003/class/1/module
+Content-Type: application/json
+
+{
+    "module": 2
+}
+
+###
+DELETE http://localhost:3003/class/2/student/1
+
+###
+DELETE http://localhost:3003/class/2/teacher/2

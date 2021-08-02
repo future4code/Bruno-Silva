@@ -1,0 +1,13 @@
+GET http://localhost:3003/user?name=ru
+
+###
+GET http://localhost:3003/user/fullsearch?name=a&type=op&sort=name&order=DESC&size=0&page=1
+
+###
+GET http://localhost:3003/user/search?sort=type&order=
+
+###
+GET http://localhost:3003/user/page?page=2&size=2
+
+###
+GET http://localhost:3003/user/oPerations

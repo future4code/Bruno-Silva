@@ -12,7 +12,7 @@
 
 ### `GET` All Students In A Class
 
-`http://localhost:3003/class/:classId/student`
+`https://labenusystem-projeto.herokuapp.com/class/:classId/student`
 
 - Este endpoint retorna todos os estudantes presentes em uma dada turma.
 - A turma deve ser buscada pelo seu `id`.
@@ -50,7 +50,7 @@
 ---
 ### `GET` All Teachers In A Class
 
-`http://localhost:3003/class/:classId/teacher`
+`https://labenusystem-projeto.herokuapp.com/class/:classId/teacher`
 
 - Este endpoint retorna todos os professores presentes em uma dada turma.
 - A turma deve ser buscada pelo seu `id`.
@@ -84,7 +84,7 @@
 ---
 ### `GET` A Student Age By Id
 
-`http://localhost:3003/student/age/:studentId`
+`https://labenusystem-projeto.herokuapp.com/student/age/:studentId`
 
 - Este endpoint retorna a idade de um aluno.
 - A busca deve ser realizada pelo respectivo `id` do estudante.
@@ -111,7 +111,7 @@
 ---
 ### `GET` All Students By Hobby
 
-`http://localhost:3003/student/hobby?description=value`
+`https://labenusystem-projeto.herokuapp.com/student/hobby?description=value`
 
 - Este endpoint retorna todos os estudantes com um mesmo hobby comum.
 - A busca é feita através do query param `description`.
@@ -145,7 +145,7 @@
 ---
 ### `POST` Student
 
-`http://localhost:3003/student`
+`https://labenusystem-projeto.herokuapp.com/student`
 
 - Este endpoint cria um novo estudante.
 
@@ -188,7 +188,7 @@ cuja única propriedade é `description`.
 ---
 ### `POST` Teacher
 
-`http://localhost:3003/teacher`
+`https://labenusystem-projeto.herokuapp.com/teacher`
 
 - Este endpoint cria um novo professor.
 
@@ -230,7 +230,7 @@ cuja única propriedade é `description`.
 ---
 ### `POST` Class
 
-`http://localhost:3003/class`
+`https://labenusystem-projeto.herokuapp.com/class`
 
 - Este endpoint cria uma nova turma.
 
@@ -271,7 +271,7 @@ cuja única propriedade é `description`.
 ---
 ### `POST` Student In Class
 
-`http://localhost:3003/class/student`
+`https://labenusystem-projeto.herokuapp.com/class/student`
 
 - Este endpoint aloca um estudante em uma turma.
 - Devem ser enviados os respecitovs `id` do estudante e a da turma.
@@ -305,7 +305,7 @@ cuja única propriedade é `description`.
 ---
 ### `POST` Teacher In Class
 
-`http://localhost:3003/class/teacher`
+`https://labenusystem-projeto.herokuapp.com/class/teacher`
 
 - Este endpoint aloca um professor em uma turma.
 - Devem ser enviados os respectivos `id` do professor e a da turma.
@@ -339,7 +339,7 @@ cuja única propriedade é `description`.
 ---
 ### `PUT` Update Module From Class
 
-`http://localhost:3003/class/:classId/module`
+`https://labenusystem-projeto.herokuapp.com/class/:classId/module`
 
 - Este endpoint modifica o módulo a qual a turma se encontra no momento.
 - Deve ser enviado os `module` desejado na alteração, apenas.
@@ -371,7 +371,7 @@ cuja única propriedade é `description`.
 ---
 ### `DELETE` Student From Class
 
-`http://localhost:3003/class/:classId/student/:studentId`
+`https://labenusystem-projeto.herokuapp.com/class/:classId/student/:studentId`
 
 - Este endpoint remove um estudante de uma dada turma.
 - A busca deve ser realizada pelos respectivos `id` da turma e do estudante.
@@ -398,7 +398,7 @@ cuja única propriedade é `description`.
 ---
 ### `DELETE` Teacher From Class
 
-`http://localhost:3003/class/:classId/teacher/:teacherId`
+`https://labenusystem-projeto.herokuapp.com/class/:classId/teacher/:teacherId`
 
 - Este endpoint remove um professor de uma dada turma.
 - A busca deve ser realizada pelos respectivos `id` da turma e do professor.

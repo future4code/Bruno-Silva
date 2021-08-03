@@ -64,8 +64,10 @@ console.log(customer.purchaseTotal);
 console.log(customer.introduceYourself()); 
 */
 
+
+// Exercícios Polimorfismo
+// Exercício 1
 /*
-// Exercícios Poliformismo
 export interface Client {
     name: string;
     registrationNumber: number;

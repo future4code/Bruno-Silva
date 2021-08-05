@@ -1,7 +1,7 @@
-export class RandomNumber {
+export class StringifyRandomNumber {
     constructor(){};
 
-    public static getRandomNumber(): string {
+    public static getStringifyRandomNumber(): string {
         return ((Date.now() + Math.random())/1000000000000).toString();
     };
 };

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { RandomNumber } from '../constants/RandomNumber';
+import { StringifyRandomNumber } from '../constants/StringifyRandomNumber';
 import { UserDatabase } from '../database/UserDatabase';
 import { User } from '../entities/User';
 
@@ -35,7 +35,7 @@ const createNewUser = async(
             throw new Error("Insert a valid e-mail, such as: 'xxxx@yyyyy.zzz.www");
         };
 
-        const newUser: User = new User(RandomNumber.getRandomNumber(), name, email, age);
+        const newUser: User = new User(StringifyRandomNumber.getStringifyRandomNumber(), name, email, age);
         // const createUser: UserDatabase = await UserDatabase.newUser(newUser);
         await UserDatabase.createUser(newUser);
 

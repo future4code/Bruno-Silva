@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
 import { StringifyRandomNumber } from '../constants/StringifyRandomNumber';
 import { ProductDatabase } from '../database/ProductDatabase';
-import { Product } from '../entities/Product';
+import { Ticket } from '../entities/Ticket';
 
-const createNewProduct = async(
+const createNewTrip = async(
     req: Request,
     res: Response
 ): Promise<any> => {
     let errorCode: number = 400;
 
     try {
-        const {name, description, price} = req.body;
+        const {name, description, price, origin, destination} = req.body;
 
-        if (!name || !description || !price) {
+        if (!name || !description || !price || !origin || !destination) {
             errorCode = 422;
             throw new Error(`One or more fields are empty! Please, fill 'name',
                 'description' and 'price' to proceed`);
@@ -25,16 +25,17 @@ const createNewProduct = async(
         };
 
 
-        const newProduct: Product = new Product(StringifyRandomNumber.getStringifyRandomNumber(), name, description, price);
-        // const createProduct: ProductDatabase = await ProductDatabase.newProduct(newProduct);
-        await ProductDatabase.createProduct(newProduct);
+        const newTrip: Ticket = new Ticket(StringifyRandomNumber.getStringifyRandomNumber(),
+            name, description, price, origin, destination);
+
+        await ProductDatabase.createTrip(newTrip);
 
         //QUAL ERRO PODERIA DAR COMO RESPOSTA DO CONNECTION DE UM POST?
 
-        res.status(201).send({ message: "Product created successfully!"});
+        res.status(201).send({ message: "Trip created successfully!"});
     } catch(error) {
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });
     };
 };
 
-export default createNewProduct;
+export default createNewTrip;

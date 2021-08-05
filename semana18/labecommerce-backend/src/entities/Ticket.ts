@@ -15,5 +15,5 @@ export class Ticket extends Product implements TravelRoute {
         public destination: string
     ) {
         super(id, name, description, price);
-    }
-}
+    };
+};

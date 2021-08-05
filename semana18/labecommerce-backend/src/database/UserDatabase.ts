@@ -6,6 +6,8 @@ export class UserDatabase extends BaseDatabase {
         super()
     };
 
+    //nao está aceitando sem o static. Por que?
+    
     public static createUser = async (newUser: User): Promise<any> => {
         await BaseDatabase.connection("User")
             .insert(newUser);
@@ -20,5 +22,22 @@ export class UserDatabase extends BaseDatabase {
         //     );
         // `);
         // return result;
+
+        // FAZ SENTIDO UM MÉTODO SER ESTÁTICO?
+    };
+
+    public static getUsers = async (): Promise<any> => {
+        const result: User[] | undefined = await BaseDatabase.connection("User")
+            .select();
+
+        return result;
+    };
+
+    public static getUserById = async(userId: string): Promise<any> => {
+        const result: User[] = await BaseDatabase.connection("User")
+            .select()
+            .where({ id: userId});
+
+        return result;
     };
 };

@@ -14,3 +14,5 @@ const connection: Knex = knex({
         multipleStatements: true
     }
 });
+
+export default connection;

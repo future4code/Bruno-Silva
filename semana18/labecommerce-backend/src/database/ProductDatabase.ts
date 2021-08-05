@@ -24,16 +24,16 @@ export class ProductDatabase extends BaseDatabase {
         return result;
     };
 
-    public static getPriceProductById = async(productId: string): Promise<any> => {
-        const result: Product[] = await BaseDatabase.connection("Product")
+    public static getPriceProductById = async(productId: string): Promise<Product> => {
+        const result = await BaseDatabase.connection("Product")
             .select("price")
             .where({ id: productId});
 
-        return result[0];
+        return new Product(result[0].id, result[0].name, result[0].description, result[0].price);
     };
     
     public static getTrips = async (): Promise<any> => {
-        const result: Ticket[] | undefined = await BaseDatabase.connection("Product")
+        const result = await BaseDatabase.connection("Product")
             .select()
             .where("origin","<>", "not applied");
 

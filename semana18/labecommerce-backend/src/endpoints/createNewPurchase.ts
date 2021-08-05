@@ -29,7 +29,8 @@ const createNewPurchase = async(
         };
 
         const userById: User = await UserDatabase.getUserById(userId);
-        const priceProductById: number = await ProductDatabase.getPriceProductById(productId);
+
+        const priceProductById = await ProductDatabase.getPriceProductById(productId);
 
         if(!userById){
             errorCode = 422;
@@ -42,9 +43,9 @@ const createNewPurchase = async(
         };
 
         
-        const totalPrice: number = priceProductById;
-        // Como acessar o preço?
-        console.log(totalPrice);
+        // const totalPrice: number = priceProductById;
+        // // Como acessar o preço?
+        // console.log(totalPrice);
 
         // const newPurchase: Purchase = new Purchase(StringifyRandomNumber.getStringifyRandomNumber(),
         //     userId, productId, quantity, totalPrice);

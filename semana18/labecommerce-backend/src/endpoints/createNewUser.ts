@@ -3,6 +3,8 @@ import { StringifyRandomNumber } from '../constants/StringifyRandomNumber';
 import { UserDatabase } from '../database/UserDatabase';
 import { User } from '../entities/User';
 
+const userDatabase = new UserDatabase()
+
 const createNewUser = async(
     req: Request,
     res: Response
@@ -37,7 +39,7 @@ const createNewUser = async(
 
         const newUser: User = new User(StringifyRandomNumber.getStringifyRandomNumber(), name, email, age);
         // const createUser: UserDatabase = await UserDatabase.newUser(newUser);
-        await UserDatabase.createUser(newUser);
+        await new UserDatabase().createUser(newUser);
 
         //QUAL ERRO PODERIA DAR COMO RESPOSTA DO CONNECTION DE UM POST?
 

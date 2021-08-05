@@ -8,7 +8,7 @@ export class UserDatabase extends BaseDatabase {
 
     //nao está aceitando sem o static. Por que?
     
-    public static createUser = async (newUser: User): Promise<any> => {
+    public createUser = async (newUser: User): Promise<any> => {
         await BaseDatabase.connection("User")
             .insert(newUser);
 

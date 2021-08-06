@@ -25,11 +25,10 @@ const createNewProduct = async(
         };
 
 
-        const newProduct: Product = new Product(StringifyRandomNumber.getStringifyRandomNumber(), name, description, price);
-        // const createProduct: ProductDatabase = await ProductDatabase.newProduct(newProduct);
-        await ProductDatabase.createProduct(newProduct);
+        const newProduct: Product = new Product(StringifyRandomNumber.getStringifyRandomNumber(),
+            name, description, price);
 
-        //QUAL ERRO PODERIA DAR COMO RESPOSTA DO CONNECTION DE UM POST?
+        await ProductDatabase.createProduct(newProduct);
 
         res.status(201).send({ message: "Product created successfully!"});
     } catch(error) {

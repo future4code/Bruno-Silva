@@ -3,8 +3,6 @@ import { StringifyRandomNumber } from '../constants/StringifyRandomNumber';
 import { UserDatabase } from '../database/UserDatabase';
 import { User } from '../entities/User';
 
-const userDatabase = new UserDatabase()
-
 const createNewUser = async(
     req: Request,
     res: Response
@@ -18,13 +16,13 @@ const createNewUser = async(
         if (!name || !email || !age) {
             errorCode = 422;
             throw new Error(`One or more fields are empty! Please, fill 'name',
-             'email' and 'age' to proceed`);
+                'email' and 'age' to proceed`);
         };
 
         if (typeof age !== "number" || age <= 0 || age.toString().split(".").length > 1) {
             errorCode = 422;
             throw new Error(`'age' was expected as a integer, positive and not null number!
-                 Please, check 'age' input´s value`);
+                Please, check 'age' input´s value`);
         };
 
         if (age < 18) {
@@ -38,10 +36,8 @@ const createNewUser = async(
         };
 
         const newUser: User = new User(StringifyRandomNumber.getStringifyRandomNumber(), name, email, age);
-        // const createUser: UserDatabase = await UserDatabase.newUser(newUser);
-        await new UserDatabase().createUser(newUser);
 
-        //QUAL ERRO PODERIA DAR COMO RESPOSTA DO CONNECTION DE UM POST?
+        await UserDatabase.createUser(newUser);
 
         res.status(201).send({ message: "User created successfully!"});
     } catch(error) {

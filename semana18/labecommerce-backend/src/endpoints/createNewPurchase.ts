@@ -30,29 +30,25 @@ const createNewPurchase = async(
 
         const userById: User = await UserDatabase.getUserById(userId);
 
-        const priceProductById = await ProductDatabase.getPriceProductById(productId);
+        const productById = await ProductDatabase.getPriceProductById(productId);
 
         if(!userById){
             errorCode = 422;
             throw new Error(`User not found! Please, check if 'userId' is a valid one`);
         };
 
-        if(!priceProductById){
+        if(!productById){
             errorCode = 422;
-            throw new Error(`Product not found! Please, check if 'userId' is a valid one`);
+            throw new Error(`Product not found! Please, check if 'productId' is a valid one`);
         };
 
         
-        // const totalPrice: number = priceProductById;
-        // // Como acessar o preço?
-        // console.log(totalPrice);
+        const totalPrice: number = productById.getPrice()*quantity;
 
-        // const newPurchase: Purchase = new Purchase(StringifyRandomNumber.getStringifyRandomNumber(),
-        //     userId, productId, quantity, totalPrice);
-        // // const createPurchase: PurchaseDatabase = await PurchaseDatabase.newPurchase(newPurchase);
-        // await PurchaseDatabase.createPurchase(newPurchase);
+        const newPurchase: Purchase = new Purchase(StringifyRandomNumber.getStringifyRandomNumber(),
+            userId, productId, quantity, totalPrice);
 
-        //QUAL ERRO PODERIA DAR COMO RESPOSTA DO CONNECTION DE UM POST?
+        await PurchaseDatabase.createPurchase(newPurchase);
 
         res.status(201).send({ message: "Purchase created successfully!"});
     } catch(error) {

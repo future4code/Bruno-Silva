@@ -1,9 +1,13 @@
+import { Purchase } from "./Purchase";
+
 export class User{
+    static purchases: any;
     constructor(
         private id: string,
         private name: string,
         private email: string,
-        private age: number
+        private age: number,
+        private purchases?: Purchase[] | undefined
     ) {};
 
     public getId(): string {
@@ -21,4 +25,12 @@ export class User{
     public getAge(): number {
         return this.age;
     };
+
+    // public setUserPurchases(userPurchases: Purchase[]): Purchase[] {
+    //     for (let purchase of userPurchases){
+    //         this.purchases?.push(purchase)
+    //     }
+
+    //     return this.purchases ? this.purchases : [];
+    // };
 };

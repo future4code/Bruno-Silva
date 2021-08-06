@@ -11,9 +11,35 @@ export class PurchaseDatabase extends BaseDatabase {
             .insert(newPurchase);
     };
 
-    public static getPurchases = async (): Promise<any> => {
-        const result: Purchase[] | undefined = await BaseDatabase.connection("Purchase")
+    public static getPurchases = async (): Promise<Purchase[]> => {
+        let result: Purchase[] = [];
+
+        const purchases = await BaseDatabase.connection("Purchase")
             .select();
+
+        for (let purchase of purchases) {
+            const purchaseInClass = new Purchase(purchase.id, purchase.user_id,
+                purchase.product_id, purchase.quantity, purchase.total_price);
+
+            result.push(purchaseInClass);
+        };
+
+        return result;
+    };
+
+    public static getPurchasesByUserId = async(userId: string):Promise<Purchase[]> => {
+        let result: Purchase[] = [];
+
+        const purchases = await BaseDatabase.connection("Purchase")
+            .select()
+            .where({user_id: userId});
+
+        for (let purchase of purchases) {
+            const purchaseInClass = new Purchase(purchase.id, purchase.user_id,
+                purchase.product_id, purchase.quantity, purchase.total_price);
+
+            result.push(purchaseInClass);
+        };
 
         return result;
     };

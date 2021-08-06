@@ -1,10 +1,16 @@
 GET http://localhost:3003/user
 
 ###
-GET http://localhost:3003/product
+GET http://localhost:3003/product?order=
 
 ###
 GET http://localhost:3003/trip
+
+###
+GET http://localhost:3003/purchase
+
+###
+GET http://localhost:3003/purchase/1.628172276736768
 
 ###
 POST http://localhost:3003/user
@@ -45,5 +51,5 @@ Content-Type: application/json
 {
     "userId": "1.6281285616511747",
     "productId": "1.6281283732382985",
-    "quantity": 2
+    "quantity": 5
 }

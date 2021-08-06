@@ -1,24 +1,24 @@
 import { Request, Response } from 'express';
-import { ProductDatabase } from '../database/ProductDatabase';
+import { PurchaseDatabase } from '../database/PurchaseDatabase';
 
-const getAllTrips = async(
+const getAllPurchases = async(
     req: Request,
     res: Response
 ): Promise<any> => {
     let errorCode: number = 422;
 
     try {
-        const result = await ProductDatabase.getTrips();
+        const result = await PurchaseDatabase.getPurchases();
 
         if (!result) {
             errorCode = 500;
             throw new Error("An error occurred! Please, try again!");
         };
 
-        res.status(200).send({trips: result});
+        res.status(200).send({purchases: result});
     } catch(error) {
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });
     };
 };
 
-export default getAllTrips;
+export default getAllPurchases;

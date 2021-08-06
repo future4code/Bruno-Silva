@@ -5,39 +5,36 @@ export class UserDatabase extends BaseDatabase {
     constructor() {
         super()
     };
-
-    //nao está aceitando sem o static. Por que?
     
-    public createUser = async (newUser: User): Promise<any> => {
+    public static createUser = async (newUser: User): Promise<void> => {
         await BaseDatabase.connection("User")
             .insert(newUser);
-
-        // const result = await BaseDatabase.connection.raw(`
-        //     INSERT INTO User
-        //     VALUES(
-        //         '${character.getId()}',
-        //         '${character.getName()}',
-        //         '${character.getEmail()}',
-        //         ${character.getAge()} 
-        //     );
-        // `);
-        // return result;
-
-        // FAZ SENTIDO UM MÉTODO SER ESTÁTICO?
     };
 
-    public static getUsers = async (): Promise<any> => {
-        const result: User[] | undefined = await BaseDatabase.connection("User")
+    public static getUsers = async (): Promise<User[]> => {
+        let result: User[] = [];
+
+        const users = await BaseDatabase.connection("User")
             .select();
 
+        for (let user of users){
+            const userInClass = new User(user.id, user.name, user.email, user.age, user?.purchase);
+
+            result.push(userInClass);
+        };
+
         return result;
     };
 
-    public static getUserById = async(userId: string): Promise<any> => {
-        const result: User[] = await BaseDatabase.connection("User")
+    public static getUserById = async(userId: string): Promise<User> => {
+        const result = await BaseDatabase.connection("User")
             .select()
             .where({ id: userId});
-
-        return result;
+        
+        if (result[0]){
+            return new User(result[0].id, result[0].name, result[0].email, result[0].age, result[0]?.purchase);
+        } else {
+            return result[0];
+        };
     };
 };

@@ -30,8 +30,6 @@ const createNewTrip = async(
 
         await ProductDatabase.createTrip(newTrip);
 
-        //QUAL ERRO PODERIA DAR COMO RESPOSTA DO CONNECTION DE UM POST?
-
         res.status(201).send({ message: "Trip created successfully!"});
     } catch(error) {
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });

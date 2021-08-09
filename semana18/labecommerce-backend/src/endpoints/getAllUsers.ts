@@ -18,15 +18,6 @@ const getAllUsers = async(
             throw new Error("An error occurred! Please, try again!");
         };
 
-        // for(let user of users){
-        //     const allPurchasesByUser = await PurchaseDatabase.getPurchasesByUserId(user.getId());
-        //     const x = new User(user.getId(), user.getName(), user.getEmail(), user.getAge()).setUserPurchases(allPurchasesByUser);
-        //     const y = await UserDatabase.getUserById(user.getId());
-
-        //     console.log("x", x)
-        //     console.log("y", y)
-        // };
-
         const result = await UserDatabase.getUsers();    
 
         res.status(200).send({users: result});

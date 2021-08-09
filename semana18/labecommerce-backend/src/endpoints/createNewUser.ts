@@ -32,7 +32,7 @@ const createNewUser = async(
 
         if (!regExValidateEmail.test(email)) {
             errorCode = 422;
-            throw new Error("Insert a valid e-mail, such as: 'xxxx@yyyyy.zzz.www");
+            throw new Error("Insert a valid e-mail, such as: 'xxxx@yyyyy.zzz.www'");
         };
 
         const newUser: User = new User(StringifyRandomNumber.getStringifyRandomNumber(), name, email, age);

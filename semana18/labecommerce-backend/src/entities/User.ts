@@ -6,8 +6,7 @@ export class User{
         private id: string,
         private name: string,
         private email: string,
-        private age: number,
-        private purchases?: Purchase[] | undefined
+        private age: number
     ) {};
 
     public getId(): string {

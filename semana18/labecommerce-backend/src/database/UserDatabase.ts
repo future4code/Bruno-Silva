@@ -18,7 +18,7 @@ export class UserDatabase extends BaseDatabase {
             .select();
 
         for (let user of users){
-            const userInClass = new User(user.id, user.name, user.email, user.age, user?.purchase);
+            const userInClass = new User(user.id, user.name, user.email, user.age);
 
             result.push(userInClass);
         };
@@ -32,7 +32,7 @@ export class UserDatabase extends BaseDatabase {
             .where({ id: userId});
         
         if (result[0]){
-            return new User(result[0].id, result[0].name, result[0].email, result[0].age, result[0]?.purchase);
+            return new User(result[0].id, result[0].name, result[0].email, result[0].age);
         } else {
             return result[0];
         };

@@ -7,7 +7,7 @@ dotenv.config();
 export class Authenticator {
     public static generateToken(info: AuthenticationData): string {
         const token = jwt.sign(
-            { id: info.id },
+            { id: info.id, role: info.role },
             process.env.JWT_KEY as string,
             { expiresIn: "1h" }
         );

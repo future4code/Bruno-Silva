@@ -13,6 +13,7 @@ const signUp = async (
 
     try {
         const { email, password } = req.body;
+        let role = req.body.role;
 
         if (!email || email.indexOf("@") === -1) {
             errorCode = 422;
@@ -31,13 +32,17 @@ const signUp = async (
             throw new Error("Usuário já existente! Por favor, tente um novo e-mail");
         };
 
+        if (!role || role.toLocaleLowerCase() !== "admin") {
+            role = "normal";
+        };
+        
         const cypherPassword = await HashManager.generateHash(password);
 
-        const newUser: User = new User(IdGenerator.generateId(), email, cypherPassword);
+        const newUser: User = new User(IdGenerator.generateId(), email, cypherPassword, role);
 
         await UserDatabase.createUser(newUser);
 
-        const authorization = Authenticator.generateToken({id: newUser.getId()});
+        const authorization = Authenticator.generateToken({id: newUser.getId(), role: newUser.getRole()});
 
         res.status(201).send({ token: authorization });
     } catch (error) {

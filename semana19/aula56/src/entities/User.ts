@@ -2,7 +2,8 @@ export class User {
     constructor(
         private id: string,
         private email: string,
-        private password: string
+        private password: string,
+        private role: string
     ) { }
 
     public getId(): string {
@@ -15,5 +16,9 @@ export class User {
 
     public getPassword(): string {
         return this.password;
+    };
+
+    public getRole(): string {
+        return this.role;
     };
 };

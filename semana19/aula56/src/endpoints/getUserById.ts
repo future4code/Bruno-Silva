@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 
-const getUserProfile = async(
+const getUserById = async(
     req: Request,
     res: Response
 ):Promise<void> => {
@@ -11,14 +11,9 @@ const getUserProfile = async(
     try {
         const auth = req.headers.authorization as string;
 
-        const authenticationData = Authenticator.getTokenData(auth);
+        const verifyAuth = Authenticator.getTokenData(auth);
 
-        const [user] = await UserDatabase.getUserById(authenticationData.id);
-
-        if(user.role !== "normal") {
-            errorCode = 401;
-            throw new Error("Acesso não autorizado!");
-        };
+        const [user] = await UserDatabase.getUserById(verifyAuth.id);
 
         res.status(200).send({ id: user.id, email: user.email });
     } catch(error) {
@@ -26,4 +21,4 @@ const getUserProfile = async(
     }
 };
 
-export default getUserProfile;
+export default getUserById;

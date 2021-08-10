@@ -42,7 +42,23 @@ d) O endpoint `getUserProfile` não necessita de alteração, pois este é um en
 a) A query utilizada foi:
 ```
 ALTER TABLE User_Aula55
-ADD role ENUM("normal", "admin") DEFAULT "normal";
+ADD COLUMN role ENUM("normal", "admin") DEFAULT "normal";
 ```
 
-b)
+b, c, d) Alterações do código implementadas.
+
+---
+### Exercício 4
+a) Alteração do código implementada.
+
+---
+### Exercício 5
+a) Criação de método `DELETE` UserById realizado com sucesso.
+
+---
+### Exercício 6
+a) Criaçao de método `GET` UserById realizado com sucesso.
+
+---
+### Exercício 7
+a) Código refatorado da melhor maneira encontrada.

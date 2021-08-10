@@ -1,13 +1,18 @@
+GET http://localhost:3003/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MmY4ZTJlLWI0OTItNGI0Ni1hZTQ3LTA4NGY3ODQ1MzFmOCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYyODYzODA4NSwiZXhwIjoxNjI4NjQxNjg1fQ.IepescJgi0WhPg1cLyzMkxJyocfsqLZyUg4KFuN0oQE
+
+###
 GET http://localhost:3003/user/profile
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5MjFjYTExLTBiYzktNDY0Yy1hZDE0LTkxZjg5YWFkYTFiMCIsImlhdCI6MTYyODYyMzY5NCwiZXhwIjoxNjI4NjIzNjk5fQ.AFksLgDUlhZqx7qlCcnlug9nUrg8GcFPRZo9K3-_TBA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MmY4ZTJlLWI0OTItNGI0Ni1hZTQ3LTA4NGY3ODQ1MzFmOCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYyODYzNzU4MiwiZXhwIjoxNjI4NjQxMTgyfQ.cl-GnqN46DFTTHq1IdHkHfwUDJ2EtSpWUgNHm37wwZE
 
 ###
 POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "email": "teste5@teste.com",
-    "password": "159642"
+    "email": "teste3@teste.com",
+    "password": "123456",
+    "role": "asda"
 }
 
 ###
@@ -15,6 +20,10 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "teste@teste.com",
-    "password": "159642"
+    "email": "adminl@teste.com",
+    "password": "123456"
 }
+
+###
+DELETE http://localhost:3003/user/a52f8e2e-b492-4b46-ae47-084f784531f8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MmY4ZTJlLWI0OTItNGI0Ni1hZTQ3LTA4NGY3ODQ1MzFmOCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYyODYzNzU4MiwiZXhwIjoxNjI4NjQxMTgyfQ.cl-GnqN46DFTTHq1IdHkHfwUDJ2EtSpWUgNHm37wwZE

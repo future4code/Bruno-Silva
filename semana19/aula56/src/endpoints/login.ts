@@ -30,12 +30,14 @@ const login = async (
             throw new Error("Usuário não existente! Por favor, tente novamente");
         };
 
-        if(!HashManager.compareHash(password, alreadyExistedUser.password)) {
+        const comparePassword = await HashManager.compareHash(password, alreadyExistedUser.password);
+
+        if(!comparePassword) {
             errorCode = 401;
             throw new Error("Credenciais inválidas! Por favor, tente novamente");
         };
 
-        const authorization = Authenticator.generateToken({id: alreadyExistedUser.id});
+        const authorization = Authenticator.generateToken({id: alreadyExistedUser.id, role: alreadyExistedUser.role});
 
         res.status(200).send({ token: authorization });
     } catch (error) {

@@ -1,3 +1,7 @@
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
+
+###
 POST http://localhost:3003/signup
 Content-Type: application/json
 

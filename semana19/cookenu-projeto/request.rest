@@ -1,0 +1,9 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Carla",
+    "email": "carla@labenu.com",
+    "password": "carla321",
+    "role": "aDmiN"
+}

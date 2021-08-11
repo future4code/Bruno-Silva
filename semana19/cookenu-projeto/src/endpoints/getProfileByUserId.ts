@@ -2,23 +2,27 @@ import { Request, Response } from 'express';
 import { UserDatabase } from '../data/UserDatabase';
 import { Authenticator } from '../services/Authenticator';
 
-const getUserProfile = async(
+const getProfileByUserId = async(
     req: Request,
     res: Response
 ): Promise<void> => {
     let errorCode: number = 400;
 
     try {
+        const userSearchedId = req.params.id as string;
         const token = req.headers.authorization;
-        
+
         if(!token) {
             errorCode = 422;
             throw new Error("Endpoint usage requires authorization! Please, try to insert a valid token");
         };
-        
-        const authData = Authenticator.getTokenData(token);
 
-        const userProfile = await UserDatabase.getUserById(authData.id);
+        const userProfile = await UserDatabase.getUserById(userSearchedId);
+
+        if(!userProfile) {
+            errorCode = 409;
+            throw new Error("User doesn´t exist! Please, try again");
+        };
 
         res.status(200).send({ 
             "userProfile": {
@@ -32,4 +36,4 @@ const getUserProfile = async(
     };
 };
 
-export default getUserProfile;
+export default getProfileByUserId;

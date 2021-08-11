@@ -1,7 +1,7 @@
 import knex from 'knex';
 import Knex from "knex";
 
-class BaseDatabase {
+export class BaseDatabase {
     protected static connection: Knex = knex({
         client: "mysql",
         connection: {
@@ -14,5 +14,3 @@ class BaseDatabase {
         }
     });
 };
-
-export default BaseDatabase;

@@ -7,3 +7,12 @@ Content-Type: application/json
     "password": "carla321",
     "role": "aDmiN"
 }
+
+###
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "carla@labenu.com",
+    "password": "carla321"
+}

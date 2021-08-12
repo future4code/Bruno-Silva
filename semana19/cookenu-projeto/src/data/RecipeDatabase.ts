@@ -31,7 +31,7 @@ export class RecipeDatabase extends BaseDatabase {
                 title: recipe.title,
                 description: recipe.description,
                 createdAt: recipe.createdAt,
-                creatorId: recipe.creatorId
+                creatorId: recipe.id
             });
     };
 };

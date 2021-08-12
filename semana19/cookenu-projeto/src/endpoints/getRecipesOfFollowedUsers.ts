@@ -6,7 +6,7 @@ import { UserDatabase } from '../data/UserDatabase';
 import { Recipe } from '../entities/Recipe';
 import { Authenticator } from '../services/Authenticator';
 
-const getRecipesFromFollowedUsers = async (
+const getRecipesOfFollowedUsers = async (
     req: Request,
     res: Response
 ): Promise<void> => {
@@ -30,7 +30,6 @@ const getRecipesFromFollowedUsers = async (
             const userFollowed = await UserDatabase.getUserById(follow.followedUserId)
 
             for (let recipe of recipesByFollowed) {
-                recipe.createdAt
                 recipesFromFollows.push({
                     id: recipe.id,
                     title: recipe.title,
@@ -58,4 +57,4 @@ const getRecipesFromFollowedUsers = async (
     }
 };
 
-export default getRecipesFromFollowedUsers;
+export default getRecipesOfFollowedUsers;

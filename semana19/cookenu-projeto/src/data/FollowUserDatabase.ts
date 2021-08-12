@@ -16,12 +16,22 @@ export class FollowUserDatabase extends BaseDatabase {
         followerUserId: string,
         followedUserId: string
     ):Promise<void> => {
-        console.log("followerUserId", followerUserId);
-        console.log("followedUserId", followedUserId);
         await BaseDatabase.connection("FollowUser_junction")
             .insert({
                 followerUserId,
                 followedUserId
+            });
+    };
+
+    public static deleteFollow = async(
+        followerUserId: string,
+        followedUserId: string
+    ):Promise<void> => {
+        await BaseDatabase.connection("FollowUser_junction")
+            .delete()
+            .where({
+                followerUserId,
+                followedUserId    
             });
     };
 };

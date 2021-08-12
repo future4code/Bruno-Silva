@@ -5,7 +5,7 @@ import { Authenticator } from '../services/Authenticator';
 const getUserProfile = async(
     req: Request,
     res: Response
-): Promise<void> => {
+):Promise<void> => {
     let errorCode: number = 400;
 
     try {

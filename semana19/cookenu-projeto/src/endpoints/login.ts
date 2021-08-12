@@ -7,7 +7,7 @@ import { USER_ROLES } from '../types';
 const login = async(
     req: Request,
     res: Response
-): Promise<void> => {
+):Promise<void> => {
     let errorCode: number = 400;
 
     try {

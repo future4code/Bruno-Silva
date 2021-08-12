@@ -10,7 +10,7 @@ import { USER_ROLES } from '../types';
 const signup = async(
     req: Request,
     res: Response
-): Promise<void> => {
+):Promise<void> => {
     let errorCode: number = 400;
     const regExValidateEmail: RegExp = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
 

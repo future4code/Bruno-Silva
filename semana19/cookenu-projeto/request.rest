@@ -6,6 +6,10 @@ GET http://localhost:3003/user/967dfc30-1d7d-4356-814c-f2e83fde6cc9
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
 
 ###
+GET http://localhost:3003/recipe/2,154975
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
+
+###
 POST http://localhost:3003/signup
 Content-Type: application/json
 
@@ -23,4 +27,14 @@ Content-Type: application/json
 {
     "email": "carla@labenu.com",
     "password": "carla321"
+}
+
+###
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyOTA3MCwiZXhwIjoxNjI4NzMyNjcwfQ.gVqpVQP3rGrvNpZkUeDYEwdMcRcl2oJTQu9fztUADu4
+
+{
+    "title": "texto",
+    "description": "descrição"
 }

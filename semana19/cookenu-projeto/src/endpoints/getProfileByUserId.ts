@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
 import { UserDatabase } from '../data/UserDatabase';
-import { Authenticator } from '../services/Authenticator';
 
 const getProfileByUserId = async(
     req: Request,
     res: Response
-): Promise<void> => {
+):Promise<void> => {
     let errorCode: number = 400;
 
     try {

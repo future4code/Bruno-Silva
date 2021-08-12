@@ -1,5 +1,5 @@
 GET http://localhost:3003/user/feed
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc4ODUwNiwiZXhwIjoxNjI4NzkyMTA2fQ.KgtTrVj4se6vyJJx_UOlpDG8Ahcm8svgixEDPD_VJRk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc5MTU1MywiZXhwIjoxNjI4Nzk1MTUzfQ.amFAyCYylM_xLm4S17CE5mzPfA_Jvb8mnRMrx3N8Iz0
 
 ###
 GET http://localhost:3003/user/profile
@@ -29,8 +29,8 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "diguin@labenu.com",
-    "password": "123456"
+    "email": "carla@labenu.com",
+    "password": "carla321"
 }
 
 ###

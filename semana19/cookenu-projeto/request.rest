@@ -38,3 +38,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgt
     "title": "texto",
     "description": "descrição"
 }
+
+###
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc3ODgzMiwiZXhwIjoxNjI4NzgyNDMyfQ.KkgX_0OXVwHNhorlVrHPPucRr-1JCIkDOEDaDINhO3E
+
+{
+    "userToFollowId": "1.2654665"
+}

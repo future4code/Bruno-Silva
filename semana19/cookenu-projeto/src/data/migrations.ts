@@ -22,6 +22,12 @@ const createTables = () => connection
 	        creatorId VARCHAR(255) NOT NULL,
 	        FOREIGN KEY (creatorId) REFERENCES User_projeto19(id)
         );
+
+        CREATE TABLE IF NOT EXISTS FollowUser_junction(
+            followerUserId VARCHAR(255) NOT NULL,
+            followedUserId VARCHAR(255) NOT NULL,
+            PRIMARY KEY (followerUserId, followedUserId)
+        );
     `)
     .then(() => console.log("Tables created successfully!"))
     .catch(printError);

@@ -50,7 +50,7 @@ const login = async(
             authorization = Authenticator.generateToken({id: user.getId(), role: USER_ROLES.ADMIN});
         };
         
-        res.status(200).send({ token: authorization });
+        res.status(200).send({ message: "Login has been successfully!", token: authorization });
     } catch(error) {
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });
     };

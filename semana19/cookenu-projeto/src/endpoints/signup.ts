@@ -59,7 +59,7 @@ const signup = async(
             authorization = Authenticator.generateToken({id: newId, role: USER_ROLES.ADMIN});
         };
 
-        res.status(201).send({ token: authorization });
+        res.status(201).send({ message: "User created successfully!", token: authorization });
     } catch(error) {
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });
     };

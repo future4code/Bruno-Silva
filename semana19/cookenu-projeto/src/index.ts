@@ -7,6 +7,7 @@ import getRecipeById from './endpoints/getRecipeById';
 import login from './endpoints/login';
 import signup from './endpoints/signup';
 import createRecipe from './endpoints/createRecipe';
+import followUser from './endpoints/followUser';
 
 
 app.get("/user/profile", getUserProfile);
@@ -16,3 +17,4 @@ app.get("/recipe/:id", getRecipeById);
 app.post("/signup", signup);
 app.post("/login", login);
 app.post("/recipe", createRecipe);
+app.post("/user/follow", followUser);

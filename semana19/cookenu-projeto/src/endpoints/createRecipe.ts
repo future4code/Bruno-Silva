@@ -34,7 +34,7 @@ const createRecipe = async(
 
         await RecipeDatabase.createRecipe(newRecipe);
 
-        res.status(201).send("Recipe created successfully!");
+        res.status(201).send({ message: "Recipe created successfully!" });
     } catch(error) {
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });
     };

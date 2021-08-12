@@ -6,7 +6,7 @@ import { UserDatabase } from '../data/UserDatabase';
 import { Recipe } from '../entities/Recipe';
 import { Authenticator } from '../services/Authenticator';
 
-const getRecipesOfFollowedUsers = async (
+const getRecipesFromFollowedUsers = async (
     req: Request,
     res: Response
 ): Promise<void> => {
@@ -57,4 +57,4 @@ const getRecipesOfFollowedUsers = async (
     }
 };
 
-export default getRecipesOfFollowedUsers;
+export default getRecipesFromFollowedUsers;

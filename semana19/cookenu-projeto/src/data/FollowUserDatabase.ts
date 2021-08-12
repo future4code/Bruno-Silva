@@ -1,15 +1,16 @@
+import { FollowRelation } from "../entities/FollowRelation";
 import { BaseDatabase } from "./BaseDatabase";
 
 
 export class FollowUserDatabase extends BaseDatabase {
     public static getFollowByFollowerId = async(
         followerUserId: string
-    ):Promise<any> => {
+    ):Promise<FollowRelation[]> => {
         const follows = await BaseDatabase.connection("FollowUser_junction")
             .select()
             .where({ followerUserId });
 
-        return follows;
+        return follows.map((follow) => FollowRelation.toFollowModel(follow));
     };
 
     public static createFollow = async(

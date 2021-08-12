@@ -1,27 +1,27 @@
 GET http://localhost:3003/user/feed
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc5MTU1MywiZXhwIjoxNjI4Nzk1MTUzfQ.amFAyCYylM_xLm4S17CE5mzPfA_Jvb8mnRMrx3N8Iz0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczZGY5NTk2LWI1MmQtNGEwYi1hOWNmLTBjNDYyNjZiMjAyNCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODgwNjg2NiwiZXhwIjoxNjI4ODEwNDY2fQ.iJFdk16iSFW8fFtU0ieIlxCzJabHeXRb5pCHXgXD7mw
 
 ###
 GET http://localhost:3003/user/profile
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MDVjMzgxLTY2ZDEtNGViMi1hZWRmLWMwYmJmNGUyY2ZjNCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Mjg4MDQxOTEsImV4cCI6MTYyODgwNzc5MX0.EguamIApLTFH7hWk-sX_gRBYNzGzF4ucmbwcKbdPgxQ
 
 ###
-GET http://localhost:3003/user/967dfc30-1d7d-4356-814c-f2e83fde6cc9
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
+GET http://localhost:3003/user/1.1347956
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MDVjMzgxLTY2ZDEtNGViMi1hZWRmLWMwYmJmNGUyY2ZjNCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Mjg4MDQxOTEsImV4cCI6MTYyODgwNzc5MX0.EguamIApLTFH7hWk-sX_gRBYNzGzF4ucmbwcKbdPgxQ
 
 ###
-GET http://localhost:3003/recipe/2,154975
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
+GET http://localhost:3003/recipe/2,996515
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MDVjMzgxLTY2ZDEtNGViMi1hZWRmLWMwYmJmNGUyY2ZjNCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Mjg4MDQxOTEsImV4cCI6MTYyODgwNzc5MX0.EguamIApLTFH7hWk-sX_gRBYNzGzF4ucmbwcKbdPgxQ
 
 ###
 POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "name": "Rafael",
-    "email": "rafa@labenu.com",
+    "name": "Bento",
+    "email": "bento@labenu.com",
     "password": "123456",
-    "role": "normal"
+    "role": "admin"
 }
 
 ###
@@ -29,33 +29,34 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "carla@labenu.com",
-    "password": "carla321"
+    "email": "bento@labenu.com",
+    "password": "123456"
 }
 
 ###
 POST http://localhost:3003/recipe
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1MjBhNWZkLTM0NjMtNGI1ZC1hNzFlLTMzYTYxN2ViNmY1OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Mjg3ODkyODgsImV4cCI6MTYyODc5Mjg4OH0._fenA3y31zWr8sxhMkwj9Y7k-nJ3K4_NOWl0bKrk4TE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MDVjMzgxLTY2ZDEtNGViMi1hZWRmLWMwYmJmNGUyY2ZjNCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Mjg4MDQxOTEsImV4cCI6MTYyODgwNzc5MX0.EguamIApLTFH7hWk-sX_gRBYNzGzF4ucmbwcKbdPgxQ
 
 {
-    "title": "Receita do Diguin 2",
-    "description": "descrição diguin"
+    "title": "Receita do Bernardo 2",
+    "description": "descrição bernardo"
 }
 
 ###
 POST http://localhost:3003/user/follow
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc4ODUwNiwiZXhwIjoxNjI4NzkyMTA2fQ.KgtTrVj4se6vyJJx_UOlpDG8Ahcm8svgixEDPD_VJRk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczZGY5NTk2LWI1MmQtNGEwYi1hOWNmLTBjNDYyNjZiMjAyNCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODgwNDQ2MSwiZXhwIjoxNjI4ODA4MDYxfQ.yvVX4cI5QCNhBm7oHJkxDFxYFlsvNmlSZeXqPEppZjY
 
 {
-    "userToFollowId": "d520a5fd-3463-4b5d-a71e-33a617eb6f59"
+    "userToFollowId": "1.2654665"
 }
 
 ###
 POST http://localhost:3003/user/unfollow
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc3ODgzMiwiZXhwIjoxNjI4NzgyNDMyfQ.KkgX_0OXVwHNhorlVrHPPucRr-1JCIkDOEDaDINhO3E
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczZGY5NTk2LWI1MmQtNGEwYi1hOWNmLTBjNDYyNjZiMjAyNCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODgwNTM0OSwiZXhwIjoxNjI4ODA4OTQ5fQ.rGOnujvZQG_6F8xhCet7X4Kxur6O2nXaDy6TYQNLAkY
+
 
 {
     "userToUnfollowId": "1.2654665"

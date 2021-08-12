@@ -4,7 +4,8 @@ export class Recipe {
         public title: string,
         public description: string,
         public createdAt: string,
-        public creatorId: string
+        public creatorId: string,
+        public creatorName?: string
     ) {};
 
     public static toRecipeModel(data: any):Recipe {

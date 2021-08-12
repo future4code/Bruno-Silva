@@ -5,7 +5,7 @@ export class UserDatabase extends BaseDatabase {
     public static getUserByEmail = async (
         email: string
     ): Promise<User> => {
-        const user = await BaseDatabase.connection("User_projeto19")
+        const user = await BaseDatabase.connection("User")
             .select()
             .where({ email });
 
@@ -15,7 +15,7 @@ export class UserDatabase extends BaseDatabase {
     public static getUserById = async (
         id: string
     ): Promise<User> => {
-        const user = await BaseDatabase.connection("User_projeto19")
+        const user = await BaseDatabase.connection("User")
             .select()
             .where({ id });
 
@@ -25,7 +25,7 @@ export class UserDatabase extends BaseDatabase {
     public static createUser = async(
         user: User
     ):Promise<void> => {
-        await BaseDatabase.connection("User_projeto19")
+        await BaseDatabase.connection("User")
             .insert({
                 id: user.getId(),
                 name: user. getName(),

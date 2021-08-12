@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
+import moment from 'moment';
 import { FollowUserDatabase } from '../data/FollowUserDatabase';
 import { RecipeDatabase } from '../data/RecipeDatabase';
+import { UserDatabase } from '../data/UserDatabase';
 import { Recipe } from '../entities/Recipe';
 import { Authenticator } from '../services/Authenticator';
 
@@ -19,25 +21,34 @@ const getRecipesOfFollowedUsers = async (
         };
 
         const authData = Authenticator.getTokenData(token);
+
         const follows = await FollowUserDatabase.getFollowByFollowerId(authData.id);
 
         let recipesFromFollows: Recipe[] = [];
         for (let follow of follows) {
             const recipesByFollowed = await RecipeDatabase.getRecipesByCreatorId(follow.followedUserId);
+            const userFollowed = await UserDatabase.getUserById(follow.followedUserId)
 
             for (let recipe of recipesByFollowed) {
-                recipesFromFollows.push(recipe);
+                recipe.createdAt
+                recipesFromFollows.push({
+                    id: recipe.id,
+                    title: recipe.title,
+                    description: recipe.description,
+                    createdAt: moment(recipe.createdAt,"YYYY-MM-DD").format("DD/MM/YYYY"),
+                    creatorId: recipe.creatorId,
+                    creatorName: userFollowed.getName()
+                });
             };
         };
 
         const orderedRecipes = recipesFromFollows.sort(function (a, b) {
-            if (a.createdAt > b.createdAt) {
+            if (a.createdAt < b.createdAt) {
                 return 1;
             }
-            if (a.createdAt < b.createdAt) {
+            if (a.createdAt > b.createdAt) {
                 return -1;
             }
-            // a must be equal to b
             return 0;
         });
 

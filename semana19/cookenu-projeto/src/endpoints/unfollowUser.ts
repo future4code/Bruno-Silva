@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { FollowUserDatabase } from '../data/FollowUserDatabase';
 import { UserDatabase } from '../data/UserDatabase';
+import { FollowRelation } from '../entities/FollowRelation';
 import { Authenticator } from '../services/Authenticator';
 import { AuthenticationData } from '../types';
 
@@ -40,9 +41,14 @@ const unfollowUser = async(
 
         const follows = await FollowUserDatabase.getFollowByFollowerId(authData.id);
 
-        const indexAlreadyFollowing = follows[0] && follows.findIndex((follow: any) => {    
+        const indexAlreadyFollowing: number = follows[0] && follows.findIndex((follow: FollowRelation) => {    
             return (follow.followerUserId === authData.id && follow.followedUserId === userToUnfollowId);
         });
+
+        if(!follows[0]) {
+            errorCode = 409;
+            throw new Error("User has no following! Please, check input´s value");
+        };
 
         if(indexAlreadyFollowing === -1) {
             errorCode = 422;

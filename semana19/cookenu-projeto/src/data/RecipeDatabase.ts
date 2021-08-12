@@ -5,7 +5,7 @@ export class RecipeDatabase extends BaseDatabase {
     public static getRecipeById = async (
         id: string,
     ):Promise<Recipe> => {
-        const recipe = await BaseDatabase.connection("Recipe_projeto19")
+        const recipe = await BaseDatabase.connection("Recipe")
             .select()
             .where({ id });
 
@@ -15,7 +15,7 @@ export class RecipeDatabase extends BaseDatabase {
     public static getRecipesByCreatorId = async (
         creatorId: string
     ):Promise<Recipe[]> => {
-        const recipes = await BaseDatabase.connection("Recipe_projeto19")
+        const recipes = await BaseDatabase.connection("Recipe")
             .select()
             .where({ creatorId });
 
@@ -25,7 +25,7 @@ export class RecipeDatabase extends BaseDatabase {
     public static createRecipe = async (
         recipe: Recipe
     ):Promise<void> => {
-        await BaseDatabase.connection("Recipe_projeto19")
+        await BaseDatabase.connection("Recipe")
             .insert({
                 id: recipe.id,
                 title: recipe.title,

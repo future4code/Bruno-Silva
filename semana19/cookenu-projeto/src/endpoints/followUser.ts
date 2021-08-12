@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { FollowUserDatabase } from '../data/FollowUserDatabase';
 import { UserDatabase } from '../data/UserDatabase';
+import { FollowRelation } from '../entities/FollowRelation';
 import { Authenticator } from '../services/Authenticator';
 import { AuthenticationData } from '../types';
 
@@ -40,7 +41,7 @@ const followUser = async(
 
         const follows = await FollowUserDatabase.getFollowByFollowerId(authData.id);
 
-        const indexAlreadyFollowing = follows[0] && follows.findIndex((follow: any) => {    
+        const indexAlreadyFollowing: number = follows.findIndex((follow: FollowRelation) => {   
             return (follow.followerUserId === authData.id && follow.followedUserId === userToFollowId);
         });
 

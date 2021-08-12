@@ -1,5 +1,6 @@
 import app from './app';
 
+import getRecipesOfFollowedUsers from './endpoints/getRecipesOfFollowedUsers';
 import getUserProfile from './endpoints/getUserProfile';
 import getProfileByUserId from './endpoints/getProfileByUserId';
 import getRecipeById from './endpoints/getRecipeById';
@@ -11,6 +12,7 @@ import followUser from './endpoints/followUser';
 import unfollowUser from './endpoints/unfollowUser';
 
 
+app.get("/user/feed", getRecipesOfFollowedUsers);
 app.get("/user/profile", getUserProfile);
 app.get("/user/:id", getProfileByUserId);
 app.get("/recipe/:id", getRecipeById);

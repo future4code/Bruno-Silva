@@ -12,6 +12,16 @@ export class RecipeDatabase extends BaseDatabase {
         return recipe[0] && Recipe.toRecipeModel(recipe[0]);
     };
 
+    public static getRecipesByCreatorId = async (
+        creatorId: string
+    ):Promise<Recipe[]> => {
+        const recipes = await BaseDatabase.connection("Recipe_projeto19")
+            .select()
+            .where({ creatorId });
+
+        return recipes.map((recipe) => Recipe.toRecipeModel(recipe));
+    };
+
     public static createRecipe = async (
         recipe: Recipe
     ):Promise<void> => {
@@ -20,7 +30,7 @@ export class RecipeDatabase extends BaseDatabase {
                 id: recipe.id,
                 title: recipe.title,
                 description: recipe.description,
-                createdAt: recipe.createdAd,
+                createdAt: recipe.createdAt,
                 creatorId: recipe.creatorId
             });
     };

@@ -1,3 +1,7 @@
+GET http://localhost:3003/user/feed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc4ODUwNiwiZXhwIjoxNjI4NzkyMTA2fQ.KgtTrVj4se6vyJJx_UOlpDG8Ahcm8svgixEDPD_VJRk
+
+###
 GET http://localhost:3003/user/profile
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyMzM1NiwiZXhwIjoxNjI4NzI2OTU2fQ.pTuEghH6C5QaTuYrkJBNBaSV4V7UYt1WTS8JtZ3QbPU
 
@@ -14,10 +18,10 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "name": "Carla",
-    "email": "carla@labenu.com",
-    "password": "carla321",
-    "role": "aDmiN"
+    "name": "Rafael",
+    "email": "rafa@labenu.com",
+    "password": "123456",
+    "role": "normal"
 }
 
 ###
@@ -25,27 +29,27 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "carla@labenu.com",
-    "password": "carla321"
+    "email": "diguin@labenu.com",
+    "password": "123456"
 }
 
 ###
 POST http://localhost:3003/recipe
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODcyOTA3MCwiZXhwIjoxNjI4NzMyNjcwfQ.gVqpVQP3rGrvNpZkUeDYEwdMcRcl2oJTQu9fztUADu4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1MjBhNWZkLTM0NjMtNGI1ZC1hNzFlLTMzYTYxN2ViNmY1OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Mjg3ODkyODgsImV4cCI6MTYyODc5Mjg4OH0._fenA3y31zWr8sxhMkwj9Y7k-nJ3K4_NOWl0bKrk4TE
 
 {
-    "title": "texto",
-    "description": "descrição"
+    "title": "Receita do Diguin 2",
+    "description": "descrição diguin"
 }
 
 ###
 POST http://localhost:3003/user/follow
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc3ODgzMiwiZXhwIjoxNjI4NzgyNDMyfQ.KkgX_0OXVwHNhorlVrHPPucRr-1JCIkDOEDaDINhO3E
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwYzc5ZGY1LTkxMjgtNDJkOS1hNzA3LTZmZGM1OWMxMmE4ZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODc4ODUwNiwiZXhwIjoxNjI4NzkyMTA2fQ.KgtTrVj4se6vyJJx_UOlpDG8Ahcm8svgixEDPD_VJRk
 
 {
-    "userToFollowId": "1.2654665"
+    "userToFollowId": "d520a5fd-3463-4b5d-a71e-33a617eb6f59"
 }
 
 ###

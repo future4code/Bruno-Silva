@@ -35,6 +35,15 @@ export class UserDatabase extends BaseDatabase {
             });
     };
 
+    public static changeUserPassword = async(
+        newPassword: string,
+        userId: string
+    ):Promise<void> => {
+        await BaseDatabase.connection("User")
+            .update({ password: newPassword })
+            .where({ id: userId });
+    };
+
     public static deleteUserById = async(
         userId: string
     ):Promise<void> => {

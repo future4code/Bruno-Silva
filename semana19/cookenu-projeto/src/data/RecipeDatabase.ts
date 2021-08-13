@@ -4,7 +4,7 @@ import { BaseDatabase } from "./BaseDatabase";
 export class RecipeDatabase extends BaseDatabase {
     public static getRecipeById = async (
         id: string,
-    ):Promise<Recipe> => {
+    ): Promise<Recipe> => {
         const recipe = await BaseDatabase.connection("Recipe")
             .select()
             .where({ id });
@@ -14,7 +14,7 @@ export class RecipeDatabase extends BaseDatabase {
 
     public static getRecipesByCreatorId = async (
         creatorId: string
-    ):Promise<Recipe[]> => {
+    ): Promise<Recipe[]> => {
         const recipes = await BaseDatabase.connection("Recipe")
             .select()
             .where({ creatorId });
@@ -24,7 +24,7 @@ export class RecipeDatabase extends BaseDatabase {
 
     public static createRecipe = async (
         recipe: Recipe
-    ):Promise<void> => {
+    ): Promise<void> => {
         console.log(recipe)
         await BaseDatabase.connection("Recipe")
             .insert({
@@ -37,12 +37,12 @@ export class RecipeDatabase extends BaseDatabase {
             });
     };
 
-    public static changeRecipe = async(
+    public static changeRecipe = async (
         recipeId: string,
         lastUpdate: string,
         title?: string,
         description?: string
-    ):Promise<void> => {
+    ): Promise<void> => {
         await BaseDatabase.connection("Recipe")
             .update({
                 lastUpdate,
@@ -52,11 +52,19 @@ export class RecipeDatabase extends BaseDatabase {
             .where({ id: recipeId });
     };
 
-    public static deleteRecipe = async(
+    public static deleteRecipe = async (
         recipeId: string
-    ):Promise<void> => {
+    ): Promise<void> => {
         await BaseDatabase.connection("Recipe")
             .delete()
             .where({ id: recipeId });
+    };
+
+    public static deleteAllRecipesByCreatorId = async (
+        creatorId: string
+    ): Promise<void> => {
+        await BaseDatabase.connection("Recipe")
+            .delete()
+            .where({ creatorId });
     };
 };

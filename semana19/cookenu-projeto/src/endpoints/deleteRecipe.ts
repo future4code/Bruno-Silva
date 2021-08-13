@@ -52,11 +52,11 @@ const deleteRecipe = async (
 
             await RecipeDatabase.deleteRecipe(recipeId);
 
-            res.status(201).send("Recipe removed successfully!");
+            res.status(201).send({ message: "Recipe removed successfully!"});
         } else {
             await RecipeDatabase.deleteRecipe(recipeId);
-            
-            res.status(201).send("Recipe removed successfully!");
+
+            res.status(201).send({ message: "Recipe removed successfully!" });
         };
     } catch (error) {
         res.status(errorCode).send({ message: error.message ? error.message : error.sqlMessage });

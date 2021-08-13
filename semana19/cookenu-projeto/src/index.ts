@@ -14,7 +14,7 @@ import unfollowUser from './endpoints/unfollowUser';
 import editRecipe from './endpoints/editRecipe';
 
 import deleteRecipe from './endpoints/deleteRecipe';
-
+import deleteUserAccount from './endpoints/deleteUserAccount';
 
 app.get("/user/feed", getRecipesFromFollowedUsers);
 app.get("/user/profile", getUserProfile);
@@ -30,3 +30,4 @@ app.post("/user/unfollow", unfollowUser);
 app.put("/recipe/edit/:recipeId", editRecipe);
 
 app.delete("/recipe/:recipeId", deleteRecipe);
+app.delete("/user/:userId", deleteUserAccount);

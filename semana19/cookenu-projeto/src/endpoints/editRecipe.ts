@@ -60,12 +60,12 @@ const editRecipe = async(
             const newUpdate = moment().format("YYYY-MM-DD");
 
             await RecipeDatabase.changeRecipe(recipeToEdit.id, newUpdate, title, description);
-            res.status(201).send("Recipe modified successfully!");
+            res.status(201).send({ message: "Recipe modified successfully!" });
         } else{
             const newUpdate = moment().format("YYYY-MM-DD");
 
             await RecipeDatabase.changeRecipe(recipeToEdit.id, newUpdate, title, description);
-            res.status(201).send("Recipe modified successfully!");
+            res.status(201).send({ message: "Recipe modified successfully!" });
         };
     } catch(error){
         res.status(errorCode).send({ message: error.message? error.message : error.sqlMessage });

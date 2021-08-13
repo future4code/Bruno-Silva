@@ -35,4 +35,12 @@ export class FollowUserDatabase extends BaseDatabase {
                 followedUserId    
             });
     };
+
+    public static deleteAllFollowsByFollowerId = async(
+        followerUserId: string
+    ):Promise<void> => {
+        await BaseDatabase.connection("FollowUser_junction")
+            .delete()
+            .where({ followerUserId });
+    };
 };

@@ -34,4 +34,12 @@ export class UserDatabase extends BaseDatabase {
                 role: user.getRole()
             });
     };
+
+    public static deleteUserById = async(
+        userId: string
+    ):Promise<void> => {
+        await BaseDatabase.connection("User")
+            .delete()
+            .where({id: userId});
+    };
 };

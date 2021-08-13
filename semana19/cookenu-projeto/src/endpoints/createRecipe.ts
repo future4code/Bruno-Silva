@@ -28,10 +28,11 @@ const createRecipe = async(
 
         const newId: string = IdGenerator.generateId();
         const actualDate: string = moment().format("YYYY-MM-DD");
+        const initialLastUpdate: string = moment().format("YYYY-MM-DD");
         const authData: AuthenticationData = Authenticator.getTokenData(token);
-        
-        const newRecipe: Recipe = new Recipe(newId, title, description, actualDate, authData.id);
 
+        const newRecipe: Recipe = new Recipe(newId, title, description, actualDate, authData.id, initialLastUpdate);
+        console.log("newRecipe", newRecipe);
         await RecipeDatabase.createRecipe(newRecipe);
 
         res.status(201).send({ message: "Recipe created successfully!" });

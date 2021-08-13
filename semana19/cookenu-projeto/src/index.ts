@@ -11,6 +11,8 @@ import createRecipe from './endpoints/createRecipe';
 import followUser from './endpoints/followUser';
 import unfollowUser from './endpoints/unfollowUser';
 
+import editRecipe from './endpoints/editRecipe';
+
 
 app.get("/user/feed", getRecipesFromFollowedUsers);
 app.get("/user/profile", getUserProfile);
@@ -22,3 +24,5 @@ app.post("/login", login);
 app.post("/recipe", createRecipe);
 app.post("/user/follow", followUser);
 app.post("/user/unfollow", unfollowUser);
+
+app.put("/recipe/edit/:recipeId", editRecipe);

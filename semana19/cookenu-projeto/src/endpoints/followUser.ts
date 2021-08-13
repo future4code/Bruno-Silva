@@ -22,7 +22,7 @@ const followUser = async(
 
         if(!userToFollowId) {
             errorCode = 422;
-            throw new Error("'userToFollowId' field are empty! Please, try fill input´s value");
+            throw new Error("'userToFollowId' field is empty! Please, try fill input´s value");
         };
 
         const user = await UserDatabase.getUserById(userToFollowId);

@@ -24,7 +24,7 @@ const getRecipesFromFollowedUsers = async (
 
         const follows = await FollowUserDatabase.getFollowByFollowerId(authData.id);
 
-        let recipesFromFollows: Recipe[] = [];
+        let recipesFromFollows: any[] = [];
         for (let follow of follows) {
             const recipesByFollowed = await RecipeDatabase.getRecipesByCreatorId(follow.followedUserId);
             const userFollowed = await UserDatabase.getUserById(follow.followedUserId)

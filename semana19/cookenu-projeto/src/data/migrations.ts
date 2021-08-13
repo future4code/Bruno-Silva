@@ -75,6 +75,7 @@ class Migrations extends BaseDatabase {
                     title VARCHAR(50) NOT NULL,
                     description TEXT NOT NULL,
                     createdAt DATE NOT NULL,
+                    lastUpdate DATE NOT NULL,
 	                creatorId VARCHAR(255) NOT NULL,
 	                FOREIGN KEY (creatorId) REFERENCES User(id)
                 );

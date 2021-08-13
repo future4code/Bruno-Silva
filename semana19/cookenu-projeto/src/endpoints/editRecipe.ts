@@ -53,18 +53,18 @@ const editRecipe = async(
 
             if(isRecipe === -1){
                 errorCode = 401;
-                throw new Error(`User unauthorized access to modify recipes not create by itself!
+                throw new Error(`User unauthorized access to modify recipes not created by itself!
                     Please, check recipes created by user`);
             };
 
             const newUpdate = moment().format("YYYY-MM-DD");
 
-            await RecipeDatabase.changeRecipe(recipeToEdit.id, newUpdate, title, description)
+            await RecipeDatabase.changeRecipe(recipeToEdit.id, newUpdate, title, description);
             res.status(201).send("Recipe modified successfully!");
         } else{
             const newUpdate = moment().format("YYYY-MM-DD");
 
-            await RecipeDatabase.changeRecipe(recipeToEdit.id, newUpdate, title, description)
+            await RecipeDatabase.changeRecipe(recipeToEdit.id, newUpdate, title, description);
             res.status(201).send("Recipe modified successfully!");
         };
     } catch(error){

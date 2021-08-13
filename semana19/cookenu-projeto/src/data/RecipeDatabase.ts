@@ -51,4 +51,12 @@ export class RecipeDatabase extends BaseDatabase {
             })
             .where({ id: recipeId });
     };
+
+    public static deleteRecipe = async(
+        recipeId: string
+    ):Promise<void> => {
+        await BaseDatabase.connection("Recipe")
+            .delete()
+            .where({ id: recipeId });
+    };
 };

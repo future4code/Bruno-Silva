@@ -1,0 +1,55 @@
+GET http://localhost:3003/user
+
+###
+GET http://localhost:3003/product?order=
+
+###
+GET http://localhost:3003/trip
+
+###
+GET http://localhost:3003/purchase
+
+###
+GET http://localhost:3003/purchase/1.628172276736768
+
+###
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "teste2",
+    "email": "teste2@teste.com",
+    "age": 20
+}
+
+###
+POST http://localhost:3003/product
+Content-Type: application/json
+
+{
+    "name": "produto",
+    "description": "descrição",
+    "price": 18.50
+}
+
+###
+POST http://localhost:3003/trip
+Content-Type: application/json
+
+{
+    "name": "trip2",
+    "description": "descrição",
+    "price": 2500.00,
+    "origin": "Bogotá",
+    "destination": "Camboja"
+}
+
+###
+POST http://localhost:3003/purchase
+Content-Type: application/json
+
+{
+    "userId": "1.6281285616511747",
+    "productId": "1.6281283732382985",
+    "quantity": 5
+}

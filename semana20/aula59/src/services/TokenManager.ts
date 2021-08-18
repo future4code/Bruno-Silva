@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken"
-import { authenticationData } from "../model/user"
+import { authenticationData } from "../model/User"
 
 export class TokenManager {
    generate = (
@@ -7,9 +7,9 @@ export class TokenManager {
    ): string => {
       return jwt.sign(
          payload,
-         process.env.JWT_KEY!,
+         process.env.JWT_KEY as string,
          {
-            expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN!
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN as string
          }
       )
    }

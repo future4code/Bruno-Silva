@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UserBusiness } from '../../business/user/UserBusiness';
+import { UserBusiness } from '../business/UserBusiness';
 
 export class UserController {
 
@@ -33,7 +33,7 @@ export class UserController {
             const { email, password } = req.body
 
             const token: string = await new UserBusiness().login({email, password})
-
+            console.log("token", token)
             res.send({
                 message: "Usuário logado!",
                 token

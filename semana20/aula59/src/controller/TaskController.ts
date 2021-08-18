@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { TaskBusiness } from '../business/TaskBusiness';
 
 export class TaskController {
 
@@ -7,12 +8,11 @@ export class TaskController {
         res: Response
     ): Promise<void> {
         try {
-
             const { title, description, deadline, authorId } = req.body
 
-            // await createTaskBusiness({
-            //     title, description, deadline, authorId
-            // })
+            await new TaskBusiness().createTask({
+                title, description, deadline, authorId
+            })
 
             res.status(201).end()
 
@@ -31,9 +31,9 @@ export class TaskController {
 
             const { id } = req.params
 
-            // const task = getTaskByIdBusiness(id)
+            const task = await new TaskBusiness().getTaskById(id)
 
-            // res.status(200).send(task)
+            res.status(200).send(task)
 
         } catch (error) {
             res.status(400).send(error.message)

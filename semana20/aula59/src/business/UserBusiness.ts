@@ -1,8 +1,8 @@
-import { UserDatabase } from "../../data/UserDatabase"
-import { User } from "../../model/user";
-import { HashManager } from "../../services/hashManager";
-import { IdGenerator } from "../../services/idGenerator";
-import { TokenManager } from "../../services/TokenManager";
+import { UserDatabase } from "../data/UserDatabase"
+import { User } from "../model/User";
+import { HashManager } from "../services/HashManager";
+import { IdGenerator } from "../services/IdGenerator";
+import { TokenManager } from "../services/TokenManager";
 
 export class UserBusiness {
 
@@ -48,7 +48,7 @@ export class UserBusiness {
             throw new Error("'email' e 'senha' são obrigatórios")
         }
 
-        const user: User = await new UserDatabase().selectByEmail(email)
+        const user: User = await new UserDatabase().selectByEmail({email})
 
         if (!user) {
             throw new Error("Usuário não encontrado ou senha incorreta")
@@ -63,7 +63,7 @@ export class UserBusiness {
         const token: string = new TokenManager().generate({
             id: user.getId(),
             role: user.getRole()
-        })
+        });
 
         return token
     }

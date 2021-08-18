@@ -1,0 +1,33 @@
+GET http://localhost:3003/task/0507cda8-f567-4e2a-94e0-83412b5ca919
+
+###
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "Teste",
+    "nickname": "testinho",
+    "email": "teste@teste.com",
+    "password": "123456",
+    "role": "ADMIN"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "teste@teste.com",
+    "password": "123456"
+}
+
+###
+PUT http://localhost:3003/task
+Content-Type: application/json
+
+{
+    "title": "tarefa 1",
+    "description": "descrição 1",
+    "deadline": "2021-10-20",
+    "authorId": "d0e46b45-ac67-46ad-9df4-7d72fcfcb95a"
+}

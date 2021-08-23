@@ -1,0 +1,32 @@
+GET http://localhost:3003/posts/df8efafb-b441-49be-ad1b-e76b304703de
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNzM1NzM5LWUzNmItNDFjNS1hYzI5LWIxODAwODY0ZDcxMyIsImlhdCI6MTYyOTY5MzAzNiwiZXhwIjoxNjI5Njk2NjM2fQ.GhihTozhMnK8YNsDx3x9DgEiIAJfP2UFHDQDXryQNBE
+
+###
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "bruna",
+    "email": "bruna@labenu.com",
+    "password": "123456"
+}
+
+###
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "ana@labenu.com",
+    "password": "123456"
+}
+
+###
+POST http://localhost:3003/posts/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNzM1NzM5LWUzNmItNDFjNS1hYzI5LWIxODAwODY0ZDcxMyIsImlhdCI6MTYyOTY5MzAzNiwiZXhwIjoxNjI5Njk2NjM2fQ.GhihTozhMnK8YNsDx3x9DgEiIAJfP2UFHDQDXryQNBE
+
+{
+    "photo": "url ana2",
+    "description": "post ana3",
+    "type": "teste"
+}

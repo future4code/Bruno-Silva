@@ -1,21 +1,15 @@
 # LABOOK
+- Este é um projeto básico de Backend, utilizando Typescript, MySQL, além das bibliotecas knexJs e expressJs, desenvolvido para atender aos modelos REST API.
 
-## Primeiros Passos
+---
+## DESCRIÇÃO DO PROJETO
 
-* Clonar este repositório
-* Executar `npm install` para adicionar as dependências
-* Criar um arquivo .env na raiz do projeto e preencher as chaves a seguir com os valores apropriados:
-   ```
-   DB_HOST = 
-   DB_USER = 
-   DB_PASSWORD = 
-   DB_SCHEMA = 
+- O projeto consiste em simular a metodologia CRUD na estruturação de Sistema de Posts de Rede Social, gerando e acessando informações de usuários e posts, sendo criado endpoints `GET` e `POST` para alimentar as demandas.
 
-   JWT_KEY = 
+---
+## DOCUMENTAÇÃO DE FUNCIONAMENTO
 
-   BCRYPT_COST = 
-   ```
-* Executar `npm run migrations` para adicionar as tabelas ao banco de dados (em caso de sucesso, o servidor já estará pronto para receber requisições )
+### LINK DA DOCUMENTAÇÃO NO POSTMAN: https://documenter.getpostman.com/view/15825773/TzzGFshT
 
 ## Endpoints
 

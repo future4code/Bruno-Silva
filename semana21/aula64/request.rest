@@ -1,0 +1,23 @@
+### INFORMAÇÕES DO USUÁRIO
+GET http://localhost:3003/users/profile/87cae3c2-4162-47df-9db1-671ef66821da
+
+### CADASTRO
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+	"name": "Bruno",
+	"email": "bruno@lbn.com",
+	"password": "123456",
+   "role":"NORMAL"
+}
+
+### LOGIN
+
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+	"email": "alice@lbn.com",
+	"password": "123456"
+}

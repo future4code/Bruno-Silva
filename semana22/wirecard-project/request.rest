@@ -1,0 +1,26 @@
+POST http://localhost:3003/purchase/clientId
+Content-Type: application/json
+
+{
+    "buyer": {
+        "name": "nome",
+        "email": "email",
+        "cpf": "cpf"
+    },
+    "payment": {
+        "amount": 25.00,
+        "method": "boleto",
+        "buyerId": "buyerId"
+    },
+    "holder": {
+        "name": "nome do holder",
+        "birthDate": "01/01/2000",
+        "documentNumber": "1111111"
+    },
+    "creditCard": {
+        "brand": "ELO",
+        "cardNumber": "111111",
+        "expiration": "08/2025",
+        "cvv": "666"
+    }
+}

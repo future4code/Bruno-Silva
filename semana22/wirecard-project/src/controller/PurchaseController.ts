@@ -13,7 +13,7 @@ export class PurchaseController {
     create = async (req: Request, res: Response):Promise<void> => {
         try {
             const clientId = req.params.clientId as string;
-            const { buyer, payment, holder, creditCard } =  req.body;
+            const { buyer, payment, holder, creditCard, saveCreditCard } =  req.body;
 
             const buyerInput: BuyerInputDTO | undefined = buyer && {
                 name: buyer.name,
@@ -33,6 +33,7 @@ export class PurchaseController {
             };
 
             const creditCardInput: CreditCardInputDTO | undefined = {
+                holderName: creditCard.holderName,
                 brand: creditCard.brand,
                 cardNumber: creditCard.cardNumber,
                 expirationDate: creditCard.expirationDate,
@@ -40,16 +41,17 @@ export class PurchaseController {
             };
 
             const purchaseBusiness = new PurchaseBusiness();
-            const result = await purchaseBusiness.create(
+            const result = await purchaseBusiness.createPayment(
                 clientId, 
                 buyerInput, 
                 paymentInput,
                 holderInput, 
-                creditCardInput
+                creditCardInput,
+                saveCreditCard
             );
 
             res.status(201).send({ message: result });
-        } catch (error) {
+        } catch (error: any) {
             res.status(error.code || 400).send({ message: error.message? error.message : error.sqlMessage });
         };
     };
@@ -57,7 +59,7 @@ export class PurchaseController {
     findById = async (req: Request, res: Response):Promise<void> => {
         try {
             res.send();
-        } catch (error) {
+        } catch (error: any) {
             res.status(error.code || 400).send({ message: error.message? error.message : error.sqlMessage });
         };
     };

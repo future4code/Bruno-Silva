@@ -77,8 +77,9 @@ export class CreditCard {
 };
 
 export interface CreditCardInputDTO {
+    holderName: string,
     brand: CARD_BRANDS,
     cardNumber: string,
-    expirationDate: Date,
+    expirationDate: string,
     cvv: string
 };

@@ -3,14 +3,13 @@ Content-Type: application/json
 
 {
     "buyer": {
-        "name": "nome",
-        "email": "email",
-        "cpf": "cpf"
+        "name": "TESTE",
+        "email": "teste@teste.com",
+        "cpf": "12345678912"
     },
     "payment": {
         "amount": 25.00,
-        "method": "boleto",
-        "buyerId": "buyerId"
+        "method": "CREDIT_CARD"
     },
     "holder": {
         "name": "nome do holder",

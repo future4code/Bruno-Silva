@@ -2,7 +2,7 @@ export class Boleto {
     constructor(
         private id: string,
         private code: string,
-        private expirationDate: Date
+        private expirationDate: string
     ){}
 
     getId():string {
@@ -13,7 +13,7 @@ export class Boleto {
         return this.code;
     };
 
-    getExpirationDate(): Date {
+    getExpirationDate():string {
         return this.expirationDate;
     };
 
@@ -25,11 +25,16 @@ export class Boleto {
         this.code = newCode;
     };
 
-    setExpirationDate(newExpirationDate: Date):void {
+    setExpirationDate(newExpirationDate:string):void {
         this.expirationDate = newExpirationDate;
     };
 
-    toBoletoModel(data:any):Boleto {
+    static toBoletoModel(data:any):Boleto {
         return new Boleto(data.id, data.code, data.expirationDate);
     };
+};
+
+export interface BoletoInputDTO {
+    code: string,
+    expirationDate: string
 };

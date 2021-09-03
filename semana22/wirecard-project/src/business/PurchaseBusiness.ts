@@ -1,9 +1,14 @@
+import { BoletoDatabase } from "../data/BoletoDatabase";
 import { BuyerDatabase } from "../data/BuyerDatabase";
+import { ClientDatabase } from "../data/ClientDatabase";
 import { CustomError } from "../error/CustomError";
+import { Boleto } from "../models/Boleto";
 import { Buyer, BuyerInputDTO } from "../models/Buyer";
 import { CreditCardInputDTO } from "../models/CreditCard";
 import { HolderInputDTO } from "../models/Holder";
 import { PaymentInputDTO, PAYMENT_METHODS } from "../models/Payment";
+import { CodePaymentGenerator } from "../services/CodePaymentGenerator";
+import { ExpirationDateGenerator } from "../services/ExpirationDateGenerator";
 import { IdGenerator } from "../services/IdGenerator";
 
 
@@ -75,19 +80,40 @@ export class PurchaseBusiness {
             throw new CustomError(422, `Payment 'method' is only allowed to 'BOLETO' or 'CREDIT_CARD'! Please, try again`);
         };
 
+        const clientDatabase = new ClientDatabase();
+        const isClientAlreadyExist = await clientDatabase.findClientById(clientId);
+
+        if(!isClientAlreadyExist) {
+            throw new CustomError(422, `Client hasn´t been found! Please, check 'clientId'`);
+        };
+
         const buyerDatabase = new BuyerDatabase();
         const isBuyerAlreadyExist = await buyerDatabase.findBuyerByEmail(buyerEmail);
 
-        if (!isBuyerAlreadyExist) {
-            const idGenerator = new IdGenerator();
-            const newId = idGenerator.generateId();
+        const idGenerator = new IdGenerator();
 
-            const newBuyer = new Buyer(newId, buyerName, buyerEmail, buyerCpf);
+        if (!isBuyerAlreadyExist) {
+            const newBuyerId = idGenerator.generateId();
+
+            const newBuyer = new Buyer(newBuyerId, buyerName, buyerEmail, buyerCpf);
             await buyerDatabase.createBuyer(newBuyer);
         };
 
         if (method === "BOLETO") {
-            return "teste"
+            const newBoletoId = idGenerator.generateId();
+
+            const codePayment = new CodePaymentGenerator();
+            const newCodePayment = codePayment.generate();
+
+            const expirationDate = new ExpirationDateGenerator();
+            const newExpirationDate = expirationDate.generate();
+
+            const newBoleto = new Boleto(newBoletoId, newCodePayment, newExpirationDate);
+
+            const boletoDatabase = new BoletoDatabase();
+            await boletoDatabase.createBoleto(newBoleto);
+            
+            return newBoleto.getCode();
         } else {
             if (!holder) {
                 throw new CustomError(422, `'holder' must be provided as an object with 'name',

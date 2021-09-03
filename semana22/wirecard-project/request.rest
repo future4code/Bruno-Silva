@@ -1,4 +1,4 @@
-POST http://localhost:3003/purchase/clientId
+POST http://localhost:3003/purchase/1
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
     },
     "payment": {
         "amount": 25.00,
-        "method": "CREDIT_CARD"
+        "method": "BOLETO"
     },
     "holder": {
         "name": "nome do holder",

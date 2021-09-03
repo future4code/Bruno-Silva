@@ -3,7 +3,7 @@ import { Buyer } from "../models/Buyer";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class BuyerDatabase extends BaseDatabase {
-    private static TABLE_NAME = "Buyer"
+    private static TABLE_NAME = "Buyer";
 
     findBuyerByEmail = async (email: string): Promise<Buyer | undefined> => {
 

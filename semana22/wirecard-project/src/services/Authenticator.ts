@@ -5,9 +5,9 @@ import { authenticationData } from '../types';
 dotenv.config();
 
 export class Authenticator {
-    generateToken(
+    generateToken = (
         payload: authenticationData
-    ): string {
+    ): string => {
         return jwt.sign(
             payload,
             process.env.JWT_KEY as string,
@@ -17,9 +17,9 @@ export class Authenticator {
         )
     };
 
-    getTokenData(
+    getTokenData = (
         token: string
-    ): authenticationData {
+    ): authenticationData => {
         return jwt.verify(
             token,
             process.env.JWT_KEY as string

@@ -1,6 +1,6 @@
-import { CustomError } from "../error/CustomError";
-import { CreditCard } from "../models/CreditCard";
-import { BaseDatabase } from "./BaseDatabase";
+import { CustomError } from "../../error/CustomError";
+import { CreditCard } from "../../models/CreditCard";
+import { BaseDatabase } from "../BaseDatabase";
 
 
 export class CreditCardDatabase extends BaseDatabase {

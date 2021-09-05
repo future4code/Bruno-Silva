@@ -1,16 +1,30 @@
 import { Request, Response } from 'express';
+
 import { PurchaseBusiness } from '../business/PurchaseBusiness';
+
 import { BuyerInputDTO } from '../models/Buyer';
 import { CreditCardInputDTO } from '../models/CreditCard';
 import { HolderInputDTO } from '../models/Holder';
 import { PaymentInputDTO } from '../models/Payment';
 
 export class PurchaseController {
-    constructor(){
+    constructor(
+        private purchaseBusiness: PurchaseBusiness
+    ){};
 
+    findPaymentById = async (req: Request, res: Response):Promise<void> => {
+        try {
+            const paymentId = req.params.id as string;
+
+            const paymentInformations = await this.purchaseBusiness.findPaymentById(paymentId);
+
+            res.status(200).send({ payment: paymentInformations});
+        } catch (error: any) {
+            res.status(error.code || 400).send({ message: error.message? error.message : error.sqlMessage });
+        };
     };
 
-    create = async (req: Request, res: Response):Promise<void> => {
+    createPayment = async (req: Request, res: Response):Promise<void> => {
         try {
             const clientId = req.params.clientId as string;
             const { buyer, payment, holder, creditCard, saveCreditCard } =  req.body;
@@ -40,8 +54,7 @@ export class PurchaseController {
                 cvv: creditCard.cvv
             };
 
-            const purchaseBusiness = new PurchaseBusiness();
-            const result = await purchaseBusiness.createPayment(
+            const result = await this.purchaseBusiness.createPayment(
                 clientId, 
                 buyerInput, 
                 paymentInput,
@@ -51,14 +64,6 @@ export class PurchaseController {
             );
 
             res.status(201).send({ message: result });
-        } catch (error: any) {
-            res.status(error.code || 400).send({ message: error.message? error.message : error.sqlMessage });
-        };
-    };
-
-    findById = async (req: Request, res: Response):Promise<void> => {
-        try {
-            res.send();
         } catch (error: any) {
             res.status(error.code || 400).send({ message: error.message? error.message : error.sqlMessage });
         };

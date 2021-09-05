@@ -1,6 +1,6 @@
-import { CustomError } from "../error/CustomError";
-import { Buyer } from "../models/Buyer";
-import { BaseDatabase } from "./BaseDatabase";
+import { CustomError } from "../../error/CustomError";
+import { Buyer } from "../../models/Buyer";
+import { BaseDatabase } from "../BaseDatabase";
 
 export class BuyerDatabase extends BaseDatabase {
     private static TABLE_NAME = "Buyer";

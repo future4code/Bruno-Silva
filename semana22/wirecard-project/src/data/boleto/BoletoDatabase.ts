@@ -1,6 +1,6 @@
-import { CustomError } from "../error/CustomError";
-import { Boleto } from "../models/Boleto";
-import { BaseDatabase } from "./BaseDatabase";
+import { CustomError } from "../../error/CustomError";
+import { Boleto } from "../../models/Boleto";
+import { BaseDatabase } from "../BaseDatabase";
 
 
 export class BoletoDatabase extends BaseDatabase {

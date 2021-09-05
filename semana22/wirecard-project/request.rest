@@ -1,3 +1,6 @@
+GET http://localhost:3003/purchase/67b55191-d1f2-4d6a-9355-78eabdf6b87a
+
+###
 POST http://localhost:3003/purchase/1
 Content-Type: application/json
 
@@ -22,5 +25,6 @@ Content-Type: application/json
         "cardNumber": "1111111111111111",
         "expirationDate": "01/08/2022",
         "cvv": "666"
-    }
+    },
+    "saveCreditCard": true
 }

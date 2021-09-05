@@ -1,28 +1,66 @@
 import moment from "moment";
-import { BoletoDatabase } from "../data/BoletoDatabase";
-import { BuyerDatabase } from "../data/BuyerDatabase";
-import { ClientDatabase } from "../data/ClientDatabase";
-import { CreditCardDatabase } from "../data/CreditCardDatabase";
-import { HolderDatabase } from "../data/HolderDatabase";
-import { PurchaseDatabase } from "../data/PurchaseDatabase";
-import { CustomError } from "../error/CustomError";
+
 import { Boleto } from "../models/Boleto";
 import { Buyer, BuyerInputDTO } from "../models/Buyer";
 import { CARD_BRANDS, CreditCard, CreditCardInputDTO } from "../models/CreditCard";
 import { Holder, HolderInputDTO } from "../models/Holder";
 import { Payment, PaymentInputDTO, PAYMENT_METHODS, PAYMENT_STATUS } from "../models/Payment";
+
+import { BoletoDatabase } from "../data/boleto/BoletoDatabase";
+import { BuyerDatabase } from "../data/buyer/BuyerDatabase";
+import { ClientDatabase } from "../data/costumer/ClientDatabase";
+import { CreditCardDatabase } from "../data/creditCard/CreditCardDatabase";
+import { CreditCardHolderJunctionDatabase } from "../data/creditCardHolderJunction/CreditCardHolderJunctionDatabase";
+import { HolderDatabase } from "../data/holder/HolderDatabase";
+import { PurchaseDatabase } from "../data/purchase/PurchaseDatabase";
+
 import { CodePaymentGenerator } from "../services/CodePaymentGenerator";
 import { ExpirationDateGenerator } from "../services/ExpirationDateGenerator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { RandomStatusGenerator } from "../services/RandomStatusGenerator";
 
+import { CustomError } from "../error/CustomError";
+import { BoletoRepository } from "../data/boleto/BoletoRepository";
+import { BuyerRepository } from "../data/buyer/BuyerRepository";
+import { ClientRepository } from "../data/costumer/ClientRepository";
+import { CreditCardRepository } from "../data/creditCard/CreditCardRepository";
+import { CreditCardHolderJunctionRepository } from "../data/creditCardHolderJunction/CreditCardHolderJunctionRepository";
+import { HolderRepository } from "../data/holder/HolderRepository";
+import { PurchaseRepository } from "../data/purchase/PurchaseRepository";
+
+
 
 export class PurchaseBusiness {
     static regExValidateEmail: RegExp = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
 
-    constructor() {
+    constructor(        
+        private boletoDatabase: BoletoRepository,
+        private buyerDatabase: BuyerRepository,
+        private clientDatabase: ClientRepository,
+        private creditCardDatabase: CreditCardRepository, 
+        private creditCardHolderJunctionDatabase: CreditCardHolderJunctionRepository,
+        private holderDatabase: HolderRepository,
+        private purchaseDatabase: PurchaseRepository,
+        private codePaymentGenerator: CodePaymentGenerator,
+        private expirationDateGenerator: ExpirationDateGenerator,
+        private hashManager: HashManager,
+        private idGenerator: IdGenerator,
+        private randomStatusGenerator: RandomStatusGenerator
+        ) {};
 
+    findPaymentById = async (paymentId: string): Promise<Payment> => {
+        if (!paymentId) {
+            throw new CustomError(422, "'paymentId' should be provided as a param! Please, check requisition");
+        };
+
+        const payment = await this.purchaseDatabase.findPaymentById(paymentId);
+
+        if (!payment) {
+            throw new CustomError(404, "payment hasn´t been found! Please, check 'paymentId'");
+        };
+
+        return payment;
     };
 
     createPayment = async (
@@ -87,28 +125,24 @@ export class PurchaseBusiness {
             throw new CustomError(422, `Payment 'method' is only allowed to 'BOLETO' or 'CREDIT_CARD'! Please, try again`);
         };
 
-        const clientDatabase = new ClientDatabase();
-        const isClientAlreadyExist = await clientDatabase.findClientById(clientId);
+        const isClientAlreadyExist = await this.clientDatabase.findClientById(clientId);
 
         if (!isClientAlreadyExist) {
             throw new CustomError(422, `Client hasn´t been found! Please, check 'clientId'`);
         };
 
-        const buyerDatabase = new BuyerDatabase();
-        const isBuyerAlreadyExist = await buyerDatabase.findBuyerByEmail(buyerEmail);
-
-        const idGenerator = new IdGenerator();
+        const isBuyerAlreadyExist = await this.buyerDatabase.findBuyerByEmail(buyerEmail);
 
         if (!isBuyerAlreadyExist) {
-            const newBuyerId = idGenerator.generateId();
+            const newBuyerId = this.idGenerator.generateId();
 
             const newBuyer = new Buyer(newBuyerId, buyerName, buyerEmail, buyerCpf);
-            await buyerDatabase.createBuyer(newBuyer);
+            await this.buyerDatabase.createBuyer(newBuyer);
         };
 
         if (method === "BOLETO") {
-            const newPaymentId = idGenerator.generateId();
-            const buyerId = await buyerDatabase.findBuyerIdByEmail(buyerEmail);
+            const newPaymentId = this.idGenerator.generateId();
+            const buyerId = await this.buyerDatabase.findBuyerIdByEmail(buyerEmail);
 
             if (!buyerId) {
                 throw new CustomError(500, "Internal error server! Please, try again");
@@ -118,21 +152,17 @@ export class PurchaseBusiness {
 
             const newPayment = new Payment(newPaymentId, amount, method, status as PAYMENT_STATUS, buyerId, clientId);
 
-            const purchaseDatabase = new PurchaseDatabase();
-            await purchaseDatabase.createPayment(newPayment);
+            await this.purchaseDatabase.createPayment(newPayment);
 
-            const newBoletoId = idGenerator.generateId();
+            const newBoletoId = this.idGenerator.generateId();
 
-            const codePayment = new CodePaymentGenerator();
-            const newCodePayment = codePayment.generate();
+            const newCodePayment = this.codePaymentGenerator.generate();
 
-            const expirationDate = new ExpirationDateGenerator();
-            const newExpirationDate = expirationDate.generate();
+            const newExpirationDate = this.expirationDateGenerator.generate();
 
             const newBoleto = new Boleto(newBoletoId, newCodePayment, newExpirationDate);
 
-            const boletoDatabase = new BoletoDatabase();
-            await boletoDatabase.createBoleto(newBoleto);
+            await this.boletoDatabase.createBoleto(newBoleto);
 
             return newBoleto.getCode();
         } else {
@@ -156,7 +186,7 @@ export class PurchaseBusiness {
 
             const actualYear = new Date().getFullYear();
             const holderBirthYear: string = holderBirth.split("/")[2];
-            if(actualYear - Number(holderBirthYear) < 18) {
+            if (actualYear - Number(holderBirthYear) < 18) {
                 throw new CustomError(422, `Holder should have at least 18 years old! Please, check 'birthDate'`);
             };
 
@@ -216,53 +246,56 @@ export class PurchaseBusiness {
                 );
             };
 
-            const holderDatabase = new HolderDatabase();
-            const isHolderAlreadyExist = await holderDatabase.findHolderByDocumentNumber(holderRegister);
+            const isHolderAlreadyExist = await this.holderDatabase.findHolderByDocumentNumber(holderRegister);
 
             if (!isHolderAlreadyExist) {
-                const newHolderId = idGenerator.generateId();
-                const modifyHolderBirth:string = moment(holderBirth, "DD/MM/YYYY").format("YYYY-MM-DD"); 
+
+                const newHolderId = this.idGenerator.generateId();
+                const modifyHolderBirth: string = moment(holderBirth, "DD/MM/YYYY").format("YYYY-MM-DD");
 
                 const newHolder = new Holder(newHolderId, holderName, modifyHolderBirth, holderRegister);
-                await holderDatabase.createHolder(newHolder);
+                await this.holderDatabase.createHolder(newHolder);
             };
 
-            const creditCardDatabase = new CreditCardDatabase();
-            const isCreditCardAlreadyExist = await creditCardDatabase.findCreditCardByHolderName(cardHolderName);
+            const isCreditCardAlreadyExist = await this.creditCardDatabase.findCreditCardByHolderName(cardHolderName);
 
             if (!isCreditCardAlreadyExist && saveCreditCard) {
-                const newCreditCardId = idGenerator.generateId();
+                const newCreditCardId = this.idGenerator.generateId();
 
-                const newHashManager = new HashManager();
-                const encryptedCardNumber = await newHashManager.hash(cardNumber);
-                const encryptedCVV = await newHashManager.hash(cvv);
+                const encryptedCardNumber = await this.hashManager.hash(cardNumber);
+                const encryptedCVV = await this.hashManager.hash(cvv);
                 const modifyExpirationDate: string = moment(expirationDate, "DD/MM/YYYY").format("YYYY-MM-DD");
 
                 const newCreditCard = new CreditCard(newCreditCardId, cardHolderName, brand as CARD_BRANDS,
                     encryptedCardNumber, modifyExpirationDate, encryptedCVV
                 );
 
-                await creditCardDatabase.createCreditCard(newCreditCard);
+                await this.creditCardDatabase.createCreditCard(newCreditCard);
+
+                const registeredHolder = await this.holderDatabase.findHolderByDocumentNumber(holderRegister) as Holder;
+
+                await this.creditCardHolderJunctionDatabase.createCreditCardHolderJunction(
+                    registeredHolder.getId(),
+                    newCreditCardId
+                );
             };
 
-            const newPaymentId = idGenerator.generateId();
-            const buyerId = await buyerDatabase.findBuyerIdByEmail(buyerEmail);
+            const newPaymentId = this.idGenerator.generateId();
+            const buyerId = await this.buyerDatabase.findBuyerIdByEmail(buyerEmail);
 
             if (!buyerId) {
                 throw new CustomError(500, "Internal error server! Please, try again");
             };
 
-            const randomStatusGenerator = new RandomStatusGenerator();
-            const randomStatus = randomStatusGenerator.generate();
+            const randomStatus = this.randomStatusGenerator.generate();
 
             const newPayment = new Payment(newPaymentId, amount, method, randomStatus as PAYMENT_STATUS,
                 buyerId, clientId
             );
 
-            const purchaseDatabase = new PurchaseDatabase();
-            await purchaseDatabase.createPayment(newPayment);
+            await this.purchaseDatabase.createPayment(newPayment);
 
-            return newPayment.getStatus() === "AUTHORIZED"? "Transaction has been successfully!" :
+            return newPayment.getStatus() === "AUTHORIZED" ? "Transaction has been successfully!" :
                 `Transaction has been failed! '${newPayment.getStatus()}' status`;
         };
     };

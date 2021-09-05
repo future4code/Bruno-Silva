@@ -1,5 +1,5 @@
-import { Client } from '../models/Client';
-import { BaseDatabase } from './BaseDatabase';
+import { Client } from '../../models/Client';
+import { BaseDatabase } from '../BaseDatabase';
 
 export class ClientDatabase extends BaseDatabase {
     private static TABLE_NAME = "Client";

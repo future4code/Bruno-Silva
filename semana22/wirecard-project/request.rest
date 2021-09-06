@@ -1,7 +1,7 @@
-GET http://localhost:3003/purchase/a
+GET https://wirecard-projeto.herokuapp.com/purchase/59e566d2-54e8-4e9b-8b2a-cdbdeab7dba3
 
 ###
-POST http://localhost:3003/purchase/1
+POST https://wirecard-projeto.herokuapp.com/purchase/1
 Content-Type: application/json
 
 {

@@ -6,14 +6,6 @@ import { CARD_BRANDS, CreditCard, CreditCardInputDTO } from "../models/CreditCar
 import { Holder, HolderInputDTO } from "../models/Holder";
 import { Payment, PaymentInputDTO, PAYMENT_METHODS, PAYMENT_STATUS } from "../models/Payment";
 
-import { BoletoDatabase } from "../data/boleto/BoletoDatabase";
-import { BuyerDatabase } from "../data/buyer/BuyerDatabase";
-import { ClientDatabase } from "../data/costumer/ClientDatabase";
-import { CreditCardDatabase } from "../data/creditCard/CreditCardDatabase";
-import { CreditCardHolderJunctionDatabase } from "../data/creditCardHolderJunction/CreditCardHolderJunctionDatabase";
-import { HolderDatabase } from "../data/holder/HolderDatabase";
-import { PurchaseDatabase } from "../data/purchase/PurchaseDatabase";
-
 import { CodePaymentGenerator } from "../services/CodePaymentGenerator";
 import { ExpirationDateGenerator } from "../services/ExpirationDateGenerator";
 import { HashManager } from "../services/HashManager";
@@ -50,9 +42,6 @@ export class PurchaseBusiness {
         ) {};
 
     findPaymentById = async (paymentId: string): Promise<Payment> => {
-        if (!paymentId) {
-            throw new CustomError(422, "'paymentId' should be provided as a param! Please, check requisition");
-        };
 
         const payment = await this.purchaseDatabase.findPaymentById(paymentId);
 
@@ -71,10 +60,6 @@ export class PurchaseBusiness {
         creditCard: CreditCardInputDTO | undefined,
         saveCreditCard: boolean | undefined
     ): Promise<string> => {
-        if (!clientId) {
-            throw new CustomError(422, "'clientId' must be provided");
-        };
-
         if (!buyer) {
             throw new CustomError(422, `'buyer' must be provided as an object with 'name',
                 'email' and 'cpf' properties`
@@ -106,8 +91,7 @@ export class PurchaseBusiness {
         };
 
         if (buyerCpf.length !== 11) {
-            throw new CustomError(422, `Buyer 'cpf' should have exactly 11 numbers in a string format type!
-                Please, try again`
+            throw new CustomError(422, `Buyer 'cpf' should have exactly 11 numbers in a string format type! Please, try again`
             );
         };
 
@@ -117,8 +101,8 @@ export class PurchaseBusiness {
             );
         };
 
-        if (typeof amount !== "number") {
-            throw new CustomError(422, `'amount' should be a number type input! Please, check input value`);
+        if (typeof amount !== "number" || amount <= 0) {
+            throw new CustomError(422, `'amount' should be a positive and non-zero number type input! Please, check input value`);
         };
 
         if (method !== PAYMENT_METHODS.BOLETO && method !== PAYMENT_METHODS.CREDIT_CARD) {
@@ -167,21 +151,18 @@ export class PurchaseBusiness {
             return newBoleto.getCode();
         } else {
             if (!holder) {
-                throw new CustomError(422, `'holder' must be provided as an object with 'name',
-                    'birthDate' and 'documentNumber' properties when payment´s method is 'CREDIT_CARD'`);
+                throw new CustomError(422, `'holder' must be provided as an object with 'name', 'birthDate' and 'documentNumber' properties when payment´s method is 'CREDIT_CARD'`);
             };
 
             if (!creditCard) {
-                throw new CustomError(422, `'creditCard' must be provided as an object with 'amount',
-                    and 'method' properties when payment´s method is 'CREDIT_CARD'`);
+                throw new CustomError(422, `'creditCard' must be provided as an object with 'amount', and 'method' properties when payment´s method is 'CREDIT_CARD'`);
             };
 
             const { name: holderName, birthDate: holderBirth, documentNumber: holderRegister } = holder;
             const { holderName: cardHolderName, brand, cardNumber, expirationDate, cvv } = creditCard;
 
             if (!holderName || !holderBirth || !holderRegister) {
-                throw new CustomError(422, `'name', 'birthDate' and 'documentNumber' of holder should be provided
-                    when 'CREDIT_CARD' is the payment method, and as a string type one! Please, check input´s values`);
+                throw new CustomError(422, `'name', 'birthDate' and 'documentNumber' of holder should be provided when 'CREDIT_CARD' is the payment method, and as a string type one! Please, check input´s values`);
             };
 
             const actualYear = new Date().getFullYear();
@@ -192,8 +173,7 @@ export class PurchaseBusiness {
 
             const isBirthValid: string = moment(holderBirth, "DD/MM/YYYY").format("YYYY-MM-DD");
             if (isBirthValid === "Invalid date") {
-                throw new CustomError(422, `'birthDate' from holder should be a 'DD/MM/YYYY format, where 
-                    DD is a valid day, MM is a valid month and YYYY is a valid year`
+                throw new CustomError(422, `'birthDate' from holder should be a 'DD/MM/YYYY format, where DD is a valid day, MM is a valid month and YYYY is a valid year`
                 );
             };
 
@@ -203,28 +183,23 @@ export class PurchaseBusiness {
             };
 
             if (holderRegister.length !== 9) {
-                throw new CustomError(422, `Holder 'documentNumber' should have exactly 9 numbers in 
-                    a string format type! Please, try again`
+                throw new CustomError(422, `Holder 'documentNumber' should have exactly 9 numbers in a string format type! Please, try again`
                 );
             };
 
             if (!brand || !cardNumber || !expirationDate || !cvv) {
-                throw new CustomError(422, `'brand', 'cardNumber', 'expirationDate' and 'cvv' 
-                    of CreditCard should be provided when 'CREDIT_CARD' is the payment method,
-                    and as a string type one! Please, check input´s values`);
+                throw new CustomError(422, `'brand', 'cardNumber', 'expirationDate' and 'cvv' of CreditCard should be provided when 'CREDIT_CARD' is the payment method, and as a string type one! Please, check input´s values`);
             };
 
             if (brand !== CARD_BRANDS.AMERICAN_EXPRESS && brand !== CARD_BRANDS.ELO &&
                 brand !== CARD_BRANDS.HIPERCARD && brand !== CARD_BRANDS.MASTERCARD &&
                 brand !== CARD_BRANDS.VISA
             ) {
-                throw new CustomError(422, `CreditCard 'brand' is only allowed to 'AMERICAN_EXPRESS', 'ELO',
-                    'HIPERCARD', 'MASTERCARD' or 'VISA'! Please, try again`);
+                throw new CustomError(422, `CreditCard 'brand' is only allowed to 'AMERICAN_EXPRESS', 'ELO', 'HIPERCARD', 'MASTERCARD' or 'VISA'! Please, try again`);
             };
 
             if (cardNumber.length < 13 || cardNumber.length > 16) {
-                throw new CustomError(422, `'cardNumber' should have from 13 to 16 digits as a stryng format!
-                    Please, check input value`
+                throw new CustomError(422, `'cardNumber' should have from 13 to 16 digits as a stryng format! Please, check input value`
                 );
             };
 
@@ -241,8 +216,7 @@ export class PurchaseBusiness {
             };
 
             if (cvv.length !== 3) {
-                throw new CustomError(422, `'cvv' should have exactly 3 digits as stryng format! 
-                    Please, check input value`
+                throw new CustomError(422, `'cvv' should have exactly 3 digits as stryng format! Please, check input value`
                 );
             };
 

@@ -87,4 +87,4 @@ const up = async () => {
     }
 };
 
-up().then(res => console.log("Fim de criaçao!")).catch(error => console.log(error));
+up().then(res => console.log("Ending migrations!")).catch(error => console.log(error));

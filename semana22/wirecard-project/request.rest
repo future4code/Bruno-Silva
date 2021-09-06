@@ -1,4 +1,4 @@
-GET http://localhost:3003/purchase/67b55191-d1f2-4d6a-9355-78eabdf6b87a
+GET http://localhost:3003/purchase/a
 
 ###
 POST http://localhost:3003/purchase/1
@@ -8,14 +8,14 @@ Content-Type: application/json
     "buyer": {
         "name": "TESTE",
         "email": "teste@teste.com",
-        "cpf": "12345678912"
+        "cpf": "12345678901"
     },
     "payment": {
         "amount": 25.30,
         "method": "CREDIT_CARD"
     },
     "holder": {
-        "name": "nome do holder",
+        "name": "",
         "birthDate": "01/10/2000",
         "documentNumber": "111111111"
     },

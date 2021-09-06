@@ -6,12 +6,16 @@ import { BaseDatabase } from "../BaseDatabase";
 export class CreditCardDatabase extends BaseDatabase {
     private static TABLE_NAME = "CreditCard";
 
-    findCreditCardByHolderName = async(holderName: string):Promise<CreditCard> => {
-        const CreditCard = await BaseDatabase.connection(CreditCardDatabase.TABLE_NAME)
+    findCreditCardByHolderName = async(holderName: string):Promise<CreditCard | undefined> => {
+        const creditCard = await BaseDatabase.connection(CreditCardDatabase.TABLE_NAME)
             .select()
             .where({ holderName });
 
-        return CreditCard[0] ? CreditCard[0].id : undefined;
+        if (creditCard.length < 1) {
+            return undefined;
+        };
+
+        return CreditCard.toCreditCardModel(creditCard[0]);
     };
 
     createCreditCard = async (newCreditCard: CreditCard): Promise<void> => {

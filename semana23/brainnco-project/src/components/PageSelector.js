@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import GlobalStateContext from '../global/GlobalStateContext';
 
 const PageSelector = () => {
-    const { loteries, setContestType } = useContext(GlobalStateContext);
+    const { loteries, setContestType, setLotery } = useContext(GlobalStateContext);
 
     const onChangeSelect = (event) => {
         if (event.target.value !== "default") {
-            return setContestType(event.target.value);
+            const y = loteries.filter(lotery => lotery.nome === event.target.value);
+            setLotery(y[0]);
+            setContestType(event.target.value);
         };
     };
 

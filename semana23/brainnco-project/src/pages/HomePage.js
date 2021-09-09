@@ -19,7 +19,7 @@ const HomePage = () => {
                 <PageSelector />
                 <NavMiddleContainer>
                     <img src={logo} alt="logo" />
-                    <p>{lotery ? lotery[0].nome : "Loading"}</p>
+                    <p>{lotery ? lotery.nome : "Loading"}</p>
                 </NavMiddleContainer>
                 <NavFooterContainer>
                     <h4>Concurso</h4>

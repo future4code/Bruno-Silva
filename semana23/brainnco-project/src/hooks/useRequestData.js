@@ -6,20 +6,19 @@ const useRequestData = (initialData, url) => {
 
   const getData = () => {
     axios.get(url)
-      .then((res) => {
+      .then((res) => {   
         setData(res.data);
       })
       .catch((err) => {
-          console.log(err.message)
-        // alert("Ops, ocorreu um erro! Tente novamente :)");
+        alert("Ops, ocorreu um erro! Tente novamente :)");
       });
   };
 
   useEffect(() => {
     getData();
-  }, [url]);
+  }, []);
 
-  return {data, getData};
+  return { data, getData };
 };
 
 export default useRequestData;

@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import PageSelector from '../components/PageSelector';
 import logo from '../assets/Logo_Sena.svg';
 import { PageContainer, NavPageContainer, NavMiddleContainer, NavFooterContainer, ExibitionContainer } from './styled';
-import useRequestData from '../hooks/useRequestData';
-import { BASE_URL } from '../constants/urls';
+import GlobalStateContext from "../global/GlobalStateContext";
 
-const MegaSenaPage = () => {
-    // const { data: loteries, getData: getLoteries } = useRequestData([], `${BASE_URL}/loterias`);
-    // const { data: contests, getData: getContests } = useRequestData([], `${BASE_URL}/loterias-concursos`);
-    // const { data: contest, getData: getContest } = useRequestData([], `${BASE_URL}/concursos/440`);
+const HomePage = () => {
+    const { lotery, contest } = useContext(GlobalStateContext);
 
-    // useEffect(() => {
-    //     getLoteries();
-    // }, []);
-
-    // console.log(loteries);
-    // console.log(contests);
-    // console.log(contest);
-    // const lotery = loteries[0] && loteries.filter( lotery => lotery.nome === "mega-sena");
+    const numbers = contest.numeros && contest.numeros.map((number) => {
+        return (
+            <p key={number}>{number}</p>
+        );
+    });
 
     return (
         <PageContainer>
@@ -25,17 +19,17 @@ const MegaSenaPage = () => {
                 <PageSelector />
                 <NavMiddleContainer>
                     <img src={logo} alt="logo" />
-                    <p>MEGA-SENA</p>
+                    <p>{lotery ? lotery[0].nome : "Loading"}</p>
                 </NavMiddleContainer>
                 <NavFooterContainer>
                     <h4>Concurso</h4>
-                    <p>numeração - data</p>
+                    <p>{contest? contest.id : "Loading"} - {contest? contest.data : "Loading"}</p>
                 </NavFooterContainer>
             </NavPageContainer>
             <ExibitionContainer>
                 <div></div>
                 <div>
-                    números
+                    {numbers}
                 </div>
                 <div>
                     Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA.
@@ -45,4 +39,4 @@ const MegaSenaPage = () => {
     );
 };
 
-export default MegaSenaPage;
+export default HomePage;

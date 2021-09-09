@@ -1,9 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { goToHomePage } from '../routes/coordinator';
 
 const ErrorPage = () => {
+    const history = useHistory();
+
     return(
         <div>
-            ErrorPage
+            <button onClick={() => goToHomePage(history)}>Voltar</button>
         </div>
     );
 };

@@ -5,9 +5,9 @@ import useRequestData from '../hooks/useRequestData';
 import axios from 'axios';
 
 export const GlobalState = (props) => {
-    const [contestType, setContestType] = useState("mega-sena");
-    const [lotery, setLotery] = useState({id: 0, nome: "mega-sena"});
-    const [contest, setContest] = useState({});
+    const [ contestType, setContestType ] = useState("mega-sena");
+    const [ lotery, setLotery ] = useState({id: 0, nome: "mega-sena"});
+    const [ contest, setContest ] = useState({});
     const { data: loteries } = useRequestData([], `${BASE_URL}/loterias`);
     const { data: contests } = useRequestData([], `${BASE_URL}/loterias-concursos`);
 
@@ -23,8 +23,8 @@ export const GlobalState = (props) => {
 
     useEffect(() => {
         if (contests.length) {
-            const x = contests.filter(contest => contest.loteriaId === lotery.id);
-            getContest(x[0].concursoId);   
+            const copyContest = contests.filter(contest => contest.loteriaId === lotery.id);
+            getContest(copyContest[0].concursoId);   
         };  
     }, [contestType]);
 
@@ -33,20 +33,15 @@ export const GlobalState = (props) => {
             .then((res) => {
                 setContest(res.data);
             })
-            .catch((err) => {
+            .catch(() => {
                 alert("Ops, ocorreu um erro! Tente novamente :)");
             });
     };
 
-    const data = {
-        lotery,
-        loteries,
-        contest,
-        setContestType,
-        setLotery
-    };
+    const states = { lotery, loteries, contest, contestType };
+    const setters = { setContestType, setLotery };
 
-    return <GlobalStateContext.Provider value={data}>
+    return <GlobalStateContext.Provider value={{states, setters}}>
         {props.children}
     </GlobalStateContext.Provider>
 }

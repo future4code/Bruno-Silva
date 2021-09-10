@@ -9,7 +9,7 @@ const useRequestData = (initialData, url) => {
       .then((res) => {   
         setData(res.data);
       })
-      .catch((err) => {
+      .catch(() => {
         alert("Ops, ocorreu um erro! Tente novamente :)");
       });
   };
@@ -18,7 +18,7 @@ const useRequestData = (initialData, url) => {
     getData();
   }, []);
 
-  return { data, getData };
+  return { data };
 };
 
 export default useRequestData;

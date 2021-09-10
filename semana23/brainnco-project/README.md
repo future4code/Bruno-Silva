@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+## Projeto Brainnco - Frontend Case
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Este é um projeto de FrontEnd Web utilizando React.js.
 
-## Available Scripts
+## Sobre
 
-In the project directory, you can run:
+- Projeto básico de simulação de plataforma de resultados lotéricos.
+- Esta atividade foi realizada por Bruno Silva, ficando a seu critério a estilização e organização estrutural.
 
-### `npm start`
+## O que funciona
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Campos de exibição com informações dos concursos lotéricos funcionando;
+- Cores e estilização funcionando conforme transição de tipos de jogos;
+- Botão de transição de jogos funcionando;
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## O que não funciona
 
-### `npm test`
+- Responsividade para mobile funcionando apenas para modelos S7/8/9 Plus (telas de 420px width);
+- Estilização não está perfeita para telas desktop em tamanhos distintos (modelo utilizado foi de 1600x1080p);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Link do Surge
 
-### `npm run build`
+http://brainnco-bsads.surge.sh
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Imagens do projeto
+![mega-sena](https://user-images.githubusercontent.com/81280346/132876026-f3acd989-2a15-4116-ae86-45a3466a8454.png)
+![quina](https://user-images.githubusercontent.com/81280346/132876032-7f91e909-1fbb-4aa3-bb8b-5cd71df7394c.png)
+![lotofacil](https://user-images.githubusercontent.com/81280346/132876039-5b636460-f9b0-4101-ace4-af3686407ad4.png)
+![lotomania](https://user-images.githubusercontent.com/81280346/132876046-14e6585b-c549-4ae0-a06c-dc6b6f802706.png)
+![timemania](https://user-images.githubusercontent.com/81280346/132876062-5700b6b1-59d7-4035-90cd-e38e62840614.png)
+![dia-de-sorte](https://user-images.githubusercontent.com/81280346/132876067-8c32bc38-38f7-40ad-a22c-a8c4610a474b.png)
+![ErrorPage](https://user-images.githubusercontent.com/81280346/132876079-d2dcc02a-2aa0-4e85-b300-7e6f2c6919fa.png)

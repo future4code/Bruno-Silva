@@ -1,0 +1,11 @@
+GET http://localhost:3003/participants/
+
+###
+POST http://localhost:3003/participants/
+Content-Type: application/json
+
+{
+    "firstName": "Gabriel",
+    "lastName": "Silva",
+    "participation": 10
+}

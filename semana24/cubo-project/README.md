@@ -23,7 +23,7 @@
 ## FUNCIONAMENTO BACKEND
 
 ---
-### LINK DA DOCUMENTAÇÃO NO POSTMAN: 
+### LINK DA DOCUMENTAÇÃO NO POSTMAN: `https://documenter.getpostman.com/view/15825773/UUxxgoME`
 
 ---
 ### `GET` AllParticipants

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { PageContainer } from './styled';
+import { PageContainer, TextContainer, MainContainer, TableContainer } from './styled';
 import Header from '../../components/Header/Header';
 
 import { Doughnut } from 'react-chartjs-2';
@@ -10,46 +10,54 @@ import GlobalStateContext from '../../global/GlobalStateContext';
 
 const HomePage = () => {
     const { participants } = useContext(GlobalStateContext);
-
-    const randomColor = require('randomcolor'); // import the script
-    const color = randomColor(); // a hex code for an attractive color
-    const color1 = randomColor();
-    const color2 = randomColor();
+    let cont = 0;
 
     const data = {
-        labels: participants.map(participant => `${participant.firstName} ${participant.lastName}`),
+        labels: participants && participants.map(participant => `${participant.firstName} ${participant.lastName}`),
         datasets: [
             {
-                label: "sei la",
-                data: participants.map(participant => participant.participation),
-                backgroundColor: participants.map(participant => randomColor()),
-                borderColor: ["blue"]
+                label: "Participation Chart",
+                data: participants && participants.map(participant => participant.participation),
+                backgroundColor: participants && participants.map(() => randomColor()),
+                borderColor: ["lightgrey"]
             }
         ]
     };
 
-    const tableParticipants = participants.map((participant) => {
+    const tableParticipants = participants && participants.map((participant) => {
         return (
-            <div>
-                <li>{participant.firstName}</li>
-                <li>{participant.lastName}</li>
-                <li>{participant.participation}</li>
-            </div>
+            <tr key={participant.id}>
+                <td>{cont += 1}</td>
+                <td>{participant.firstName}</td>
+                <td>{participant.lastName}</td>
+                <td>{participant.participation}</td>
+            </tr>
         )
     })
 
     return (
         <PageContainer>
             <Header />
-            <div>
+            <TextContainer>
+                <h2>DATA</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </TextContainer>
+            <MainContainer>
+                <TableContainer>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Participation</td>
+                        </tr>
+                        {tableParticipants}
+                    </table>
+                </TableContainer>
                 <div>
-                    {tableParticipants}
+                    {participants ? <Doughnut data={data} /> : <p>Loading...</p>}
                 </div>
-                <div>
-                    chart
-                </div>
-                <Doughnut data={data} />
-            </div>
+            </MainContainer>
         </PageContainer>
     );
 };

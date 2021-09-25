@@ -6,7 +6,7 @@ const useRequestData = (initialData, url) => {
 
   const getData = () => {
     axios.get(url)
-      .then((res) => {   
+      .then((res) => {
         setData(res.data);
       })
       .catch(() => {

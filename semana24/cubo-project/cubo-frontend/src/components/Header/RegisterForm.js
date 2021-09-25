@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-
-import { RegisterFormContainer } from './styled';
+import React from 'react';
+import { RegisterFormContainer, FormInput, FormButton } from './styled';
 
 import useForm from "../../hooks/useForm";
 import { register } from '../../services/participant';
 
 const RegisterForm = () => {
-  const [form, onChange, clear] = useForm({email: "", password: "" });
+  const [form, onChange, clear] = useForm({firstName: "", lastName: "", participation: ""});
 
   const onSubmitRegister = (event) => {
     event.preventDefault();
@@ -16,37 +15,35 @@ const RegisterForm = () => {
   return (
     <RegisterFormContainer>
       <form onSubmit={onSubmitRegister}>
-        <label
-          type={"email"}
-          name={"email"}
-          value={form.email}
+        <FormInput
+          type={"text"}
+          name={"firstName"}
+          value={form.firstName}
           onChange={onChange}
-          placeholder={"E-mail"}
+          placeholder={"First Name"}
           required
         />
-        <label
-          type={"password"}
-          name={"password"}
-          value={form.password}
+        <FormInput
+          type={"text"}
+          name={"lastName"}
+          value={form.lastName}
           onChange={onChange}
-          placeholder={"Senha"}
+          placeholder={"Last Name"}
           required
         />
-        <label
-          type={"password"}
-          name={"password"}
-          value={form.password}
+        <FormInput
+          type={"number"}
+          name={"participation"}
+          value={form.participation}
           onChange={onChange}
-          placeholder={"Senha"}
+          placeholder={"Participation"}
           required
         />
-        <button
+        <FormButton
           type={"submit"}
-          variant={"contained"}
-          color={"secondary"}
         >
-          Enviar
-        </button>
+          SEND
+        </FormButton>
       </form>
     </RegisterFormContainer>
   );

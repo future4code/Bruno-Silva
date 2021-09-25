@@ -1,17 +1,22 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants/urls';
-import { goToFeed } from '../routes/coordinator';
 
 export const register = (body, clear) => {
-    const url = `${BASE_URL}/users/login`
+    const url = `${BASE_URL}participants/`
 
-    axios.post(url, body)
-    .then((res) => {
-        localStorage.setItem("token", res.data.token)
-        clear()
-        alert("Seja bem-vindo! :)");
+    const modifiedBody = {
+        firstName: body.firstName,
+        lastName: body.lastName,
+        participation: Number(body.participation)
+    }
+
+    axios.post(url, modifiedBody)
+    .then(() => {
+        clear();
+        window.location.reload();
+        alert("Cadastrado com sucesso! :)");
     })
     .catch(() => {
-        alert("Usuário e/ou senha não encontrados! Tente novamente! :)")
+        alert("Ops, ocorreu algum erro! Tente novamente :)");
     });
 };

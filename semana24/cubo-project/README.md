@@ -11,7 +11,7 @@
 ## FUNCIONAMENTO FRONTEND
 
 ### O QUE FUNCIONA:
-- Formulário de inserçãod de novos colaboradores ao projeto funcionando;
+- Formulário de inserção de novos colaboradores ao projeto funcionando;
 - Tabela e gráfico de colaboradores funcionando de forma atualizável.
 
 ### O QUE NÃO FUNCIONA:

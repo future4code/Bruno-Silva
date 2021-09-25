@@ -1,7 +1,7 @@
-GET http://localhost:3003/participants/
+GET https://cubo-projeto.herokuapp.com/participants/
 
 ###
-POST http://localhost:3003/participants/
+POST https://cubo-projeto.herokuapp.com/participants/
 Content-Type: application/json
 
 {

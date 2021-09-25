@@ -30,7 +30,7 @@ const HomePage = () => {
                 <td>{cont += 1}</td>
                 <td>{participant.firstName}</td>
                 <td>{participant.lastName}</td>
-                <td>{participant.participation}</td>
+                <td>{participant.participation}%</td>
             </tr>
         )
     })

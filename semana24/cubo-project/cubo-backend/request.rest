@@ -1,0 +1,11 @@
+GET https://cubo-projeto.herokuapp.com/participants/
+
+###
+POST https://cubo-projeto.herokuapp.com/participants/
+Content-Type: application/json
+
+{
+    "firstName": "Gabriel",
+    "lastName": "Silva",
+    "participation": 10
+}

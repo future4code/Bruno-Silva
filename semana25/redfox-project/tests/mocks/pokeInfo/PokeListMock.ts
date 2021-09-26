@@ -1,8 +1,6 @@
-import { Participant } from '../../../src/models/Participant';
+import { PokeList } from '../../../src/models/PokeList';
 
-export const ParticipantMockSuccess = new Participant(
-    "participant_id",
-    "participant_firstName",
-    "participant_lastName",
-    10
+export const PokeListMockSuccess = new PokeList(
+    "pokename",
+    1
 );

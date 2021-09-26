@@ -1,39 +1,38 @@
-import { ParticipantDatabaseMock } from './mocks/participant/ParticipantDatabaseMock';
+import { PokeInfoDatabaseMock } from './mocks/pokeInfo/PokeInfoDatabaseMock';
 
-import { ParticipantBusiness } from '../src/business/ParticipantBusiness';
-import { ParticipantDatabase } from '../src/data/participant/ParticipantDatabase';
+import { PokeInfoBusiness } from '../src/business/PokeInfoBusiness';
+import { PokeInfoDatabase } from '../src/data/pokeInfo/PokeInfoDatabase';
 
-import { ParticipantMockSuccess } from './mocks/participant/ParticipantMock';
+import { PokeListMockSuccess } from './mocks/pokeInfo/PokeListMock';
+import { PokeStatusMockSuccess } from './mocks/pokeInfo/PokeStatusMock';
 
-const participantBusinessMock = new ParticipantBusiness(
-    new ParticipantDatabaseMock() as ParticipantDatabase
+const pokeInfoBusinessMock = new PokeInfoBusiness(
+    new PokeInfoDatabaseMock() as PokeInfoDatabase
 );
 
-describe("Testing get all participants", () => {
+describe("Testing get pokeList ordered and paged", () => {
     test("Should return success when it´s required", async () => {
         expect.assertions(1);
 
-        const result = await participantBusinessMock.getAllParticipants();
+        const result = await pokeInfoBusinessMock.getPokeListOrderedAndPaged(
+            "ASC",
+            10,
+            2
+        );
 
-        expect(result).toEqual([ParticipantMockSuccess]);
+        expect(result).toEqual([PokeListMockSuccess]);
     });
 });
 
-describe("Testing create participant", () => {
+describe("Testing get pokeStatus", () => {
 
-    test("Should return error if firstName isn´t provided", async () => {
-        expect.assertions(2);
-        try {
+    test("Should return success when it´s required", async () => {
+        expect.assertions(1);
 
-            await participantBusinessMock.createParticipant({
-                firstName: "",
-                lastName: "participant_lastName",
-                participation: 10
-            });
+        const result = await pokeInfoBusinessMock.getPokeStatusByPokename(
+            "Bulbasaur"
+        );
 
-        } catch (error: any) {
-            expect(error.message).toEqual(`'firstName', 'lastName' and/or 'participation' weren´t provided!`);
-            expect(error.code).toBe(422);
-        };
+        expect(result).toEqual(PokeStatusMockSuccess);
     });
 });

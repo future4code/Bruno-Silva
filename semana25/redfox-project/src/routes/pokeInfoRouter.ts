@@ -16,6 +16,6 @@ const pokeInfoBusiness = new PokeInfoBusiness(
 
 const pokeInfoController = new PokeInfoController(pokeInfoBusiness);
 
-pokeInfoRouter.get("/:pokename", (req,res) => pokeInfoController.getPokeStatusByPokename(req,res));
-
 pokeInfoRouter.get("/list", (req,res) => pokeInfoController.getPokeListOrderedAndPaged(req,res));
+
+pokeInfoRouter.get("/:pokename", (req,res) => pokeInfoController.getPokeStatusByPokename(req,res));

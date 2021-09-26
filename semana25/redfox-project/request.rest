@@ -1,4 +1,4 @@
-GET http://localhost:3003/pokemon/list?order=ASC&size=5&page=1
+GET https://redfox-projeto.herokuapp.com/pokemon/list?order=ASC&size=5&page=1
 
 ###
-GET http://localhost:3003/pokemon/Bulbasaur
+GET https://redfox-projeto.herokuapp.com/pokemon/Bulbasaur

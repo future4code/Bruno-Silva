@@ -1,20 +1,19 @@
-import { Participant } from '../../../src/models/Participant';
-import { ParticipantMockSuccess } from './ParticipantMock';
+import { PokeList } from '../../../src/models/PokeList';
+import { PokeStatus } from '../../../src/models/PokeStatus';
+import { PokeListMockSuccess } from './PokeListMock';
+import { PokeStatusMockSuccess } from './PokeStatusMock';
 
-export class ParticipantDatabaseMock {
+export class PokeInfoDatabaseMock {
 
-    public getAllParticipants = async (): Promise<Participant[]> => {
-        return [ParticipantMockSuccess];
+    public getPokeListOrderedAndPaged = async (
+        order: string,
+        size: number,
+        offset: number
+    ): Promise<PokeList[]> => {
+        return [PokeListMockSuccess];
     };
 
-    public createParticipant = async(newParticipant: Participant): Promise<void> => {
-
-    };
-
-    modifyParticipationFromParticipantById = async (
-        participant: Participant,
-        modifyParticipationFactor: number
-    ): Promise<void> => {
-
-    };
+    public getPokeStatusByPokename = async (pokename: string): Promise<PokeStatus> => {
+        return PokeStatusMockSuccess;
+    }
 };

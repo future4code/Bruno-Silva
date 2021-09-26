@@ -1,0 +1,4 @@
+GET https://redfox-projeto.herokuapp.com/pokemon/list?order=ASC&size=5&page=1
+
+###
+GET https://redfox-projeto.herokuapp.com/pokemon/Bulbasaur
